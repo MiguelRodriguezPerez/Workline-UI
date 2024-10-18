@@ -16,16 +16,16 @@ export const WkHeaderPhone = () => {
     }
 
     return (
-        <header className='wk-header-phone'>
+        <header className='wk-header-phone wk-header'>
             <Logo/>
             <div id='menuDesplegable'>
-                    <img src="/public/images/ui/cerrar.png" alt="close" onClick={closeMenu} />
+                    <img src="/images/ui/cerrar.png" alt="close" onClick={closeMenu} />
                     <Link>Mi cuenta</Link>
                     <Link>Inicio</Link>
                     <Link>Ofertas</Link>
                     <Link>Contratar</Link>
                 </div>
-            <img src='/public/images/ui/barras3.png' onClick={openMenu} alt='menu'/>
+            <img src='/images/ui/barras3.png' onClick={openMenu} alt='menu'/>
         </header>
     )
 }

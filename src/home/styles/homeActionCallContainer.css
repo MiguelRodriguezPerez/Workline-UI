@@ -1,0 +1,21 @@
+.home-action-container{
+    display: grid;
+    grid-template-columns: 45% 45%;
+    gap: 10%;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
+}
+
+.home-action-container > .action-call:nth-child(2){
+    background-color: green;
+}
+
+.home-action-container > .action-call:nth-child(2) >* {
+    border: solid 1px white;
+}
+
+@media screen and (max-width:1400px) {
+    .home-action-container{
+        grid-template-columns: 100%;
+    }
+}

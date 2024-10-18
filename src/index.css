@@ -1,4 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@300&family=Roboto&family=Tajawal:wght@500&display=swap');
+
 *{
     font-family: "Tajawal";
-    font-size: 16px;
+    font-size: 20px;
+}
+
+body{
+    margin: 0;
+}
+
+/*Necesario para situar el footer al fondo*/
+#root{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer.wk-footer{
+    margin-top: auto;
+}
+
+#root > *{
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+#root > header.wk-header{
+    margin: 0px;
+}
+
+#root > footer.wk-footer{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: auto;
 }

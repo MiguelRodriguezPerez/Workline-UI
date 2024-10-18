@@ -1,38 +1,31 @@
-body {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    margin: 0;
-}
+
 
 .wk-header-pc{
     padding: 1%;
     background-color: #333;
     display: grid;
-    grid-template-columns: 39% 22% 39%;
+    grid-template-columns: 37% 24% 39%;
 }
-
-/* .wk-header-pc div{
-    border: solid 1px white;
-} */
 
 .wk-header-pc a{
     color: white;
     text-decoration: none;
+    font-size: 1.6rem;
 }
 
 
 .wk-header-pc > .header-sections{
     display: grid;
     grid-template-columns: 33% 33% 33%;
-    font-size: 2rem;
 }
 
 .wk-header-pc > .header-login{
     text-align: right;
-    font-size: 1.6rem;
-    display: grid;
-    align-items: center;
+    margin-top: 1vh;
+}
+
+.header-login > a{
+    font-size: 1.3rem;
 }
 
 

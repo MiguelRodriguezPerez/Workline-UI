@@ -17,7 +17,7 @@ export const HomeBanner = () => {
         <Link>Encuentra empleo</Link>
       </div>
       <div>
-        <img src='/public/images/home/cartoonTelefono.png' alt="anuncio" />
+        <img src='/images/home/cartoonTelefono.png' alt="anuncio" />
       </div>
     </section>
   )

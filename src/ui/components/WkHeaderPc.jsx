@@ -5,7 +5,7 @@ import { Logo } from './Logo'
 
 export const WkHeaderPC = () => {
   return (
-    <header className='wk-header-pc'>
+    <header className='wk-header-pc wk-header'>
       <Logo/>
       <div className='header-sections'>
         <Link>Inicio</Link>

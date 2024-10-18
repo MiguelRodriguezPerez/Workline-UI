@@ -1,0 +1,35 @@
+.wk-footer{
+    margin-top: 3vh;
+    margin-bottom: 0;
+    background-color: #333;
+    padding: 3vh 10vw;
+
+    display: grid;
+    grid-template-columns: 20% 20% 60%;
+}
+
+.wk-footer > div{
+    display: flex;
+    flex-direction: column;
+}
+
+.wk-footer a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.4rem;
+    margin-bottom: 1vh;
+}
+
+@media screen and (max-width:1400px) {
+    .wk-footer{
+        grid-template-columns: 100%;
+    }
+
+    .wk-footer img{
+        margin-bottom: 2vh;
+    }
+
+    .wk-footer div{
+        margin-left: 3.3vw;
+    }
+}
