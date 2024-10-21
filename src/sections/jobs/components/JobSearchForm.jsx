@@ -17,7 +17,7 @@ export const JobSearchForm = () => {
         console.log(formState); // Muestra el estado del formulario en la consola
     
         try {
-            const response = await fetch('http://localhost:9001/internal-api/ofertas/search', {
+            const response = await fetch('http://localhost:9001/internal-api/public/ofertas/search', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

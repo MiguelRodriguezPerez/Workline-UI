@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router"
-import '../styles/homeActionCall.css'
+import { useNavigate } from "react-router";
+import '../styles/homeActionCall.css';
 
 export const HomeActionCall = ({url}) => {
 

@@ -1,0 +1,17 @@
+.job-page{
+    display: grid;
+    grid-template-columns: 23% 70%;
+    column-gap: 5%;
+    margin-top: 4vh;
+}
+
+.job-page h3{
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: normal;
+    text-align: center;
+}
+
+.job-page ul{
+    margin: 2vh;
+}

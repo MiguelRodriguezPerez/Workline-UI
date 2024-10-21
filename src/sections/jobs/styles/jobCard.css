@@ -1,0 +1,56 @@
+.job-card{
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: 100%;
+
+    background-color: white;
+    border-radius: 8px;
+
+    margin: 2.4vh 0;
+    padding: 1.7%;
+}
+
+.job-card:first-of-type{
+    margin-top: 0;
+}
+
+.first-section{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+}
+
+.first-section > h4,.first-section > h5,.first-section > h6{
+    margin: 0;
+    font-weight: normal;
+}
+
+.first-section > h4{
+    margin-bottom: 2%;
+    font-weight: normal;
+    font-size: 1.4rem;
+}
+
+.first-section > h5{
+    text-align: end;
+}
+
+.second-section{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    margin-top: 1%;
+}
+
+.second-section p{
+    margin: 0;
+}
+
+.second-section > div{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.second-section > p{
+    justify-self: end;
+}

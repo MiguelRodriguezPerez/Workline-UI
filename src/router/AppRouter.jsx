@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router"
-import { HomePage } from "../home/pages/HomePage"
-import { JobPage } from "../jobs/pages/JobPage"
+import { HomePage } from "../sections/home/pages/HomePage"
+import { JobPage } from "../sections/jobs/pages/JobPage"
 
 export const AppRouter = () => {
   return (
