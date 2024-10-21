@@ -8,8 +8,8 @@ export const WkHeaderPC = () => {
     <header className='wk-header-pc wk-header'>
       <Logo/>
       <div className='header-sections'>
-        <Link>Inicio</Link>
-        <Link>Ofertas</Link>
+        <Link to={'/'}>Inicio</Link>
+        <Link to={'/ofertasDeTrabajo/0'}>Ofertas</Link>
         <Link>Contratar</Link>
       </div>
       <div className='header-login'>

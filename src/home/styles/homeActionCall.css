@@ -28,6 +28,14 @@
         grid-template-columns: 100%;
     }
 
+    .action-call > *{
+        margin-left: 3vw;
+    }
+
+    .action-call p{
+        font-size: 1.2rem;
+    }
+
     .action-call:last-child{
         margin-bottom: 15vh;
     }

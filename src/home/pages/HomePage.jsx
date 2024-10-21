@@ -4,6 +4,7 @@ import { HomeBanner } from '../components/HomeBanner'
 import { HomeActionCallContainer } from '../components/HomeActionCallContainer'
 import { WkFooter } from '../../ui/components/WkFooter'
 
+
 export const HomePage = () => {
 
   return (
