@@ -1,10 +1,20 @@
-export const getOffers = async() => {
+export const getOffers = async(numPag,busquedaOferta) => {
+
+        const data = {
+            busquedaOferta: busquedaOferta,
+            pagina: numPag,
+        }
+
+        console.log(data)
+
         try {
-            const response = await fetch('http://localhost:9001/internal-api/public/ofertas/all', {
-                method: 'GET',
+            const response = await fetch('http://localhost:9001/internal-api/public/ofertas/pagina', {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify(data)
+
             });
     
             if (!response.ok) { // Verifica si la respuesta fue exitosa

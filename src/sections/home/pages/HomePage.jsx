@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
-import {WkHeader} from '../../../ui/components/WkHeader'
-import { HomeBanner } from '../components/HomeBanner'
-import { HomeActionCallContainer } from '../components/HomeActionCallContainer'
 import { WkFooter } from '../../../ui/components/WkFooter'
+import { WkHeader } from '../../../ui/components/WkHeader'
+import { HomeActionCallContainer } from '../components/HomeActionCallContainer'
+import { HomeBanner } from '../components/HomeBanner'
 
 
 export const HomePage = () => {

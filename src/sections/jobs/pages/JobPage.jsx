@@ -8,8 +8,6 @@ import { JobFeed } from '../components/JobFeed'
 
 export const JobPage = () => {
 
-  
-
   return (
     <>
         <WkHeader/>

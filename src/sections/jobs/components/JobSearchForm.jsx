@@ -1,8 +1,12 @@
-import { BusquedaOferta } from '../classes/BusquedaOferta';
-import useForm from '../hooks/useForm'
-import '../styles/jobSearchForm.css'
+import { useModalidades } from '../hooks';
+import useForm from '../hooks/useForm';
+import { useTiposContrato } from '../hooks/useTiposContrato';
+import '../styles/jobSearchForm.css';
 
 export const JobSearchForm = () => {
+
+    const { modalidades } = useModalidades();
+    const { tiposContrato } = useTiposContrato();
 
     const { formState, onInputChange, onResetForm} = useForm({
         puestoB: '',
@@ -40,20 +44,28 @@ export const JobSearchForm = () => {
     
     // Ejemplo de uso de la función
     // Si la función es parte de un evento de formulario, asegúrate de llamarla correctamente.
-    
 
   return (
     <form className='job-search-form' onSubmit={uploadSearch}>
         <label>Puesto</label>
         <input type="text" name='puestoB' onInput={onInputChange} />
         <label>Tipo Contrato</label>
-        <input type="text" name='tipoContratoB' onInput={onInputChange} />
+        <select name='tipoContratoB' onInput={onInputChange} >
+            {
+                tiposContrato.map( (tipo) => <option value={tipo} key={tipo}>{tipo.toLowerCase()}</option>)
+            }
+        </select>
         <label>Ciudad</label>
         <input type="text" name='ciudad' onInput={onInputChange} />
         <label>Salario minímo</label>
         <input type="text" name='salarioMinimo' onInput={onInputChange} />
         <label>Modalidad</label>
-        <input type="text" name='modalidadB' onInput={onInputChange} />
+        <select onChange={onInputChange} name='modalidadB'>
+            {
+                
+                modalidades.map( (modalidad) => <option key={modalidad}>{modalidad.toLowerCase()}</option>)
+            }
+        </select>
         <input type="submit" value="Buscar" />
     </form>
   )
