@@ -1,5 +1,6 @@
 .job-search-aside{
     margin-top: 2vh;
+    grid-row: 1/5;
 }
 
 .job-search-remove-filters{

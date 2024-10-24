@@ -22,7 +22,7 @@ export const WkHeaderPhone = () => {
                     <img src="/images/ui/cerrar.png" alt="close" onClick={closeMenu} />
                     <Link>Mi cuenta</Link>
                     <Link to={'/'}>Inicio</Link>
-                    <Link to={'/ofertasDeTrabajo/0'}>Ofertas</Link>
+                    <Link to={'/ofertasDeTrabajo/'}>Ofertas</Link>
                     <Link>Contratar</Link>
                 </div>
             <img src='/images/ui/barras3.png' onClick={openMenu} alt='menu'/>

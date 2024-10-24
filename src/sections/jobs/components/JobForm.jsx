@@ -7,7 +7,7 @@ import '../styles/jobSearchForm.css';
 import { getPageData } from '../helpers/getDataPage';
 
 
-const initialSearchState = {
+const initialSearch = {
     puestoB: '',
     sectorB: '',
     tipoContratoB:'',
@@ -16,15 +16,12 @@ const initialSearchState = {
     modalidadB:''
 }
 
-export const JobSearchForm = () => {
+export const JobForm = () => {
 
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
-    const { jobPageState, updatePage } = useContext( JobContext );
-
-    console.log(jobPageState)
-
-    const { formState, onInputChange, onResetForm} = useForm(initialSearchState);
+    const { updatePage } = useContext( JobContext );
+    const { formState, onInputChange, onResetForm} = useForm(initialSearch);
 
     const makeSearch = async(event) =>{
         event.preventDefault();
@@ -37,13 +34,14 @@ export const JobSearchForm = () => {
     const resetSearch = async(event) => {
         event.preventDefault();
         onResetForm(); 
-        const resultado = await getPageData(0, initialSearchState);
+        const resultado = await getPageData(0, initialSearch);
         updatePage(resultado);  
     }
+    
   return (
     <aside className='job-search-aside'>
         {
-            !Object.is(initialSearchState, formState) && 
+            !Object.is(initialSearch, formState) && 
             <a href="" className='job-search-remove-filters' onClick={resetSearch}>Borrar criterios</a>
         }
         <form className='job-search-form' onSubmit={makeSearch}>

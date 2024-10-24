@@ -1,9 +1,9 @@
-export const getPageData = async (pagina,busquedaOferta) => {
+export const getPageData = async (numPagina,busquedaOferta) => {
     /*Los nombres de los campos del objeto que reciba el endopoint 
     siempre tienen que cuadrar. Si contienen clases también deberán coincidir*/
 
     const bodyRequest = {
-        pagina,
+        pagina: numPagina,
         busquedaOferta: busquedaOferta,
     }
 
