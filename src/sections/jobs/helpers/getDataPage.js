@@ -1,11 +1,16 @@
-export const getCurrentPage = async (pagina,busqueda) => {
+export const getPageData = async (pagina,busquedaOferta) => {
+    /*Los nombres de los campos del objeto que reciba el endopoint 
+    siempre tienen que cuadrar. Si contienen clases también deberán coincidir*/
+
     const bodyRequest = {
         pagina,
-        busqueda,
+        busquedaOferta: busquedaOferta,
     }
 
+    console.log(JSON.stringify(bodyRequest))
+
     try {
-        const response = await fetch('http://localhost:9001/internal-api/public/ofertas/pagina', {
+        const response = await fetch('http://localhost:9001/internal-api/public/ofertas/busqueda', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

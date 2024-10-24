@@ -1,3 +1,18 @@
+.job-search-aside{
+    margin-top: 2vh;
+}
+
+.job-search-remove-filters{
+    text-decoration: none;
+    color: black;
+
+    display: block;
+    text-align: right;
+    
+    margin-right: 1%;
+    margin-bottom: 0.7vh;
+}
+
 .job-search-form{
     display: flex;
     flex-direction: column;
@@ -5,7 +20,7 @@
     background-color: white;
     border-radius: 8px;
     align-self: start;
-    margin-top: 2vh;
+    /* margin-top: 2vh; */
 }
 
 .job-search-form > *{
@@ -35,4 +50,5 @@
     color: white;
     border-radius: 8px;
     width: 60%;
+    cursor: pointer;
 }

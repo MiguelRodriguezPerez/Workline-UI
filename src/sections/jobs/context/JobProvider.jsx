@@ -1,11 +1,12 @@
 import { useEffect, useReducer } from "react";
 import { jobsReducer } from "./jobsReducer";
 import { JobContext } from "./JobContext"
-import { getCurrentPage } from "../helpers/getCurrentPage";
+import { getPageData } from "../helpers/getDataPage";
 
 
 const init = () => {
     return {
+        number: 0,
         content: [],
         totalElements: 0,
         totalPages: 0,
@@ -17,24 +18,23 @@ export const JobProvider = ({ children }) => {
 
     const [jobPageState, dispatch] = useReducer(jobsReducer, {}, init);
 
-
     const updatePage = (page = {}) => {
         const action = {
             type: 'update',
-            value: {
+            payload: {
+                number: page.number,
                 content: page.content || [],
                 totalElements: page.totalElements || 0,
                 totalPages: page.totalPages || 0,
                 numberOfElements: page.numberOfElements || 0
             }
         };
-    
         dispatch(action);
     };
 
     useEffect ( () => {
         const fetchData = async() => {
-            const resultado = await getCurrentPage(0 , null);
+            const resultado = await getPageData(0 , null);
 
             updatePage(resultado);
         }
