@@ -2,40 +2,51 @@ import { useContext, useState } from 'react';
 import { JobContext } from '../context/JobContext';
 import { getPageData } from "../helpers/getDataPage";
 import { Pagination, Stack } from '@mui/material';
+import queryString from 'query-string';
+import { Navigate, useLocation, useNavigate } from 'react-router';
 
 export const JobPagination = () => {
     
-  // const { jobPageState, updatePage } = useContext( JobContext );
-  // const page = jobPageState[0];
-  // const search = jobPageState[1];
-  // const [ currentPage, setCurrentPage ] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { jobPageState, updatePage } = useContext( JobContext );
+  const currentParams = queryString.parse(location.search)
 
-  // const redirectPage = async(value) => {
-  //   setCurrentPage(value);
-  //   const result = await getPageData(value,search);
-  //   updatePage(result);
-  //   window.scrollTo(0,0)
-  // }
+    const initialSearch = {
+        puestoB: currentParams.puestoB || '',
+        sectorB: currentParams.sectorB || '',
+        tipoContratoB: currentParams.tipoContratoB || '',
+        ciudadB: currentParams.ciudadB || '',
+        salarioAnualMinimo: currentParams.salarioAnualMinimo || 0,
+        modalidadB: currentParams.modalidadB || '',
+    }
+
+  const redirectPage = async( numPag ) => {
+    const updatedParams = { ...currentParams, numberPage: numPag };
+    console.log(queryString.stringify(updatedParams))
+    navigate(`?${queryString.stringify(updatedParams)}`);
+    window.scrollTo(0,0)
+  }
 
   
-  // return (
-    // <Stack 
-    //     spacing={2} 
-    //     sx={{
-    //       justifyContent: 'center', // Centra horizontalmente el contenido
-    //       alignItems: 'center',
-    //       width:'80%',
-    //       marginBottom:'10%' // Asegura que los elementos estén centrados verticalmente
-    //     }}
-    //   >
-    //   <Pagination count={page.totalPages} onChange={(e,value) => { redirectPage(value - 1)}} shape="rounded"
-    //   sx={{
-    //     '& .MuiPaginationItem-root':{
-    //       fontSize: '1.4rem',
-    //       minWidth: '48px', // Establece un ancho mínimo mayor para los botones
-    //       height: '48px',
-    //     }
-    //   }} />
-    // </Stack>
-  // )
+  return (
+    <Stack 
+        spacing={2} 
+        sx={{
+          justifyContent: 'center', // Centra horizontalmente el contenido
+          alignItems: 'center',
+          width:'80%',
+          marginBottom:'10%' // Asegura que los elementos estén centrados verticalmente
+        }}
+      >
+      <Pagination count={jobPageState.totalPages} onChange={(e,value) => { redirectPage(value - 1)}} shape="rounded"
+      sx={{
+        '& .MuiPaginationItem-root':{
+          fontSize: '1.4rem',
+          minWidth: '48px', // Establece un ancho mínimo mayor para los botones
+          height: '48px',
+        }
+      }} />
+    </Stack>
+  )
 }

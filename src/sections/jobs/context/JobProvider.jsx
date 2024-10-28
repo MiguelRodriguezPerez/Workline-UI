@@ -32,16 +32,6 @@ export const JobProvider = ({ children }) => {
         dispatch(action);
     };
 
-    
-
-    // useEffect ( () => {
-    //     const fetchData = async() => {
-    //         const resultado = await getPageData(0 , null);
-    //         updatePage(resultado);        
-    //     }
-    //     fetchData();
-    // }, [])
-
 
     return (
         <JobContext.Provider value={{

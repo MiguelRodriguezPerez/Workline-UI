@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { JobContext } from '../context/JobContext';
 import { useModalidades } from '../hooks';
 import useForm from '../hooks/useForm';
@@ -15,11 +15,10 @@ import queryString from 'query-string';
 export const JobForm = () => {
 
     const location = useLocation();
-
+    const [ isSearch , setIsSearch ] = useState(false);
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
     const { jobPageState , updatePage } = useContext( JobContext );
-    const numberPage = jobPageState.number;
     const [ searchParams, setSearchParams ] = useSearchParams();
     const currentParams = queryString.parse(location.search)
 
@@ -31,11 +30,9 @@ export const JobForm = () => {
         salarioAnualMinimo: currentParams.salarioAnualMinimo || 0,
         modalidadB: currentParams.modalidadB || '',
     }
-
-    console.log(initialSearch)
+    
+    console.log(currentParams)
     const { formState, onInputChange, onResetForm, setFormState} = useForm(initialSearch);
-
-
 
     useEffect(() => {
         //Desde url
@@ -43,10 +40,9 @@ export const JobForm = () => {
         //Obtener página   
         console.log('Effect')
         const loadResults = async() => {
-            updatePage(await getPageData(0, formState));
+            updatePage(await getPageData(currentParams.numberPage, formState));
         }
         loadResults();
-
     }, [])
     
 
@@ -64,7 +60,10 @@ export const JobForm = () => {
             }
         }
         setSearchParams(params);
-        
+        console.log(params)
+
+        const resultado = await getPageData(0 , formState);
+        updatePage(resultado);
     }
 
 
@@ -73,27 +72,24 @@ export const JobForm = () => {
     const resetSearch = async(event) => {
         event.preventDefault();
 
-        setSearchParams({});
-        const resetSearch = {
-            puestoB: '',
-            sectorB: '',
-            tipoContratoB: '',
-            ciudadB: '',
-            salarioAnualMinimo: 0,
-            modalidadB: '',
-        }
+        const params = {};
+        params.numberPage = 0;
+        setSearchParams(params)
         
+        setFormState({
+            ...formState,
+            ...resetSearch
+        });
         
-        const resultado = await getPageData(0, resetSearch);
-        updatePage(resultado);  
-        updateSearch(resetSearch);
-        onResetForm(); 
+        const resultado = await getPageData(0, formState);
+        updatePage(resultado); 
     }
     
   return (
     <aside className='job-search-aside'>
         {
-            !Object.is(initialSearch, formState) && 
+            //Object.keys(currentParams).length te dice el número de campos de un objeto
+            Object.keys(currentParams).length > 1 && 
             <a href="" className='job-search-remove-filters' onClick={resetSearch}>Borrar criterios</a>
         }
         <form className='job-search-form' onSubmit={makeSearch}>

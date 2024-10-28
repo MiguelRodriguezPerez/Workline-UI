@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import { JobContext } from "../context/JobContext";
-
+import '../styles/jobHeading.css'
 
 export const JobHeading = () => {
 
@@ -9,7 +9,7 @@ export const JobHeading = () => {
   const numOfertas = jobPageState.totalElements
 
     return (
-        <h3>{numOfertas} ofertas disponibles</h3>
+        <h3 className="job-heading">{numOfertas} ofertas disponibles</h3>
   )
 }
 
