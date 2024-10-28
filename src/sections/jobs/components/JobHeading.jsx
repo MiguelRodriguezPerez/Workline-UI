@@ -6,10 +6,10 @@ import { JobContext } from "../context/JobContext";
 export const JobHeading = () => {
 
   const { jobPageState } = useContext(JobContext);
-  const pagina = jobPageState[0]
+  const numOfertas = jobPageState.totalElements
 
     return (
-        <h3>{pagina.totalElements} ofertas disponibles</h3>
+        <h3>{numOfertas} ofertas disponibles</h3>
   )
 }
 

@@ -5,13 +5,13 @@ import { JobCard } from './JobCard';
 
 export const JobFeed = () => {
 
-    const {jobPageState} = useContext( JobContext );
-    const pagina = jobPageState[0];
+    const { jobPageState } = useContext( JobContext );
+    const listaOfertas = jobPageState.content;
 
     return (
         <ul>
           {
-            pagina.content?.map( (oferta) => <JobCard key={oferta.id} oferta={oferta}/>)
+            listaOfertas?.map( (oferta) => <JobCard key={oferta.id} oferta={oferta}/>)
           }
         </ul>      
     )

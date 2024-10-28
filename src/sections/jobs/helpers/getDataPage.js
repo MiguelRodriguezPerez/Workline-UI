@@ -7,8 +7,6 @@ export const getPageData = async (numPagina,busquedaOferta) => {
         busquedaOferta: busquedaOferta,
     }
 
-    console.log(JSON.stringify(bodyRequest))
-
     try {
         const response = await fetch('http://localhost:9001/internal-api/public/ofertas/busqueda', {
             method: 'POST',

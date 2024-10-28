@@ -5,24 +5,14 @@ import { getPageData } from "../helpers/getDataPage";
 
 
 const init = () => {
-    return [
-        {
-            number: 0,
-            content: [],
-            totalElements: 0,
-            totalPages: 0,
-            numberOfElements:0
-        },
-        {
-            puestoB: '',
-            sectorB: '',
-            tipoContratoB:'',
-            ciudadB:'',
-            salarioAnualMinimo:0,
-            modalidadB:''
-        }
-    ]
-}
+    return {
+        number: 0,
+        content: [],
+        totalElements: 0,
+        totalPages: 0,
+        numberOfElements: 0
+    };
+};
 
 export const JobProvider = ({ children }) => {
 
@@ -42,30 +32,21 @@ export const JobProvider = ({ children }) => {
         dispatch(action);
     };
 
-    const updateSearch = (search = {}) => {
-        const action = {
-            type: 'update_search',
-            payload: search
-        };
-        dispatch(action);
-    }
+    
 
-    useEffect ( () => {
-        const fetchData = async() => {
-            const resultado = await getPageData(0 , null);
-            console.log(resultado)
-            updatePage(resultado);
-            
-        }
-        fetchData();
-    }, [])
+    // useEffect ( () => {
+    //     const fetchData = async() => {
+    //         const resultado = await getPageData(0 , null);
+    //         updatePage(resultado);        
+    //     }
+    //     fetchData();
+    // }, [])
 
 
     return (
         <JobContext.Provider value={{
             jobPageState: jobPageState,
             updatePage,
-            updateSearch
         }}>
             { children }
         </JobContext.Provider>
