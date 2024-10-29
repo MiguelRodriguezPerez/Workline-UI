@@ -7,11 +7,13 @@ const useForm = ( initialForm = {}) => {
 
     //{target es la desestructuración de event}
     const onInputChange = ({target}) => {
+        
         const { name , value } = target;
         setFormState({
             ...formState,
             [ name ]:value
         });
+        
     }
 
     const onResetForm = () => {

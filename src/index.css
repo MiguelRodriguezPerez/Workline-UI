@@ -35,3 +35,10 @@ footer.wk-footer{
     margin-right: 0;
     margin-top: auto;
 }
+
+@media screen and (max-width: 700px) {
+    #root > *{
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+}

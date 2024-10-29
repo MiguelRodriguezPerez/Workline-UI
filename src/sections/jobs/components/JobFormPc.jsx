@@ -12,13 +12,12 @@ import queryString from 'query-string';
 
 // alhost:5173/ofertasDeTrabajo?tipoContratoB=indefinido&salarioAnualMinimo=12000
 
-export const JobForm = () => {
+export const JobFormPc = () => {
 
     const location = useLocation();
-    const [ isSearch , setIsSearch ] = useState(false);
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
-    const { jobPageState , updatePage } = useContext( JobContext );
+    const { updatePage } = useContext( JobContext );
     const [ searchParams, setSearchParams ] = useSearchParams();
     const currentParams = queryString.parse(location.search)
 
@@ -75,14 +74,23 @@ export const JobForm = () => {
         const params = {};
         params.numberPage = 0;
         setSearchParams(params)
+
+        const resetSearch = {
+            puestoB: '',
+            sectorB: '',
+            tipoContratoB: '',
+            ciudadB: '',
+            salarioAnualMinimo: 0,
+            modalidadB: '',
+        }
         
-        setFormState({
-            ...formState,
+        setFormState(prevState => ({
+            ...prevState,
             ...resetSearch
-        });
-        
-        const resultado = await getPageData(0, formState);
-        updatePage(resultado); 
+        }));
+    
+        const resultado = await getPageData(0, { ...formState, ...resetSearch });
+        updatePage(resultado);
     }
     
   return (

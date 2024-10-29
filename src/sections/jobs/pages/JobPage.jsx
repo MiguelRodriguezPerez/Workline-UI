@@ -1,13 +1,14 @@
-import React from 'react'
+
 import { WkHeader } from '../../../ui/components/WkHeader'
 import { WkFooter } from '../../../ui/components/WkFooter'
 import '../styles/jobPage.css'
-import { JobForm } from '../components/JobForm'
-import { useOffers } from '../hooks/useOffers'
+import { JobFormPc } from '../components/JobFormPc'
 import { JobFeed } from '../components/JobFeed'
 import { JobProvider } from '../context/JobProvider'
 import { JobHeading } from '../components/JobHeading'
 import { JobPagination } from '../components/JobPagination'
+import { JobFormPhone } from '../components/JobFormPhone'
+import { JobFormWrapper } from '../components/JobFormWrapper'
 
 export const JobPage = () => {
 
@@ -18,7 +19,7 @@ export const JobPage = () => {
             <section className='job-page'>
                 <div></div>
                 <JobHeading/>
-                <JobForm/>
+                <JobFormWrapper/>
                 <JobFeed/>
                 <JobPagination/>
             </section>

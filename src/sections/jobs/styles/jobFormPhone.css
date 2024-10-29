@@ -1,0 +1,96 @@
+.job-phone-button{
+    background-color: green;
+    color:white;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 200px;
+    border: 0;
+    border-radius: 8px;
+
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 2% 3%;
+}
+
+.job-phone-button > p{
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.job-phone-button > img{
+    margin: 0 5% 0% 0%;
+}
+
+#form-desplegable{
+    background-color: rgba(51, 51, 51, 0.7); /* Color #333 con 30% de transparencia */
+    height: 0vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    /*Si pones right 0 se abrirá y cerrará desde la derecha,
+    si pones left 0 se abrirá y cerrará desde la izquierda*/
+    overflow-x: hidden;
+    padding: 0px;
+
+    display: grid;
+    grid-template-columns: 100%;
+    align-items: center;
+    justify-items: center;
+}
+
+.remove-scrolling { 
+    height: 100%; 
+    overflow: hidden; 
+} 
+
+@media screen and (max-width: 1400px) {
+    .job-search-form{
+        width: 60vw;
+        margin-top: 20vh;
+    }
+
+    .form-phone-heading{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        justify-items: start;
+        align-items: center;
+        margin: 0;
+        margin-top: 4%;
+        padding-bottom: 2%;
+        border-bottom: solid 1px black;
+    }
+
+    .form-phone-heading > a:first-of-type{
+        padding-left: 8%;
+        font-size: 1.1rem;
+    }
+
+    .form-phone-heading > a:last-of-type{
+        padding-right: 8%;
+        font-size: 1.1rem;
+        justify-self: end;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    
+    .job-phone-button{
+        width: 170px;
+        padding-left: 4%;
+    }
+
+    .job-phone-button > p{
+        font-size: 1.1rem;
+    }
+
+    .job-search-form{
+        width: 100vw;
+        height: 100vh;
+        margin-top: 0vh;
+    }
+    
+}
