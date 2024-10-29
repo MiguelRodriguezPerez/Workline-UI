@@ -35,7 +35,7 @@ export const JobPagination = () => {
         sx={{
           justifyContent: 'center', // Centra horizontalmente el contenido
           alignItems: 'center',
-          width:'80%',
+          width:'100%',
           marginBottom:'10%' // Asegura que los elementos estén centrados verticalmente
         }}
       >

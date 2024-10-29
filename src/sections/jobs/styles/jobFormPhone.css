@@ -1,4 +1,5 @@
 .job-phone-button{
+    cursor: pointer;
     background-color: green;
     color:white;
 
@@ -10,7 +11,7 @@
     border-radius: 8px;
 
     margin-top: 2vh;
-    margin-bottom: 2vh;
+    
     padding: 2% 3%;
 }
 
