@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { JobOfferContext } from '../../context/jobOffer/jobOfferContext'
+import { getViewString } from '../../../../global/helpers/getViewString'
 
 import '../../styles/jobOffer/jobOfferInfo.css'
 
@@ -9,22 +10,13 @@ export const JobOfferInfo = () => {
   console.log(oferta)
 
   return (
-    //Cambiar a section div
-    <table className='nube offer-info'>
-      <thead>
-        <tr>
-          <th><p>{ oferta.ciudad }</p></th>
-          <th><p>{ oferta.tipoContrato }</p></th>
-          <th><p>{ oferta.horas + ' horas' }</p></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><p>{ oferta.salarioAnual }</p></td>
-          <td><p>{ oferta.modalidadTrabajo }</p></td>
-          <td><p>{ oferta.sector }</p></td>
-        </tr>
-      </tbody>
-    </table>
+    <section className='nube offer-info'>
+      <p>{ oferta.ciudad }</p>
+      <p>{ getViewString(oferta.tipoContrato) }</p>
+      <p>{ oferta.horas + ' horas' }</p>
+      <p>{ oferta.salarioAnual + ' €' }</p>
+      <p>{ getViewString(oferta.modalidadTrabajo) }</p>
+      <p>{ oferta.sector }</p>
+    </section>
   )
 }

@@ -17,9 +17,6 @@ body{
     background-color: #F5F5F5;
 }
 
-footer.wk-footer{
-    margin-top: auto;
-}
 
 #root > *{
     margin-left: 10vw;
@@ -39,7 +36,6 @@ footer.wk-footer{
 .nube {
     border-radius: 8px;
     background-color: white;
-    padding: 2%;
 }
 
 @media screen and (max-width: 700px) {

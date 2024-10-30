@@ -1,0 +1,14 @@
+.offer-description{
+    padding: 1.7% 2.5%;
+}
+
+.offer-description h3 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 1.6rem;
+}
+
+.offer-description p{
+    margin-top: 2%;
+    font-size: 1.1rem;
+}

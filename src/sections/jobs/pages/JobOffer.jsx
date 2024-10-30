@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getOfertaById } from "../../../global/helpers"
 import { WkFooter } from '../../../ui/components/WkFooter'
 import { WkHeader } from '../../../ui/components/WkHeader'
-import { JobOfferDescription, JobOfferHeading, JobOfferInfo, JobOfferRequirements } from "../components/jobOffer/"
+import { JobButtonBack, JobOfferDescription, JobOfferHeading, JobOfferInfo, JobOfferRequirements } from "../components/jobOffer/"
 import { JobOfferProvider } from "../context/jobOffer/JobOfferProvider"
 
 import '../styles/jobOffer/jobOfferPage.css';
@@ -27,6 +27,7 @@ export const JobOffer = () => {
       <WkHeader/>
         <JobOfferProvider oferta={ oferta }>
           <section className="job-offer-page">
+            <JobButtonBack/>
             <JobOfferHeading/>
             <JobOfferInfo/>
             <JobOfferDescription/>

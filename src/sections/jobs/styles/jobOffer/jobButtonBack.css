@@ -1,0 +1,25 @@
+.button-back{
+    cursor: pointer;
+    margin-top: 5%;
+    margin-bottom: -8%;
+    width: 10%;
+    border-radius: 30px;
+    border: 0px;
+    background-color: white;
+}
+
+.button-back img{
+    padding-top: 20%;
+}
+
+@media screen and (max-width: 1600px) {
+    .button-back{
+        margin-bottom: -7%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .button-back{
+        margin-bottom: -8%;
+    }
+}
