@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import '../styles/jobCard.css'
+import '../../styles/jobPage/jobCard.css'
 
 export const JobCard = ({oferta}) => {
   const navigate = useNavigate();

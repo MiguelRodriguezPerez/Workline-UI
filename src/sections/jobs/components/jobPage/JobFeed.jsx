@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { JobContext } from '../context/JobContext';
+import { JobContext } from '../../context/jobPage/JobContext';
 import { JobCard } from './JobCard';
-import '../styles/jobFeed.css'
+import '../../styles/jobPage/jobFeed.css'
 import { useNavigate } from 'react-router';
 
 

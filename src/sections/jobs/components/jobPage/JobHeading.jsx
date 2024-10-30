@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
-import { JobContext } from "../context/JobContext";
-import '../styles/jobHeading.css'
+import { JobContext } from "../../context/jobPage/JobContext";
+import '../../styles/jobPage/jobHeading.css'
 
 export const JobHeading = () => {
 

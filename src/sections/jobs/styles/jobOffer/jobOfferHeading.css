@@ -1,0 +1,80 @@
+.offer-heading{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+
+    background-color: white;
+    border-radius: 8px;
+    
+    margin-top: 4vh;
+    padding: 1% 1.7% 1.7%;
+}
+
+.offer-heading > p {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.offer-heading > p:first-child {
+    font-size: 1.9rem;
+}
+
+.offer-heading > p:nth-child(2) {
+    justify-self: end;
+}
+
+.offer-heading > p:nth-child(3), .offer-heading > button:last-child {
+    margin-top: 2%;
+}
+
+.offer-heading > button{
+    width: 200px;
+
+    background-color: green;
+    color: white;
+    border: 0px;
+    border-radius: 8px;
+    padding: 1% 1.5%;
+
+    justify-self: end;
+}
+
+@media screen and (max-width: 1600px) {
+
+    .offer-heading {
+        padding: 1% 2% 2%;
+    }
+    
+    .offer-heading > p {
+        font-size: 1.1rem;
+    }
+
+    .offer-heading > p:first-child {
+        font-size: 1.7rem;
+    }
+
+    .offer-heading > p:nth-child(3), .offer-heading > button:last-child {
+        margin-top: 4%;
+    }
+
+    .offer-heading > button{
+        width: 170px;
+        padding: 2%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    
+    .offer-heading {
+        padding: 2% 4% 4%;
+    }
+
+    .offer-heading > p:first-child {
+        font-size: 1.7rem;
+    }
+
+    .offer-heading > button{
+        width: 140px;
+        padding: 3%;
+    }
+}

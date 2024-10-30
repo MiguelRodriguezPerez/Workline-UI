@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import { JobContext } from '../context/JobContext';
-import { useModalidades } from '../hooks';
-import useForm from '../hooks/useForm';
-import { useTiposContrato } from '../hooks/useTiposContrato';
-import '../styles/jobSearchForm.css';
-import { getPageData } from '../helpers/getDataPage';
+import { JobContext } from '../../context/jobPage/JobContext';
+import useForm from '../../hooks/useForm';
+import { useModalidades, useTiposContrato } from '../../../../global/hooks';
+import '../../styles/jobPage/jobSearchForm.css';
+import { getPageData } from '../../helpers/getDataPage';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import queryString from 'query-string';
 

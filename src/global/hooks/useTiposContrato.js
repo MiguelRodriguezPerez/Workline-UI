@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getTiposContrato } from "../helpers/getTiposContrato";
+import { getTiposContrato } from "../../sections/jobs/helpers/getTiposContrato";
 
 export const useTiposContrato = () => {
 

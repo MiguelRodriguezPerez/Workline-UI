@@ -1,12 +1,12 @@
 
 import { WkFooter } from '../../../ui/components/WkFooter'
 import { WkHeader } from '../../../ui/components/WkHeader'
-import { JobFeed } from '../components/JobFeed'
-import { JobFormWrapper } from '../components/JobFormWrapper'
-import { JobHeading } from '../components/JobHeading'
-import { JobPagination } from '../components/JobPagination'
-import { JobProvider } from '../context/JobProvider'
-import '../styles/jobPage.css'
+import { JobFeed } from '../components/jobPage/JobFeed'
+import { JobFormWrapper } from '../components/jobPage/JobFormWrapper'
+import { JobHeading } from '../components/jobPage/JobHeading'
+import { JobPagination } from '../components/jobPage/JobPagination'
+import { JobProvider } from '../context/jobPage/JobProvider'
+import '../styles/jobPage/jobPage.css'
 
 export const JobPage = () => {
 

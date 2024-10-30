@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getModalidades } from "../helpers/getModalidades";
+import { getModalidades } from "../../sections/jobs/helpers/getModalidades";
 
 export const useModalidades = () => {
     const [modalidades,setModalidades] = useState([]);

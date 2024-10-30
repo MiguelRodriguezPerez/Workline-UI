@@ -1,19 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
-import '../styles/jobFormPhone.css'
 import { useLocation } from 'react-router';
-import { useModalidades } from '../hooks';
-import { useTiposContrato } from '../hooks/useTiposContrato';
+import { useModalidades, useTiposContrato } from '../../../../global/hooks';
 import { useSearchParams } from 'react-router-dom';
-import { JobContext } from '../context/JobContext';
+import { JobContext } from '../../context/jobPage/JobContext';
 import queryString from 'query-string';
-import useForm from '../hooks/useForm';
-import { getPageData } from '../helpers/getDataPage';
+import useForm from '../../hooks/useForm';
+import { getPageData } from '../../helpers/getDataPage';
+import '../../styles/jobPage/jobFormPhone.css';
 
 export const JobFormPhone = () => {
 
     const [isOpen,setOpen] = useState(false);
     const openMenu = () => {
-        console.log('aaaaaaaaaaaaaaa')
         setOpen(true);
         document.getElementById('form-desplegable').style.height = '100vh'
         document.body.classList.add("remove-scrolling"); 

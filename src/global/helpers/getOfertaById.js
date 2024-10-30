@@ -11,7 +11,6 @@ export const getOfertaById = async (id) => {
         if(!request.ok) throw new Error("Error durante la solicitud " + request.status);
 
         const resultado = await request.json();
-        console.log(resultado)
         return resultado;
     } 
     catch (error) {

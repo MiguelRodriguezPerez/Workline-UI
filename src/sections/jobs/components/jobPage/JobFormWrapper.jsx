@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { JobFormPc,  JobFormPhone } from '../components'
+import { JobFormPc,  JobFormPhone } from '../../components/jobPage'
 export const JobFormWrapper = () => {
 
     const [isPc, setIsPc] = useState(window.innerWidth > 1600);

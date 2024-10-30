@@ -1,0 +1,13 @@
+.offer-info p{
+    font-weight: normal;
+    margin: 3%;
+    text-align: center;
+
+    border: solid 1px red !important;
+    border-collapse: collapse;
+}
+
+table, thead tr {
+    border: solid 1px red !important;
+    border-collapse: collapse;
+}

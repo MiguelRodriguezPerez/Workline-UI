@@ -1,9 +1,8 @@
-import { useContext, useState } from 'react';
-import { JobContext } from '../context/JobContext';
-import { getPageData } from "../helpers/getDataPage";
 import { Pagination, Stack } from '@mui/material';
 import queryString from 'query-string';
-import { Navigate, useLocation, useNavigate } from 'react-router';
+import { useContext } from 'react';
+import { useLocation, useNavigate } from 'react-router';
+import { JobContext } from '../../context/jobPage/JobContext';
 
 export const JobPagination = () => {
     
