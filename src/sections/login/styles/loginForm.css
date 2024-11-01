@@ -1,0 +1,48 @@
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form > .login-input:first-child{
+    margin: 10% 0 5%;
+}
+
+.login-input{
+    display: grid;
+    grid-template-columns: 17% 80%;
+    align-items: center;
+}
+
+.login-input > img{
+    margin-top: 10%;
+}
+
+.login-input > input{
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+    border-bottom: solid 1px black;
+}
+
+.login-form > button {
+    margin-top: 10%;
+    border: 0;
+    background-color: green;
+    color: white;
+    padding: 3%;
+    cursor: pointer;
+}
+
+.login-form > button:last-of-type {
+    margin-top: 7%;
+    background-color: inherit;
+    color: green;
+    border: solid 1px green;
+}
+
+.login-form > a{
+    text-align: right;
+    margin-top: 6%;
+    text-decoration: none;
+    color: black;
+}

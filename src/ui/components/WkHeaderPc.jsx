@@ -13,7 +13,7 @@ export const WkHeaderPC = () => {
         <Link>Contratar</Link>
       </div>
       <div className='header-login'>
-        <Link>Iniciar sesión</Link>
+        <Link to={'/login'}>Iniciar sesión</Link>
       </div>
     </header>
   )

@@ -20,7 +20,7 @@ export const WkHeaderPhone = () => {
             <Logo/>
             <div id='menuDesplegable'>
                 <img src="/images/ui/cerrar.png" alt="close" onClick={ closeMenu } />
-                <Link>Mi cuenta</Link>
+                <Link to={'/login'}>Iniciar Sesión</Link>
                 <Link to={'/'}>Inicio</Link>
                 <Link to={'/ofertasDeTrabajo/?numberPage=0'}>Ofertas</Link>
                 <Link>Contratar</Link>
