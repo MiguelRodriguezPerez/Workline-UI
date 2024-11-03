@@ -1,8 +1,5 @@
 export const uploadLogin = async(user = {}) =>{
 
-    // const { token } = await getCsrfToken();
-    // console.log(token)
-
     try {
         const loginRequest = await fetch('http://localhost:9001/api/logins/login' , {
             method: 'POST',
