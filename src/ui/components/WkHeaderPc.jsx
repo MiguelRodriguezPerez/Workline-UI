@@ -2,8 +2,13 @@ import { Link } from 'react-router-dom'
 import '../styles/wkHeaderPc.css'
 import '../styles/logo.css'
 import { Logo } from './Logo'
+import { useContext } from 'react'
+import { AuthContext } from '../../global/context/AuthContext'
 
 export const WkHeaderPC = () => {
+
+  const { user } = useContext(AuthContext);
+
   return (
     <header className='wk-header-pc wk-header'>
       <Logo/>
@@ -14,6 +19,7 @@ export const WkHeaderPC = () => {
       </div>
       <div className='header-login'>
         <Link to={'/login'}>Iniciar sesión</Link>
+        {user && <p>{JSON.stringify(user)}</p>}
       </div>
     </header>
   )

@@ -1,17 +1,16 @@
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { WorklineApp } from './WorklineApp'
+import { AuthProvider } from './global/context/AuthProvider'
 import './index.css'
-import { StrictMode } from 'react'
-import { Provider } from 'react-redux'
-import { store } from './redux/store'
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <Provider store={store}>
+        <AuthProvider>
             <BrowserRouter>
                 <WorklineApp/>
             </BrowserRouter>
-        </Provider>
+        </AuthProvider>
     </StrictMode>
 )

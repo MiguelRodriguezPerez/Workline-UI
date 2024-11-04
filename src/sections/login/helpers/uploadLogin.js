@@ -9,13 +9,16 @@ export const uploadLogin = async(user = {}) =>{
             body: JSON.stringify(user)
         })
 
-        if(!loginRequest.ok) console.error('AAAAAAAAAAAA')
-
-        const response = await loginRequest.json();
-        console.log(response);
-        return response;
+        if(!loginRequest.ok) return null;
+        else {
+            const response = await loginRequest.json();
+            console.log(response);
+            return response;
+        }
+        
     } 
     catch (error) {
+        console.log(error)
         console.error('Error capturado: ' + error)
     }
 }

@@ -29,7 +29,6 @@ export const JobFormPc = () => {
         modalidadB: currentParams.modalidadB || '',
     }
     
-    console.log(currentParams)
     const { formState, onInputChange, onResetForm, setFormState} = useForm(initialSearch);
 
     useEffect(() => {

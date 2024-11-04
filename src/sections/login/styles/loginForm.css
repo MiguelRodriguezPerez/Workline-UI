@@ -46,3 +46,10 @@
     text-decoration: none;
     color: black;
 }
+
+.login-form > .login-error {
+    margin: 0;
+    margin-top: 2%;
+    color: red;
+    
+}
