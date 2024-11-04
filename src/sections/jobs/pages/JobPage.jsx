@@ -1,6 +1,6 @@
 
 import { WkFooter } from '../../../ui/components/WkFooter'
-import { WkHeader } from '../../../ui/components/WkHeader'
+import { WkHeaderWrapper } from '../../../ui/components/WkHeaderWrapper'
 import { JobFeed } from '../components/jobPage/JobFeed'
 import { JobFormWrapper } from '../components/jobPage/JobFormWrapper'
 import { JobHeading } from '../components/jobPage/JobHeading'
@@ -12,7 +12,7 @@ export const JobPage = () => {
 
   return (
     <>
-        <WkHeader/>
+        <WkHeaderWrapper/>
           <JobProvider>
             <section className='job-page'>
                 <div></div>

@@ -8,6 +8,7 @@
     z-index: 999;
 }
 
+
 .wk-header-pc a{
     color: white;
     text-decoration: none;
@@ -19,15 +20,7 @@
     display: grid;
     grid-template-columns: 33% 33% 33%;
     align-items: center;
+    justify-content: center;
+    text-align: center;
 }
-
-.wk-header-pc > .header-login{
-    text-align: right;
-    margin-top: 1vh;
-}
-
-.header-login > a{
-    font-size: 1rem;
-}
-
 

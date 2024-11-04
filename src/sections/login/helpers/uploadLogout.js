@@ -1,4 +1,3 @@
-
 export const uploadLogout = async() =>{
 
     try {

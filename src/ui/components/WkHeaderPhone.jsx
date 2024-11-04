@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import '../styles/wkHeaderPhone.css'
 import { Logo } from './Logo'
 import { useState } from 'react'
+import { WkHeaderLogin } from './WkHeaderLogin'
 
 export const WkHeaderPhone = () => {
 
@@ -12,7 +13,7 @@ export const WkHeaderPhone = () => {
     }
     const closeMenu = () => {
         setOpen(false);
-        document.getElementById('menuDesplegable').style.width = '0%'
+        document.getElementById('menuDesplegable').style.width = '0%'   
     }
 
     return (
@@ -20,12 +21,16 @@ export const WkHeaderPhone = () => {
             <Logo/>
             <div id='menuDesplegable'>
                 <img src="/images/ui/cerrar.png" alt="close" onClick={ closeMenu } />
-                <Link to={'/login'}>Iniciar Sesión</Link>
                 <Link to={'/'}>Inicio</Link>
                 <Link to={'/ofertasDeTrabajo/?numberPage=0'}>Ofertas</Link>
                 <Link>Contratar</Link>
             </div>
-            <img src='/images/ui/barras3.png' onClick={openMenu} alt='menu'/>
+            <div id='header-second-child'>
+                <WkHeaderLogin/>
+                <img src='/images/ui/barras3.png' onClick={openMenu} alt='menu'/>
+                
+            </div>
+            
         </header>
     )
 }

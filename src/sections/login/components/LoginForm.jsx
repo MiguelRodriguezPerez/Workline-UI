@@ -12,7 +12,6 @@ export const LoginForm = () => {
     const navigate = useNavigate();
     const { updateUser,resetUser } = useContext(AuthContext);
   
-
     const [user, setUser] = useState({
         username: '',
         password: '',

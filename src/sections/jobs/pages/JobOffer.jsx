@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import { getOfertaById } from "../../../global/helpers"
 import { WkFooter } from '../../../ui/components/WkFooter'
-import { WkHeader } from '../../../ui/components/WkHeader'
 import { JobButtonBack, JobOfferDescription, JobOfferHeading, JobOfferInfo, JobOfferRequirements } from "../components/jobOffer/"
 import { JobOfferProvider } from "../context/jobOffer/JobOfferProvider"
 
-import '../styles/jobOffer/jobOfferPage.css';
+import { WkHeaderWrapper } from "../../../ui/components/WkHeaderWrapper"
+import '../styles/jobOffer/jobOfferPage.css'
 
 
 export const JobOffer = () => {
@@ -24,7 +24,7 @@ export const JobOffer = () => {
 
   return (
     <>
-      <WkHeader/>
+      <WkHeaderWrapper/>
         <JobOfferProvider oferta={ oferta }>
           <section className="job-offer-page">
             <JobButtonBack/>
