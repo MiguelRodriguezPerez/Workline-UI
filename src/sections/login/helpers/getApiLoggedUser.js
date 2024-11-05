@@ -7,7 +7,7 @@ export const getApiLoggedUser = async() => {
             }
         });
 
-        if(!request.ok) return undefined;
+        if(request.status.toString() === 'NO_CONTENT') return undefined;
         const resultado = await request.json();
         return resultado;
     } 

@@ -12,7 +12,7 @@ export const WkHeaderPC = () => {
       <div className='header-sections'>
         <Link to={'/'}>Inicio</Link>
         <Link to={'/ofertasDeTrabajo/?numberPage=0'}>Ofertas</Link>
-        <Link>Contratar</Link>
+        <Link to={'/misOfertas/'}>Contratar</Link>
       </div>
       <WkHeaderLogin/>
     </header>

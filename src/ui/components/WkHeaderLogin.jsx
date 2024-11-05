@@ -9,6 +9,11 @@ export const WkHeaderLogin = () => {
   const { user, resetUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const logoutEvent = () => {
+    resetUser();
+    navigate('/');
+  }
+
   return (
     <div className='header-login'>
         {
@@ -16,7 +21,7 @@ export const WkHeaderLogin = () => {
             <Link to={'/login'}>Iniciar sesión</Link> 
             : 
             <>
-              <img src="/images/ui/logout.png" id="logout" onClick={ () => { resetUser() }}/>
+              <img src="/images/ui/logout.png" id="logout" onClick={ logoutEvent }/>
               <Link to={'/miPerfil'}>{user.nombre}</Link> 
             </>   
         }

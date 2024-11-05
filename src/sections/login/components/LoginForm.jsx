@@ -1,10 +1,8 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { uploadLogout } from '../helpers/uploadLogout';
-import '../styles/loginForm.css';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../global/context/AuthContext';
 import { uploadLogin } from '../helpers/uploadLogin';
+import '../styles/loginForm.css';
 
 
 export const LoginForm = () => {
@@ -27,19 +25,19 @@ export const LoginForm = () => {
     const submitLogin = async(event) => {
         event.preventDefault();
         const loggedUser = await uploadLogin(user);
+
         if(loggedUser){
             updateUser(loggedUser);
             navigate( -1 );
         }
-        else throw new Error('AAAAAAAAAA')
+        else document.getElementById('mensaje-error').removeAttribute('hidden');
+
     }
 
-    const logoutWrapper = async(event) => {
+    const goBackEvent = (event) => {
         event.preventDefault();
-        uploadLogout();
-        resetUser();
+        navigate(-1);
     }
-    
 
     return (
         <form className='login-form'>
@@ -53,13 +51,12 @@ export const LoginForm = () => {
                 <input type="password" name="password" onInput={ inputChange } placeholder="Contraseña"/>
             </section>
 
-            <p hidden className='login-error'>Nombre de usuario o contraseña incorrectos</p>
+            <p hidden className='login-error' id='mensaje-error'>Nombre de usuario o contraseña incorrectos</p>
         
             <button onClick={ submitLogin }>Iniciar Sesión</button>
-            <button onClick={logoutWrapper}>AAAAAAAAAAA</button>
             <button>¿No tiene cuenta? Cree una</button>
 
-            <Link onClick={ () => { navigate(-1) } }>Volver atrás</Link>
+            <a onClick={ goBackEvent }>Volver atrás</a>
         </form>
     )
 }

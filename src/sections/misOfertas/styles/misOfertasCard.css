@@ -1,0 +1,37 @@
+.mis-ofertas-card {
+    list-style: none;
+    cursor: pointer;
+}
+
+.card-heading {
+    display: grid;
+    grid-template-columns: 66% 17% 17%;
+    justify-items: right;
+    align-items: center;
+
+    border-radius: 8px 8px 0px 0px;
+    background-color: green;
+    padding: 4%;
+}
+
+.card-heading > h4 {
+    margin: 0;
+    justify-self: left;
+
+    font-weight: normal;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.card-data {
+    background-color: white;
+    border-radius: 0px 0px 8px 8px ;
+    padding-top: 4%;
+    padding-bottom: 4%;
+
+    list-style-type: disc;
+}
+
+.card-data li {
+    font-size: 1.05rem;
+}

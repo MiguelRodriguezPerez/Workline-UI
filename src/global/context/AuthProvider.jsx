@@ -8,14 +8,19 @@ const init = () => { return {} };
 
 export const AuthProvider = ({ children }) => {
 
-    const effectWrapper = async() => {
-        return await getApiLoggedUser();
-    }
 
-    useEffect( () => {
-        const usuario = effectWrapper();
-        if(usuario) updateUser(usuario);
-    }, [])
+    useEffect(() => {
+        const fetchUser = async () => {
+            const usuario = await getApiLoggedUser();
+            if (usuario) {
+                updateUser(usuario);
+            }
+            console.log('User effect');
+        };
+    
+        fetchUser();
+    }, []);
+    
     
 
     const [userState, dispatch] = useReducer(authReducer, {}, init);

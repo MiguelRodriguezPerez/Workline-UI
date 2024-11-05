@@ -53,3 +53,11 @@
     color: red;
     
 }
+
+.login-form a {
+    cursor: pointer;
+    width: 40%;
+    text-align: center;
+    justify-self: right;
+    margin-left: auto;
+}
