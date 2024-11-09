@@ -3,16 +3,18 @@ import { AuthContext } from "../../../global/context/AuthContext";
 import { MisOfertasCard } from "./MisOfertasCard";
 
 import '../styles/misOfertasGrid.css'
+import { MisOfertasContext } from "../context";
 
 
 export const MisOfertasGrid = () => {
 
-    const { user:{ listaOfertas } } = useContext(AuthContext); 
+    const { pagina } = useContext(MisOfertasContext);
+    console.log(pagina)
 
     return (
         <ul className="mis-ofertas-grid">
             {
-                listaOfertas.map( oferta => <MisOfertasCard oferta={ oferta }/>)
+                pagina.content.map( oferta => <MisOfertasCard oferta={oferta}/>)
             }
         </ul>
     )

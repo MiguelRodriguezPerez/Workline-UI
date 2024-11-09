@@ -7,7 +7,6 @@ import '../../styles/jobOffer/jobOfferInfo.css'
 export const JobOfferInfo = () => {
 
   const oferta = useContext(JobOfferContext);
-  console.log(oferta)
 
   return (
     <section className='nube offer-info'>

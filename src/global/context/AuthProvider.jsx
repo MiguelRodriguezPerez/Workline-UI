@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             const usuario = await getApiLoggedUser();
+            console.log(usuario)
             if (usuario) {
                 updateUser(usuario);
             }

@@ -8,7 +8,7 @@ export const ContrataRouter = () => {
     <>
         <ContrataRolVerificacion>
             <Routes>
-                <Route path="/" element={<MisOfertasPage/>}/>
+                <Route path="/:pag" element={<MisOfertasPage/>}/>
             </Routes>
         </ContrataRolVerificacion>
     </>

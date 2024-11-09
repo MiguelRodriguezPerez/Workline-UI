@@ -1,12 +1,13 @@
 export const uploadLogin = async(user = {}) =>{
 
     try {
-        const loginRequest = await fetch('http://localhost:9001/api/logins/login' , {
+        const loginRequest = await fetch('http://localhost:9001/auth/login' , {
             method: 'POST',
             headers : {
                 'Content-Type' : 'application/json',
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(user),
+            credentials: 'include'
         })
 
         if(!loginRequest.ok) return null;

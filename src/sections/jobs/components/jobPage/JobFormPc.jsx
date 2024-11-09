@@ -35,7 +35,6 @@ export const JobFormPc = () => {
         //Desde url
         //Cambiar estado form
         //Obtener página   
-        console.log('Effect')
         const loadResults = async() => {
             updatePage(await getPageData(currentParams.numberPage, formState));
         }

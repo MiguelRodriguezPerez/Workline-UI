@@ -8,17 +8,8 @@ export const JobPagination = () => {
     
   const location = useLocation();
   const navigate = useNavigate();
-  const { jobPageState, updatePage } = useContext( JobContext );
+  const { jobPageState } = useContext( JobContext );
   const currentParams = queryString.parse(location.search)
-
-    const initialSearch = {
-        puestoB: currentParams.puestoB || '',
-        sectorB: currentParams.sectorB || '',
-        tipoContratoB: currentParams.tipoContratoB || '',
-        ciudadB: currentParams.ciudadB || '',
-        salarioAnualMinimo: currentParams.salarioAnualMinimo || 0,
-        modalidadB: currentParams.modalidadB || '',
-    }
 
   const redirectPage = async( numPag ) => {
     const updatedParams = { ...currentParams, numberPage: numPag };
