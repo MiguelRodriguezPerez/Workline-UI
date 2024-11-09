@@ -8,7 +8,6 @@ export const getApiLoggedUser = async() => {
             method: 'GET',
             headers: {
                 'Content-Type' : 'application/json',
-                'Authorization' : 'Bearer ' + Cookies.get('jwtToken')
             },
             credentials : 'include'
         });

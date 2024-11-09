@@ -6,6 +6,7 @@ import { MisOfertasHeading } from '../components/MisOfertasHeading'
 import '../styles/misOfertasPage.css'
 import { MisOfertasGrid } from '../components/MisOfertasGrid'
 import { MisOfertasProvider } from '../context/misOfertasProvider'
+import { MisOfertasPagination } from '../components/MisOfertasPagination'
 
 export const MisOfertasPage = () => {
   return (
@@ -15,6 +16,7 @@ export const MisOfertasPage = () => {
             <MisOfertasProvider>
               <MisOfertasHeading/>
               <MisOfertasGrid/> 
+              <MisOfertasPagination/>
             </MisOfertasProvider>
           </main>
         <WkFooter/>

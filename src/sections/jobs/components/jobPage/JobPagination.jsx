@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { JobContext } from '../../context/jobPage/JobContext';
 
-export const JobPagination = () => {
+export const JobPagination = ({numeroPaginas}) => {
     
   const location = useLocation();
   const navigate = useNavigate();
