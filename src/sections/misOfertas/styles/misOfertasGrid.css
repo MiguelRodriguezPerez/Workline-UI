@@ -7,6 +7,17 @@
     padding: 0;
 }
 
-/* .mis-ofertas-grid > *{
-    border: solid 1px black;
-} */
+@media screen and (max-width:1600px) {
+    .mis-ofertas-grid{
+        grid-template-columns: repeat(2, 50%);
+        margin-bottom: 20%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .mis-ofertas-grid{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 11%;
+    }
+}

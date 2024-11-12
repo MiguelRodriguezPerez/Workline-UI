@@ -1,11 +1,11 @@
 import { useContext } from "react"
 import { AuthContext } from "../../../global/context/AuthContext"
-import { Navigate, useNavigate } from "react-router";
+import { Navigate } from "react-router";
 
 export const ContrataRolVerificacion = ({ children }) => {
   
-    const { user } = useContext( AuthContext );
-    console.log(user)
-    return (user?.rol === 'CONTRATA') ? children : <Navigate to='/login'/>
+    const { user, isLoading } = useContext( AuthContext );
+
+    if(!isLoading) return (user?.rol === 'CONTRATA') ? children : <Navigate to='/login'/>
 
 }

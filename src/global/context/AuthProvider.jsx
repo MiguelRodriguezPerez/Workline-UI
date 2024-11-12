@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { authReducer } from "./authReducer";
 import { uploadLogout } from '../../sections/login/helpers/'
@@ -8,22 +8,10 @@ const init = () => { return {} };
 
 export const AuthProvider = ({ children }) => {
 
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            const usuario = await getApiLoggedUser();
-            console.log(usuario)
-            if (usuario) {
-                updateUser(usuario);
-            }
-            console.log('User effect');
-        };
-    
-        fetchUser();
-    }, []);
-    
-    
-
+    /*isLoading lo tuviste que definir para el HOC que impide que un usuario que no sea de 
+    tipo CONTRATA acceda a mis ofertas. Por la razón que sea ese HOC no puede esperar a 
+    que se resuelva el efecto*/
+    const [isLoading, setIsLoading] = useState(true);
     const [userState, dispatch] = useReducer(authReducer, {}, init);
 
     const updateUser = (user = {}) => {
@@ -46,8 +34,17 @@ export const AuthProvider = ({ children }) => {
         dispatch(action);
     };
 
+    useEffect(() => {
+        const fetchUser = async () => {
+            const usuario = await getApiLoggedUser();
+            if (usuario) updateUser(usuario);
+            setIsLoading(false);
+        };
+        fetchUser();
+    }, []);
+
     return(
-        <AuthContext.Provider value={{ user: userState, updateUser, resetUser}}>
+        <AuthContext.Provider value={{ user: userState, updateUser, resetUser, isLoading: isLoading}}>
             {children}
         </AuthContext.Provider>
     )

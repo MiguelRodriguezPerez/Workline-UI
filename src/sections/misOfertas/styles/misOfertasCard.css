@@ -28,10 +28,16 @@
     border-radius: 0px 0px 8px 8px ;
     padding-top: 4%;
     padding-bottom: 4%;
-
+    margin-bottom: 5%;
     list-style-type: disc;
 }
 
 .card-data li {
     font-size: 1.05rem;
+}
+
+@media screen and (max-width:700px) {
+    .mis-ofertas-card{
+        margin-bottom: 0%;
+    }
 }

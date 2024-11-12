@@ -17,8 +17,7 @@ export const WkHeaderLogin = () => {
   return (
     <div className='header-login'>
         {
-          user.nombre === undefined ? 
-            <Link to={'/login'}>Iniciar sesión</Link> 
+          user.nombre === undefined ? <Link to={'/login'}>Iniciar sesión</Link> 
             : 
             <>
               <img src="/images/ui/logout.png" id="logout" onClick={ logoutEvent }/>

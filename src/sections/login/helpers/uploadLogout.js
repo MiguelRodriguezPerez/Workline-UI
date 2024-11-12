@@ -1,7 +1,7 @@
 export const uploadLogout = async() =>{
 
     try {
-        const logoutRequest = await fetch('http://localhost:9001/api/logins/logout' , {
+        const logoutRequest = await fetch('http://localhost:9001/auth/logout' , {
             method: 'GET',
             headers : {
                 'Content-Type' : 'application/json',

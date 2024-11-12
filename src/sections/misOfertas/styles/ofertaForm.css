@@ -1,0 +1,86 @@
+.oferta-form{
+    margin-top: 2%;
+}
+
+.primera-seccion {
+    display: grid;
+    grid-template-columns: 48% 48%;
+    justify-content: center;
+
+    padding: 1%;
+}
+
+.primera-seccion > div{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 2% 5%;
+}
+
+.primera-seccion input , .primera-seccion select{
+    border: 0;
+    border-bottom: solid 1px black;
+    margin-bottom: 3%;
+}
+
+.primera-seccion label {
+    font-size: 1.1rem;
+}
+
+.primera-seccion button{
+    width: 40%;
+    margin-top: auto;
+    margin-left: auto;
+}
+
+
+.segunda-seccion{
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 1.5% 2%;
+}
+
+.segunda-seccion label{
+    font-size: 1.2rem;
+    margin-bottom: 1%;
+}
+
+.segunda-seccion textarea{
+    resize: none;
+}
+
+.mensaje-error{
+    margin-top: 0;
+    color:red;
+}
+
+input.input-error, select.input-error{
+    border-bottom: solid 1px red;
+}
+
+@media screen and (max-width:1600px) {
+    .primera-seccion{
+        grid-template-columns: 100%;
+        margin-bottom: 5%;
+    }
+
+    .primera-seccion > div{
+        width: 90%;
+    }
+
+    .primera-seccion input , .primera-seccion select{
+        margin-bottom: 5%;
+    }
+
+    .segunda-seccion{
+        margin-bottom: 5%;
+    }
+
+    .segunda-seccion label{
+        margin-bottom: 3%;
+    }
+    
+}

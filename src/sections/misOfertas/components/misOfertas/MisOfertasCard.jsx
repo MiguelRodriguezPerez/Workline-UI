@@ -1,6 +1,6 @@
 import { getViewString } from '/src/global/helpers/getViewString.js'
 
-import '../styles/misOfertasCard.css'
+import '../../styles/misOfertasCard.css'
 
 export const MisOfertasCard = ({ oferta }) => {
   return (

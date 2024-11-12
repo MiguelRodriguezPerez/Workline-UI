@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
-import { AuthContext } from '../../../global/context/AuthContext'
 
-import '../styles/misOfertasHeading.css'
-import { MisOfertasContext } from '../context'
+import { MisOfertasContext } from '../../context'
+import '../../styles/misOfertasHeading.css'
 
 export const MisOfertasHeading = () => {
 

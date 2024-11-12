@@ -12,7 +12,6 @@ export const getModalidades = async() => {
        
         
         const resultado = await solicitud.json();
-        console.log(resultado)
         return resultado;
     }
     catch( error ){

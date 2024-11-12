@@ -23,7 +23,7 @@ export const WkHeaderPhone = () => {
                 <img src="/images/ui/cerrar.png" alt="close" onClick={ closeMenu } />
                 <Link to={'/'}>Inicio</Link>
                 <Link to={'/ofertasDeTrabajo/?numberPage=0'}>Ofertas</Link>
-                <Link>Contratar</Link>
+                <Link to={'/misOfertas/'}>Contratar</Link>
             </div>
             <div id='header-second-child'>
                 <WkHeaderLogin/>

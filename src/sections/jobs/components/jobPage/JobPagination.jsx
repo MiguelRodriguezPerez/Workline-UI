@@ -4,20 +4,17 @@ import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { JobContext } from '../../context/jobPage/JobContext';
 
-export const JobPagination = ({numeroPaginas}) => {
+
+export const JobPagination = () => {
     
+  const [currentNumPag, setCurrentNumPag] = useState(0);
   const location = useLocation();
   const navigate = useNavigate();
   const { jobPageState } = useContext( JobContext );
-  const currentParams = queryString.parse(location.search)
 
-  const redirectPage = async( numPag ) => {
-    const updatedParams = { ...currentParams, numberPage: numPag };
-    console.log(queryString.stringify(updatedParams))
-    navigate(`?${queryString.stringify(updatedParams)}`);
-    window.scrollTo(0,0)
-  }
 
+  // window.scrollTo(0,0)
+  // onChange={(e,value) => { redirectPage(value - 1)}}
   
   return (
     <Stack 
@@ -29,7 +26,7 @@ export const JobPagination = ({numeroPaginas}) => {
           marginBottom:'10%' // Asegura que los elementos estén centrados verticalmente
         }}
       >
-      <Pagination count={jobPageState.totalPages} onChange={(e,value) => { redirectPage(value - 1)}} shape="rounded"
+      <Pagination count={jobPageState.totalPages}  shape="rounded"
       sx={{
         '& .MuiPaginationItem-root':{
           fontSize: '1.4rem',
