@@ -1,9 +1,6 @@
 import { Route, Routes } from "react-router"
+import { MisOfertasPage, NuevaOfertaPage, EditarOfertaPage, VerOfertaPage} from '../pages/index'
 import { ContrataRolVerificacion } from "./ContrataRolVerification"
-import { MisOfertasPage } from "../pages/MisOfertasPage"
-import { OfertaForm } from "../components/nuevaOferta/OfertaForm"
-import { NuevaOfertaPage } from "../pages/NuevaOfertaPage"
-import { EditarOfertaPage } from "../pages/EditarOfertaPage"
 
 
 export const ContrataRouter = () => {
@@ -14,6 +11,7 @@ export const ContrataRouter = () => {
                 <Route path="/" element={<MisOfertasPage/>}/>
                 <Route path="/nuevaOferta" element={<NuevaOfertaPage/>}/>
                 <Route path="/editarOferta/:id" element={<EditarOfertaPage/>}/>
+                <Route path="/verOferta/:id" element={<VerOfertaPage/>}/>
             </Routes>
         </ContrataRolVerificacion>
     </>

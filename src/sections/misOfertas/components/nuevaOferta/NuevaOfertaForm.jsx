@@ -3,19 +3,20 @@ import { useNavigate } from 'react-router';
 import { useModalidades, useTiposContrato } from '../../../../global/hooks';
 import '../../../../global/styles/greenButton.css';
 import '../../styles/ofertaForm.css';
-import { getOfertaById } from '../../../../global/api/getOfertaById';
 
-export const OfertaForm = ({ id, gestionarSubmit }) => {
+export const NuevaOfertaForm = () => {
 
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
     const navigate = useNavigate();
 
-    
-    const { register, formState: { errors }, handleSubmit } = useForm({
-            //Si id existe, realizará la petición, sino no
-            defaultValues: async () => id && await getOfertaById(id)
-    });
+    const gestionarSubmit = async (data) => {
+        const ofertaPreparada = prepararOfertaApi(data);
+        const resultado = await publicarNuevaOferta(ofertaPreparada);
+        if(resultado.status === 201) navigate('/misOfertas/')
+    }
+
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
     return (
         <>

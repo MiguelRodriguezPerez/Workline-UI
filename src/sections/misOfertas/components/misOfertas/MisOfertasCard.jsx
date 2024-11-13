@@ -11,6 +11,10 @@ export const MisOfertasCard = ({ oferta }) => {
   const { servirPagina } = useContext(MisOfertasContext);
   const navigate = useNavigate();
 
+  const redirectView = () => {
+    navigate(`/misOfertas/verOferta/${oferta.id}`);
+  }
+
   const redirectEdit = () => {
     navigate(`/misOfertas/editarOferta/${oferta.id}`);
   }
@@ -23,11 +27,11 @@ export const MisOfertasCard = ({ oferta }) => {
   return (
     <li id={ oferta.id } className="mis-ofertas-card">
         <section className='card-heading'>
-            <h4>{oferta.puesto}</h4>
+            <h4 onClick={redirectView}>{oferta.puesto}</h4>
             <img src="/images/misOfertas/editar.png" alt="editar.png" onClick={redirectEdit} />
             <img src="/images/misOfertas/borrar.png" alt="borrar.png" onClick={redirectDelete} />
         </section>
-        <ul className='card-data'>
+        <ul className='card-data' onClick={redirectView}>
             <li>{oferta.salarioAnual} euros anuales</li>
             <li>{ getViewString(oferta.tipoContrato) }</li>
             <li>{oferta.horas} horas</li>

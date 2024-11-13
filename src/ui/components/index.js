@@ -1,2 +1,2 @@
-export * from '../../../ui/components/WkHeader';
-export * from '../../../ui/components/WkFooter';
+export * from '../components/WkHeaderWrapper'
+export * from '../components/WkFooter'
