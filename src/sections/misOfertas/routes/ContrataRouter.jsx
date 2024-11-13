@@ -3,6 +3,7 @@ import { ContrataRolVerificacion } from "./ContrataRolVerification"
 import { MisOfertasPage } from "../pages/MisOfertasPage"
 import { OfertaForm } from "../components/nuevaOferta/OfertaForm"
 import { NuevaOfertaPage } from "../pages/NuevaOfertaPage"
+import { EditarOfertaPage } from "../pages/EditarOfertaPage"
 
 
 export const ContrataRouter = () => {
@@ -12,6 +13,7 @@ export const ContrataRouter = () => {
             <Routes>
                 <Route path="/" element={<MisOfertasPage/>}/>
                 <Route path="/nuevaOferta" element={<NuevaOfertaPage/>}/>
+                <Route path="/editarOferta/:id" element={<EditarOfertaPage/>}/>
             </Routes>
         </ContrataRolVerificacion>
     </>

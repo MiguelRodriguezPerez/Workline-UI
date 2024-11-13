@@ -45,8 +45,10 @@ export const MisOfertasProvider = ({ children }) => {
         updatePage(resultado.data);
       }
       effectWrapper();
-    }, [numPag])
+    }, [numPag, misOfertas])
 
+    /*Cuando borras una oferta, la lista de ofertas cambia y necesitas volver a disparar el efecto
+    para actualizar los componentes que utilizan los datos de este provider*/
     return <MisOfertasContext.Provider value={{ pagina : misOfertas, servirPagina }}>
         {children}
     </MisOfertasContext.Provider>

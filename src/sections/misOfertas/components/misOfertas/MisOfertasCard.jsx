@@ -1,14 +1,31 @@
 import { getViewString } from '/src/global/helpers/getViewString.js'
 
 import '../../styles/misOfertasCard.css'
+import { useNavigate } from 'react-router'
+import { borrarOferta } from '../../api/borrarOferta';
+import { useContext } from 'react';
+import { MisOfertasContext } from '../../context';
 
 export const MisOfertasCard = ({ oferta }) => {
+
+  const { servirPagina } = useContext(MisOfertasContext);
+  const navigate = useNavigate();
+
+  const redirectEdit = () => {
+    navigate(`/misOfertas/editarOferta/${oferta.id}`);
+  }
+
+  const redirectDelete = () => {
+    borrarOferta(oferta.id);
+    servirPagina(0);
+  }
+
   return (
     <li id={ oferta.id } className="mis-ofertas-card">
         <section className='card-heading'>
             <h4>{oferta.puesto}</h4>
-            <img src="/images/misOfertas/editar.png" alt="editar.png" />
-            <img src="/images/misOfertas/borrar.png" alt="borrar.png" />
+            <img src="/images/misOfertas/editar.png" alt="editar.png" onClick={redirectEdit} />
+            <img src="/images/misOfertas/borrar.png" alt="borrar.png" onClick={redirectDelete} />
         </section>
         <ul className='card-data'>
             <li>{oferta.salarioAnual} euros anuales</li>

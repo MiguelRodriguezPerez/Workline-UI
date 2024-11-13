@@ -7,14 +7,9 @@ import '../../../jobs/styles/jobPage/jobPagination.css'
 export const MisOfertasPagination = () => {
 
 
-    const { pagina, servirPagina } = useContext(MisOfertasContext);
+    const { pagina: {totalPages}, servirPagina } = useContext( MisOfertasContext );
 
-    const redirectPage = async( numPag ) => {
-        const updatedParams = { ...currentParams, numberPage: numPag };
-        console.log(queryString.stringify(updatedParams))
-        navigate(`?${queryString.stringify(updatedParams)}`);
-        window.scrollTo(0,0)
-    }
+
 
     return (
         <section className='job-pagination-wrapper'>
@@ -27,7 +22,7 @@ export const MisOfertasPagination = () => {
                 marginBottom:'5%' // Asegura que los elementos estén centrados verticalmente
                 }}
             >
-                <Pagination count={pagina.totalPages} onChange={(e,value) => { servirPagina(value - 1)}} shape="rounded"
+                <Pagination count={totalPages} onChange={(e,value) => { servirPagina(value - 1)}} shape="rounded"
                 sx={{
                     '& .MuiPaginationItem-root':{
                     fontSize: '1.4rem',

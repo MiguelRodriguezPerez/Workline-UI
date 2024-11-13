@@ -1,1 +1,1 @@
-export * from './getOfertaById'
+export * from '../api/getOfertaById'

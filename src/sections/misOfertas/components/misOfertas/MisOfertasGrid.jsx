@@ -8,7 +8,7 @@ import { MisOfertasContext } from "../../context";
 
 export const MisOfertasGrid = () => {
 
-    const { pagina } = useContext(MisOfertasContext);
+    const { pagina } = useContext( MisOfertasContext );
 
     return (
         <ul className="mis-ofertas-grid">
