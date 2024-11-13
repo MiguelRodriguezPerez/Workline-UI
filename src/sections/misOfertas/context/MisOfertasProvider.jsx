@@ -45,7 +45,7 @@ export const MisOfertasProvider = ({ children }) => {
         updatePage(resultado.data);
       }
       effectWrapper();
-    }, [numPag, misOfertas])
+    }, [numPag])
 
     /*Cuando borras una oferta, la lista de ofertas cambia y necesitas volver a disparar el efecto
     para actualizar los componentes que utilizan los datos de este provider*/
