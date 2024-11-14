@@ -1,2 +1,3 @@
-export * from '../components/WkHeaderWrapper'
-export * from '../components/WkFooter'
+export * from './WkHeaderWrapper'
+export * from './WkFooter'
+export * from './Logo'

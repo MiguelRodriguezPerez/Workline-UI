@@ -1,0 +1,14 @@
+.mi-perfil-content {
+    margin: 2vh 0;
+
+    display: grid;
+    grid-template-columns: 15% 82%;
+    gap: 3%;
+    flex: 1;
+}
+
+.barra-lateral { 
+    grid-row: 1 / span 2; 
+    background-color: red; 
+    height: auto; 
+}

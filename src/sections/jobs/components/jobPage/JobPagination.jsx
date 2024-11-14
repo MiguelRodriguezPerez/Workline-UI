@@ -1,6 +1,6 @@
 import { Pagination, Stack } from '@mui/material';
 import queryString from 'query-string';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { JobContext } from '../../context/jobPage/JobContext';
 

@@ -1,0 +1,3 @@
+export const editarUsuarioEntidad = async() => {
+    
+} 

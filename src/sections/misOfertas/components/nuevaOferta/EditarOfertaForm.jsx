@@ -37,26 +37,27 @@ export const EditarOfertaForm = ({ id, isReadOnly = true}) => {
     }
 
     return (
-        <>
-            <a className='a-back'
-                onClick={(e) => {
-                    e.preventDefault();
-                    navigate(-1);
-                } 
-            }> Volver atrás </a>
-            {
-                isReadOnlyState ? 
-                    <a onClick={ (e) => {
+        <>  
+            <section className="link-section">
+                <a className='a-back'
+                    onClick={(e) => {
                         e.preventDefault();
-                        setIsReadOnlyState(false);
-                    }}> Editar oferta </a>
-                    :
-                    <a onClick={ (e) => {
-                        e.preventDefault();
-                        setIsReadOnlyState(true);
-                    }}> Cancelar </a>
-            }
-            
+                        navigate(-1);
+                    } 
+                }> Volver atrás </a>
+                {
+                    isReadOnlyState ? 
+                        <a onClick={ (e) => {
+                            e.preventDefault();
+                            setIsReadOnlyState(false);
+                        }}> Editar oferta </a>
+                        :
+                        <a onClick={ (e) => {
+                            e.preventDefault();
+                            setIsReadOnlyState(true);
+                        }}> Cancelar </a>
+                }
+            </section>
             <form className='oferta-form' onSubmit={handleSubmit(editSubmit)} method='post'>
                 <section className='nube primera-seccion'>
                     <div>

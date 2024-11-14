@@ -1,9 +1,16 @@
-.a-back{
-    margin-top: 3vh;
-    margin-bottom: 0.5%;
+.link-section{
+    margin-top: 2.5vh;
+    margin-bottom: 1vh;
+    display: flex;
+}
+
+.link-section > a{
     cursor: pointer;
 }
 
+.link-section > a:nth-child(2){
+    margin-left: auto;
+}
 .oferta-form{
     margin-top: 0%;
 }

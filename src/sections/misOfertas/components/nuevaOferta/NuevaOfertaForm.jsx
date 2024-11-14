@@ -20,13 +20,14 @@ export const NuevaOfertaForm = () => {
 
     return (
         <>
-            <a className='a-back'
-                onClick={(e) => {
-                    e.preventDefault();
-                    navigate(-1);
-                } 
-            }>Volver atrás</a>
-            
+            <section className="link-section">
+                <a className='a-back'
+                    onClick={(e) => {
+                        e.preventDefault();
+                        navigate(-1);
+                    } 
+                }>Volver atrás</a>
+            </section>
             <form className='oferta-form' onSubmit={handleSubmit(gestionarSubmit)} method='post'>
                 <section className='nube primera-seccion'>
                     <div>
