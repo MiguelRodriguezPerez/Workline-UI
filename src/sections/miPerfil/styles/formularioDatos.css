@@ -1,0 +1,27 @@
+.container-formulario {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-datos {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    gap: 10%;
+
+    background-color: white;
+    border-radius: 8px;
+    padding: 2% 3%;
+    margin-top: 1%;
+}
+
+
+.formulario-datos > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-datos input[type=submit]{
+    margin-top: 2%;
+    width: 60%;
+    margin-left: auto;
+}

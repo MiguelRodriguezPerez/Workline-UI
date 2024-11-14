@@ -1,21 +1,50 @@
 import { useForm } from "react-hook-form"
 import { CabeceraMiPerfil } from "./CabeceraMiPerfil"
-import { obtenerUsuarioEntidad } from "../api/obtenerUsuarioEntidad"
+import { editarUsuarioEntidad, obtenerUsuarioEntidad } from "../api/";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../global/context/AuthContext";
+import { activarReadOnly, desactivarReadOnly } from '/src/global/helpers'
+
+import '../styles/formularioDatos.css';
+import '/src/global/styles/formularios/input.css';
+import '/src/global/styles/formularios/label.css';
+import '/src/global/styles/formularios/headingLink.css';
 
 export const FormularioDatos = () => {
+
+  const { updateUser } = useContext( AuthContext );
+  const [ isEditEnabled, setIsEditEnabled ] = useState(false);
+
+  useEffect(() => {
+
+    if(!isEditEnabled) activarReadOnly();
+    else desactivarReadOnly();
+
+  },[isEditEnabled]);
 
   const { register, formState: {errors}, handleSubmit } = useForm({
     defaultValues: async () => await obtenerUsuarioEntidad()
   });
 
-  return (
-    <section>
-      <CabeceraMiPerfil/>
+  const submitEdit = async(data) => {
+    setIsEditEnabled(false);
+    const resultado = await editarUsuarioEntidad(data);
+    if(resultado.status === 201) updateUser(resultado.content);
+  }
 
-      <form action="" method="post">
+  return (
+    <section className="container-formulario">
+      <CabeceraMiPerfil/>
+      {
+        (isEditEnabled) ? 
+          <p className="heading-link" onClick={ () => { setIsEditEnabled(false)} }>Cancelar</p>
+          :
+          <p className="heading-link" onClick={ () => { setIsEditEnabled(true)} }>Editar datos</p>
+      }
+      <form method="post" onSubmit={handleSubmit(submitEdit)} className="formulario-datos">
         <div>
-          <label>Nombre</label>
-          <input type="text" 
+          <label className="form-label">Nombre</label>
+          <input type="text" className="form-input"
             {
               ...register('nombre', {
                 required: 'Campo obligatorio',
@@ -25,9 +54,9 @@ export const FormularioDatos = () => {
                 }
               })
             }/>
-          <p>{errors.nombre?.message}</p>
-          <label>Email</label>
-          <input type="text" 
+          <p className="mensaje-error">{errors.nombre?.message}</p>
+          <label className="form-label">Email</label>
+          <input type="text" className="form-input"
             {
               ...register('email', {
                 required: 'Campo obligatorio',
@@ -42,11 +71,11 @@ export const FormularioDatos = () => {
               })
             }
           />
-        <p className="mensaje-error">{errors.email?.message}</p>
+          <p>{errors.email?.message}</p>
         </div>
         <div>
-          <label>Ciudad</label>
-          <input type="text" 
+          <label className="form-label">Ciudad</label>
+          <input type="text" className="form-input"
             {
               ...register('ciudad', {
                 pattern: {
@@ -61,8 +90,8 @@ export const FormularioDatos = () => {
             }
           />
           <p className="mensaje-error">{errors.ciudad?.message}</p>
-          <label>Telefono</label>
-          <input type="text" 
+          <label className="form-label">Telefono</label>
+          <input type="text" className="form-input"
             {
               ...register('telefono', {
                 pattern: {
@@ -72,6 +101,7 @@ export const FormularioDatos = () => {
               })
           }/>
           <p className="mensaje-error">{errors.telefono?.message}</p>
+          { isEditEnabled && <input type="submit" value="Subir cambios"  className="green-button"/> }
         </div>
       </form>
     </section>

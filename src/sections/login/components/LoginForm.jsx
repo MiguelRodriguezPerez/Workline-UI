@@ -8,7 +8,7 @@ import '../styles/loginForm.css';
 export const LoginForm = () => {
 
     const navigate = useNavigate();
-    const { updateUser,resetUser } = useContext(AuthContext);
+    const { updateUser, resetUser } = useContext(AuthContext);
   
     const [user, setUser] = useState({
         username: '',
