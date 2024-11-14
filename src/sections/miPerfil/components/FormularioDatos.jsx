@@ -16,10 +16,8 @@ export const FormularioDatos = () => {
   const [ isEditEnabled, setIsEditEnabled ] = useState(false);
 
   useEffect(() => {
-
     if(!isEditEnabled) activarReadOnly();
     else desactivarReadOnly();
-
   },[isEditEnabled]);
 
   const { register, formState: {errors}, handleSubmit } = useForm({

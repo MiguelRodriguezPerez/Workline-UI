@@ -5,6 +5,9 @@ import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { getOfertaById } from "/src/global/api/getOfertaById.js"
 import { prepararOfertaApi } from "../../helpers/prepararOfertaApi.js";
+import { activarReadOnly, desactivarReadOnly } from "/src/global/helpers"
+
+import '/src/global/styles/formularios/headingLink.css'
 
 
 export const EditarOfertaForm = ({ id, isReadOnly = true}) => {
@@ -18,16 +21,8 @@ export const EditarOfertaForm = ({ id, isReadOnly = true}) => {
 
     const [isReadOnlyState, setIsReadOnlyState] = useState(isReadOnly);
     useEffect(() => {
-        if (isReadOnlyState) {
-            for(const input of document.getElementsByTagName('input')) {
-                    input.setAttribute('readonly',true);
-            }
-        }
-        else {
-            for(const input of document.getElementsByTagName('input')) {
-                input.removeAttribute('readonly');
-            }
-        }
+        if (isReadOnlyState) activarReadOnly();
+        else desactivarReadOnly();
     }, [isReadOnlyState]);
 
     const editSubmit = async (data) => {
@@ -39,23 +34,12 @@ export const EditarOfertaForm = ({ id, isReadOnly = true}) => {
     return (
         <>  
             <section className="link-section">
-                <a className='a-back'
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate(-1);
-                    } 
-                }> Volver atrás </a>
+                <p className='heading-link' onClick={ () => { navigate(-1) } }> Volver atrás </p>
                 {
                     isReadOnlyState ? 
-                        <a onClick={ (e) => {
-                            e.preventDefault();
-                            setIsReadOnlyState(false);
-                        }}> Editar oferta </a>
+                        <p onClick={ () => {setIsReadOnlyState(false) } }> Editar oferta </p>
                         :
-                        <a onClick={ (e) => {
-                            e.preventDefault();
-                            setIsReadOnlyState(true);
-                        }}> Cancelar </a>
+                        <p onClick={ () => { setIsReadOnlyState(true) } }> Cancelar </p>
                 }
             </section>
             <form className='oferta-form' onSubmit={handleSubmit(editSubmit)} method='post'>
