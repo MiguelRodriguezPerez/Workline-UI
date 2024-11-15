@@ -9,7 +9,7 @@ export const EditarOfertaPage = () => {
     return (
         <>
             <WkHeaderWrapper/>
-            <EditarOfertaForm id={id} isReadOnly={false}/>
+            <EditarOfertaForm id={id} isEditable={true}/>
             <WkFooter/>
         </>
     )

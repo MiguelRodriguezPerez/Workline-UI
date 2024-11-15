@@ -1,29 +1,24 @@
-import { useNavigate } from "react-router";
-import { useModalidades, useTiposContrato } from "../../../../global/hooks";
-import { editarOferta } from "../../api/editarOferta";
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
-import { getOfertaById } from "/src/global/api/getOfertaById.js"
+import { useNavigate } from "react-router";
+import { useModalidades, useSwitchReadOnly, useTiposContrato } from "../../../../global/hooks";
+import { editarOferta } from "../../api/editarOferta";
 import { prepararOfertaApi } from "../../helpers/prepararOfertaApi.js";
-import { activarReadOnly, desactivarReadOnly } from "/src/global/helpers"
+import { getOfertaById } from "/src/global/api/getOfertaById.js";
 
-import '/src/global/styles/formularios/headingLink.css'
+import '/src/global/styles/formularios/headingLink.css';
 
 
-export const EditarOfertaForm = ({ id, isReadOnly = true}) => {
+export const EditarOfertaForm = ({ id, isEditable = true}) => {
 
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
+    const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(!isEditable);
     const navigate = useNavigate();
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: async () => await getOfertaById(id)
     });
 
-    const [isReadOnlyState, setIsReadOnlyState] = useState(isReadOnly);
-    useEffect(() => {
-        if (isReadOnlyState) activarReadOnly();
-        else desactivarReadOnly();
-    }, [isReadOnlyState]);
+
 
     const editSubmit = async (data) => {
         const ofertaPreparada = prepararOfertaApi(data);
@@ -36,10 +31,10 @@ export const EditarOfertaForm = ({ id, isReadOnly = true}) => {
             <section className="link-section">
                 <p className='heading-link' onClick={ () => { navigate(-1) } }> Volver atrás </p>
                 {
-                    isReadOnlyState ? 
-                        <p onClick={ () => {setIsReadOnlyState(false) } }> Editar oferta </p>
+                    isReadOnly ? 
+                        <p onClick={ turnOffReadOnly }> Editar oferta </p>
                         :
-                        <p onClick={ () => { setIsReadOnlyState(true) } }> Cancelar </p>
+                        <p onClick={ turnOnReadOnly }> Cancelar </p>
                 }
             </section>
             <form className='oferta-form' onSubmit={handleSubmit(editSubmit)} method='post'>

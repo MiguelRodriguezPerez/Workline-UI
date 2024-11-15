@@ -1,10 +1,8 @@
 import { WkHeaderWrapper } from "../../../ui/components"
 import { WkFooter } from "../../../ui/components/WkFooter"
-import { BarraLateral, CabeceraMiPerfil, FormularioDatos } from "../components"
+import { BarraLateral, CabeceraMiPerfil, FormularioDatosUsuario } from "../components"
 
 import '../styles/misDatosPage.css'
-
-
 
 export const MisDatosPage = () => {
   return (
@@ -12,7 +10,7 @@ export const MisDatosPage = () => {
         <WkHeaderWrapper/>
             <main className="mi-perfil-content">
                 <BarraLateral/>
-                <FormularioDatos/>
+                <FormularioDatosUsuario/>
             </main>
         <WkFooter/>
     </>

@@ -1,4 +1,3 @@
 export * from '../api/getOfertaById'
-export * from './activarReadOnly';
-export * from './desactivarReadOnly';
+export * from './funcionesReadOnly';
 export * from './getViewString'

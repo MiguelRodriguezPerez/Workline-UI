@@ -1,3 +1,3 @@
 export * from './BarraLateral';
 export * from './CabeceraMiPerfil';
-export * from './FormularioDatos';
+export * from './FormularioDatosUsuario';
