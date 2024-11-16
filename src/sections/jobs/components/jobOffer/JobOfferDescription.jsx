@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { JobOfferContext } from "../../context/jobOffer/jobOfferContext";
 
 import '../../styles/jobOffer/jobOfferDescription.css';
+import '/src/global/styles/elementos.css'
 
 export const JobOfferDescription = () => {
 

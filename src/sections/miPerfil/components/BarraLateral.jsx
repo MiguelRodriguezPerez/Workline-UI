@@ -1,21 +1,29 @@
-import { useContext } from 'react'
-import '../styles/barraLateral.css'
-import { AuthContext } from '../../../global/context/AuthContext'
+import { useContext } from 'react';
+import { AuthContext } from '../../../global/context/AuthContext';
+import '../styles/barraLateral.css';
+import { FormularioDatosUsuario } from './FormularioDatosUsuario';
+import { ConocimientoCard, ExperienciaCard } from './usuarioBusca';
+import { EntidadGrid } from './usuarioBusca/EntidadGrid';
+import { obtenerMisConocimientos, obtenerMisExperiencias } from '/src/global/api/seccionBusca';
 
 
-export const BarraLateral = () => {
+export const BarraLateral = ({ cambiarComponenteActivo }) => {
 
-    const { user } = useContext(AuthContext);
+    const { user } = useContext( AuthContext );
 
     return (
         <aside className="barra-lateral">
             <ul>
-                <li>Mis Datos</li>
+                <li onClick={ () => cambiarComponenteActivo( <FormularioDatosUsuario/> ) }>Mis Datos</li>
                 {
                     user?.rol === 'BUSCA' &&
                     <>
-                        <li>Mis conocimientos</li>
-                        <li>Mis experiencias </li>
+                        <li onClick={ () => cambiarComponenteActivo( 
+                            <EntidadGrid clave='conocimientos' peticion={ obtenerMisConocimientos } Componente={ ConocimientoCard }/> ) } 
+                        >Mis conocimientos</li>
+                       <li onClick={ () => cambiarComponenteActivo( 
+                            <EntidadGrid clave='experiencias' peticion={ obtenerMisExperiencias } Componente={ ExperienciaCard }/> ) } 
+                        >Mis experiencias</li>
                         <li>Mis ofertas</li>
                     </>
                 }

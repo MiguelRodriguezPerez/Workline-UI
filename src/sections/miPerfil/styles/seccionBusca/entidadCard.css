@@ -1,0 +1,29 @@
+.entidad-card{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+    margin: 2% 0%;
+    padding: 1% 2%;
+}
+
+.entidad-card > h3 {
+    margin: 0%;
+    
+    font-weight: normal;
+    font-size: 1.4rem;
+}
+
+.entidad-card > .opciones-card {
+    justify-self: end;
+}
+
+.entidad-card > p {
+    margin: 3% 0% 2%;
+}
+
+.entidad-card > p:last-of-type {
+    justify-self: end;
+    margin-right: 0.7%;
+}
+

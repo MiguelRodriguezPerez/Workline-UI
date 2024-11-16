@@ -6,9 +6,7 @@ import { AuthContext } from "../../../global/context/AuthContext";
 import { useSwitchReadOnly } from "../../../global/hooks";
 
 import '../styles/formularioDatos.css';
-import '/src/global/styles/formularios/input.css';
-import '/src/global/styles/formularios/label.css';
-import '/src/global/styles/formularios/headingLink.css';
+import '/src/global/styles/formularios.css';
 
 
 export const FormularioDatosUsuario = () => {

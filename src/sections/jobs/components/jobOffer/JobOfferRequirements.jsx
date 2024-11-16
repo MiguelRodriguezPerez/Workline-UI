@@ -1,4 +1,5 @@
 import '../../styles/jobOffer/jobOfferRequirements.css';
+import '/src/global/styles/elementos.css'
 
 export const JobOfferRequirements = () => {
   return (

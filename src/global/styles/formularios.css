@@ -1,0 +1,16 @@
+.heading-link{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    margin: 0;
+}
+
+.form-input {
+    border: 0;
+    border-bottom: solid 1px black;
+}
+
+.form-label{
+    font-size: 1.2rem;
+    margin-bottom: 1%;
+}

@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useModalidades, useTiposContrato } from '../../../../global/hooks';
-import '../../../../global/styles/greenButton.css';
+import { publicarNuevaOferta } from "/src/global/api/ofertas";
+import '/src/global/styles/elementos.css'
 import '../../styles/ofertaForm.css';
 
 export const NuevaOfertaForm = () => {

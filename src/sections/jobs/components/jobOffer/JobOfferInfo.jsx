@@ -3,6 +3,7 @@ import { JobOfferContext } from '../../context/jobOffer/jobOfferContext'
 import { getViewString } from '../../../../global/helpers/getViewString'
 
 import '../../styles/jobOffer/jobOfferInfo.css'
+import '/src/global/styles/elementos.css'
 
 export const JobOfferInfo = () => {
 

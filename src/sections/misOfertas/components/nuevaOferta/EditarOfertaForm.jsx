@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useModalidades, useSwitchReadOnly, useTiposContrato } from "../../../../global/hooks";
-import { editarOferta } from "../../api/editarOferta";
+import { editarOferta } from "/src/global/api/ofertas";
 import { prepararOfertaApi } from "../../helpers/prepararOfertaApi.js";
 import { getOfertaById } from "/src/global/api/getOfertaById.js";
 
-import '/src/global/styles/formularios/headingLink.css';
+import '/src/global/styles/formularios.css';
+import '/src/global/styles/elementos.css'
 
 
 export const EditarOfertaForm = ({ id, isEditable = true}) => {
@@ -17,8 +18,6 @@ export const EditarOfertaForm = ({ id, isEditable = true}) => {
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: async () => await getOfertaById(id)
     });
-
-
 
     const editSubmit = async (data) => {
         const ofertaPreparada = prepararOfertaApi(data);
