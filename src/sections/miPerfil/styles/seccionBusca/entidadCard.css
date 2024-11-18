@@ -1,29 +1,32 @@
 .entidad-card{
     list-style-type: none;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    align-items: center;
     margin: 2% 0%;
-    padding: 1% 2%;
+    padding: 2%;
 }
 
-.entidad-card > h3 {
+.entidad-card label {
     margin: 0%;
     
     font-weight: normal;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
-.entidad-card > .opciones-card {
-    justify-self: end;
-}
-
-.entidad-card > p {
+.entidad-card  p {
     margin: 3% 0% 2%;
+    cursor: pointer;
 }
 
-.entidad-card > p:last-of-type {
-    justify-self: end;
-    margin-right: 0.7%;
+.entidad-card-section {
+    display: grid;
+    grid-template-columns: 45% 45% 10%;
 }
 
+.entidad-card-section > div {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+}
+
+.green-button {
+    width: 60%;
+}
