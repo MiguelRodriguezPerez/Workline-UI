@@ -1,12 +1,15 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../../global/context/AuthContext';
-import '../styles/barraLateral.css';
 import { FormularioDatosUsuario } from './FormularioDatosUsuario';
-import { ConocimientoCard, ExperienciaCard } from './usuarioBusca';
+import { ExperienciaCard } from './usuarioBusca/experiencia';
+import { ConocimientoCard } from './usuarioBusca/conocimiento';
 import { EntidadGrid } from './usuarioBusca/EntidadGrid';
-import { obtenerMisConocimientos, obtenerMisExperiencias } from '/src/global/api/seccionBusca';
-import { NuevaExperienciaCard } from './usuarioBusca/NuevaExperienciaCard';
+import { obtenerMisConocimientos } from '/src/global/api/seccionBusca/conocimiento';
+import { obtenerMisExperiencias } from '/src/global/api/seccionBusca/experiencia';
+import { NuevaExperienciaCard } from './usuarioBusca/experiencia';
 
+import '../styles/barraLateral.css';
+import { NuevoConocimientoCard } from './usuarioBusca/conocimiento/NuevoConocimientoCard';
 
 export const BarraLateral = ({ cambiarComponenteActivo }) => {
 
@@ -21,7 +24,7 @@ export const BarraLateral = ({ cambiarComponenteActivo }) => {
                     <>
                         <li onClick={() => cambiarComponenteActivo(
                             <EntidadGrid clave='conocimientos' peticion={obtenerMisConocimientos}
-                                Componente={ConocimientoCard} />)}
+                                Componente={ConocimientoCard} NuevaEntidadComponente={NuevoConocimientoCard} />)}
                         >Mis conocimientos</li>
                         <li onClick={() => cambiarComponenteActivo(
                             <EntidadGrid clave='experiencias' peticion={obtenerMisExperiencias}

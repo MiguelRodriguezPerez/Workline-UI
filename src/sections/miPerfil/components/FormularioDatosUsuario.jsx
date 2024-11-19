@@ -12,7 +12,7 @@ import '/src/global/styles/formularios.css';
 export const FormularioDatosUsuario = () => {
 
   const { updateUser } = useContext(AuthContext);
-  const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true);
+  const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true , 'form-user');
 
   const { register, formState: { errors }, handleSubmit } = useForm({
     defaultValues: async () => await obtenerUsuarioEntidad()
@@ -25,7 +25,7 @@ export const FormularioDatosUsuario = () => {
   }
 
   return (
-    <section className="container-formulario">
+    <section className="container-formulario" id="form-user">
       <CabeceraMiPerfil />
       {
         (isReadOnly) ?

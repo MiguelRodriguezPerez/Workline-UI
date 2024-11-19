@@ -1,26 +1,35 @@
-import { useForm } from 'react-hook-form';
-import { prepararExperienciaDto } from '../../helpers/prepararExperienciaDto';
-import { guardarNuevaExperiencia } from '/src/global/api/seccionBusca'
-import { compararFechas } from '../../../../global/helpers/fechas/compararFechas';
+import { useForm } from 'react-hook-form'
+import { editarExperiencia, borrarExperiencia } from '/src/global/api/seccionBusca/experiencia'
+import { compararFechas } from '/src/global/helpers/fechas'
+import { useSwitchReadOnly } from '/src/global/hooks'
+import { prepararExperienciaDto } from '../../../helpers'
+import { OpcionesCard } from '../OpcionesCard'
 
-import '../../styles/seccionBusca/entidadCard.css'
+
+import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
 
-export const NuevaExperienciaCard = () => {
 
-  const newSubmit = async(data) => {
-    const experienciaPreparada = prepararExperienciaDto(data);
-    const resultado = await guardarNuevaExperiencia(experienciaPreparada);
-    if( resultado.status === 201 ){
+export const ExperienciaCard = ({ data = {} }) => {
+
+  const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
+  const { register, formState: { errors }, getValues, handleSubmit } = useForm({
+    defaultValues: data
+  });
+
+  const editSubmit = async (data) => {
+    const experienciaDto = prepararExperienciaDto(data);
+    const resultado = await editarExperiencia(experienciaDto, data.id);
+
+    if (resultado.status === 201) {
       window.location.reload();
+      turnOnReadOnly();
     }
   }
 
-  const { register, formState: { errors }, getValues, handleSubmit } = useForm();
-
   return (
-    <section className="entidad-card nube">
-      <form method="post" onSubmit={handleSubmit(newSubmit)}>
+    <li className='entidad-card nube' id={data.id}>
+      <form method="post" onSubmit={handleSubmit(editSubmit)}>
         <section className='entidad-card-section'>
           <div>
             <label>Puesto</label>
@@ -50,6 +59,9 @@ export const NuevaExperienciaCard = () => {
             />
             <p className='mensaje-error'>{errors.empresa?.message}</p>
           </div>
+          <div>
+            <OpcionesCard activarEdicion={turnOffReadOnly} borrarEntidad={() => borrarExperiencia(data.id)}/>
+          </div>
         </section>
 
         <section className='entidad-card-section'>
@@ -60,7 +72,7 @@ export const NuevaExperienciaCard = () => {
                 required: 'Fecha obligatoria',
                 pattern: {
                   value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-                  message: 'Fecha inválida. El formato válido es dd-mm-yyyy'
+                  message: 'Fecha inválida. El formato válido es yyyy-mm-dd'
                 }
               })}
             />
@@ -73,7 +85,7 @@ export const NuevaExperienciaCard = () => {
                 required: 'Fecha obligatoria',
                 pattern: {
                   value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-                  message: 'Fecha inválida. El formato válido es dd-mm-yyyy'
+                  message: 'Fecha inválida. El formato válido es yyyy-mm-dd'
                 },
                 validate: (value) => {
                   if (!compararFechas(getValues('inicioExperiencia'), value))
@@ -85,11 +97,21 @@ export const NuevaExperienciaCard = () => {
             <p className='mensaje-error'>{errors.finExperiencia?.message}</p>
           </div>
         </section>
-        <section className='entidad-card-section'>
-          <p></p>
-          <button className='green-button nueva-entidad'> Subir cambios </button>
-        </section>
+        {
+          !isReadOnly &&
+          <section className='entidad-card-section'>
+            <p onClick={turnOnReadOnly}>Cancelar</p>
+            <button className='green-button'> Subir cambios </button>
+          </section>
+        }
       </form>
-    </section>
+    </li>
   )
 }
+
+{/* <li className='entidad-card nube'>
+        <h3>{data.puesto}</h3>
+        <OpcionesCard/>
+        <p>{data.empresa}</p>
+        <p>{data.inicioExperiencia + ' ' + data.finExperiencia}</p>
+    </li> */}

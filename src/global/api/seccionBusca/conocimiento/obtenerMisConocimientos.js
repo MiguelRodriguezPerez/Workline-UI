@@ -1,4 +1,4 @@
-import { buscaApi } from "./buscaApi";
+import { buscaApi } from "../buscaApi";
 
 export const obtenerMisConocimientos = async () => {
     const resultado = await buscaApi.get('/misConocimientos');
