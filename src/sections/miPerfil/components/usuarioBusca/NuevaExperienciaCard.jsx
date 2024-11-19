@@ -1,35 +1,26 @@
-import { useForm } from 'react-hook-form'
-import { editarExperiencia, borrarExperiencia } from '../../../../global/api/seccionBusca'
-import { compararFechas } from '../../../../global/helpers/fechas/compararFechas'
-import { useSwitchReadOnly } from '../../../../global/hooks'
-import { prepararExperienciaDto } from '../../helpers/prepararExperienciaDto'
-import { OpcionesCard } from './OpcionesCard'
-
+import { useForm } from 'react-hook-form';
+import { prepararExperienciaDto } from '../../helpers/prepararExperienciaDto';
+import { guardarNuevaExperiencia } from '/src/global/api/seccionBusca'
+import { compararFechas } from '../../../../global/helpers/fechas/compararFechas';
 
 import '../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
 
+export const NuevaExperienciaCard = () => {
 
-export const ExperienciaCard = ({ data = {} }) => {
-
-  const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
-  const { register, formState: { errors }, getValues, handleSubmit } = useForm({
-    defaultValues: data
-  });
-
-  const editSubmit = async (data) => {
-    const experienciaDto = prepararExperienciaDto(data);
-    const resultado = await editarExperiencia(experienciaDto, data.id);
-
-    if (resultado.status === 201) {
+  const newSubmit = async(data) => {
+    const experienciaPreparada = prepararExperienciaDto(data);
+    const resultado = await guardarNuevaExperiencia(experienciaPreparada);
+    if( resultado.status === 201 ){
       window.location.reload();
-      turnOnReadOnly();
     }
   }
 
+  const { register, formState: { errors }, getValues, handleSubmit } = useForm();
+
   return (
-    <li className='entidad-card nube' id={data.id}>
-      <form method="post" onSubmit={handleSubmit(editSubmit)}>
+    <section className="entidad-card nube">
+      <form method="post" onSubmit={handleSubmit(newSubmit)}>
         <section className='entidad-card-section'>
           <div>
             <label>Puesto</label>
@@ -58,9 +49,6 @@ export const ExperienciaCard = ({ data = {} }) => {
               })}
             />
             <p className='mensaje-error'>{errors.empresa?.message}</p>
-          </div>
-          <div>
-            <OpcionesCard activarEdicion={turnOffReadOnly} borrarEntidad={() => borrarExperiencia(data.id)}/>
           </div>
         </section>
 
@@ -97,21 +85,11 @@ export const ExperienciaCard = ({ data = {} }) => {
             <p className='mensaje-error'>{errors.finExperiencia?.message}</p>
           </div>
         </section>
-        {
-          !isReadOnly &&
-          <section className='entidad-card-section'>
-            <p onClick={turnOnReadOnly}>Cancelar</p>
-            <button className='green-button'> Subir cambios </button>
-          </section>
-        }
+        <section className='entidad-card-section'>
+          <p></p>
+          <button className='green-button nueva-entidad'> Subir cambios </button>
+        </section>
       </form>
-    </li>
+    </section>
   )
 }
-
-{/* <li className='entidad-card nube'>
-        <h3>{data.puesto}</h3>
-        <OpcionesCard/>
-        <p>{data.empresa}</p>
-        <p>{data.inicioExperiencia + ' ' + data.finExperiencia}</p>
-    </li> */}

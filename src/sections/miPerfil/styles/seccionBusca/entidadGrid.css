@@ -1,3 +1,11 @@
 .lista-elementos {
     padding: 0;
 }
+
+h3{
+    font-weight: normal;
+    font-size: 1.4rem;
+    margin:0;
+    padding-bottom: 1%;
+    border-bottom: solid 1px rgb(171, 168, 168);
+}
