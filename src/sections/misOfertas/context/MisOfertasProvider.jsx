@@ -1,5 +1,5 @@
 import { MisOfertasContext, misOfertasReducer } from './'
-import { getPaginaOfertaContrata } from "/src/global/api/ofertas"
+import { getPaginaOfertaContrata } from "/src/global/api/seccionContrata"
 import { useEffect, useReducer, useState } from 'react';
 
 

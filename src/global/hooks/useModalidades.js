@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import { getModalidades } from "../../sections/jobs/helpers/getModalidades";
+import { obtenerModalidades } from '/src/sections/jobs/api'
 
 export const useModalidades = () => {
     const [modalidades,setModalidades] = useState([]);
 
     useEffect( () =>{
         const fetchModalidades = async() => {
-            const resultado = await getModalidades();
-            setModalidades(resultado);
+            const resultado = await obtenerModalidades();
+            setModalidades(resultado.data);
         }
         fetchModalidades();
         
     }, []);
     /*NO PONGAS DEPENDENCIA AQUÍ. PARECE QUE VA BIEN PERO EL SERVIDOR SE ACUERDA DE TODO */
 
-    return{
+    return {
         modalidades: modalidades,
     }
 }

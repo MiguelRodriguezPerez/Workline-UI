@@ -5,8 +5,7 @@ import '../../styles/jobOffer/jobOfferHeading.css';
 
 export const JobOfferHeading = () => {
 
-    const oferta = useContext( JobOfferContext );
-
+  const oferta = useContext( JobOfferContext );
   return (
     <section className='offer-heading'>
         <p>{oferta.puesto}</p>

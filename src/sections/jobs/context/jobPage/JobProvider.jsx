@@ -1,7 +1,6 @@
 import { useEffect, useReducer } from "react";
 import { jobsReducer } from "./jobsReducer";
-import { JobContext } from "./JobContext"
-import { getPageData } from "../../helpers/getDataPage";
+import { JobContext } from "./JobContext";
 
 
 const init = () => {

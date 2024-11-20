@@ -7,14 +7,14 @@ import { JobContext } from '../../context/jobPage/JobContext';
 
 export const JobPagination = () => {
     
-  const [currentNumPag, setCurrentNumPag] = useState(0);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { jobPageState } = useContext( JobContext );
+  const { jobPageState, updatePage } = useContext( JobContext );
+  console.log(jobPageState)
 
-
-  // window.scrollTo(0,0)
-  // onChange={(e,value) => { redirectPage(value - 1)}}
+  const eventoPagina = (value) => {
+    updatePage(value - 1);
+    window.scrollTo(0,0)
+  }
+  
   
   return (
     <Stack 
@@ -26,7 +26,7 @@ export const JobPagination = () => {
           marginBottom:'10%' // Asegura que los elementos estén centrados verticalmente
         }}
       >
-      <Pagination count={jobPageState.totalPages}  shape="rounded"
+      <Pagination count={jobPageState.totalPages}  shape="rounded" onChange={(event, pageNumber) => eventoPagina(pageNumber)}
       sx={{
         '& .MuiPaginationItem-root':{
           fontSize: '1.4rem',

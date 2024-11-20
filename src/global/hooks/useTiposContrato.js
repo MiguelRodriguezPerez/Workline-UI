@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getTiposContrato } from "../../sections/jobs/helpers/getTiposContrato";
+import { obtenerTiposContrato } from '/src/sections/jobs/api'
 
 export const useTiposContrato = () => {
 
@@ -7,8 +7,9 @@ export const useTiposContrato = () => {
 
     useEffect( () => {
         const fetchTipos = async() => {
-            const resultado = await getTiposContrato();
-            setTiposContrato(resultado);
+            const resultado = await obtenerTiposContrato();
+            console.log(resultado)
+            setTiposContrato(resultado.data);
         }
         fetchTipos();
     }, []);

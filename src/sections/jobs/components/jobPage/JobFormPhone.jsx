@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { JobContext } from '../../context/jobPage/JobContext';
 import queryString from 'query-string';
 import useForm from '../../hooks/useForm';
-import { getPageData } from '../../helpers/getDataPage';
+import { obtenerDatosPagina } from '../../api';
 import '../../styles/jobPage/jobFormPhone.css';
 
 export const JobFormPhone = () => {
@@ -46,9 +46,9 @@ export const JobFormPhone = () => {
         //Desde url
         //Cambiar estado form
         //Obtener página   
-        console.log('Effect')
         const loadResults = async() => {
-            updatePage(await getPageData(currentParams.numberPage, formState));
+            const resultado = await obtenerDatosPagina(currentParams.numberPage, formState);
+            if(resultado.status === 200) updatePage(resultado.data);
         }
         loadResults();
     }, [])

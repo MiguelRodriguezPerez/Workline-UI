@@ -2,7 +2,7 @@ import { getViewString } from '/src/global/helpers/getViewString.js'
 
 import '../../styles/misOfertasCard.css'
 import { useNavigate } from 'react-router'
-import { borrarOferta } from '/src/global/api/ofertas';
+import { borrarOferta } from '/src/global/api/seccionContrata';
 import { useContext } from 'react';
 import { MisOfertasContext } from '../../context';
 

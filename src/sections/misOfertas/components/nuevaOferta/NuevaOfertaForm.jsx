@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useModalidades, useTiposContrato } from '../../../../global/hooks';
-import { publicarNuevaOferta } from "/src/global/api/ofertas";
+import { publicarNuevaOferta } from "/src/global/api/seccionContrata";
 import '/src/global/styles/elementos.css'
 import '../../styles/ofertaForm.css';
 

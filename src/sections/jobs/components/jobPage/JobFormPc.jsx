@@ -2,14 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import { JobContext } from '../../context/jobPage/JobContext';
 import useForm from '../../hooks/useForm';
 import { useModalidades, useTiposContrato } from '../../../../global/hooks';
-import '../../styles/jobPage/jobSearchForm.css';
-import { getPageData } from '../../helpers/getDataPage';
+import { obtenerDatosPagina } from '../../api';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import queryString from 'query-string';
 
-
-
-// alhost:5173/ofertasDeTrabajo?tipoContratoB=indefinido&salarioAnualMinimo=12000
+import '../../styles/jobPage/jobSearchForm.css';
 
 export const JobFormPc = () => {
 
@@ -36,7 +33,8 @@ export const JobFormPc = () => {
         //Cambiar estado form
         //Obtener página   
         const loadResults = async() => {
-            updatePage(await getPageData(currentParams.numberPage, formState));
+            const resultado = await obtenerDatosPagina(currentParams.numberPage, formState);
+            if(resultado.status === 200) updatePage(resultado.data);
         }
         loadResults();
     }, [])
@@ -56,7 +54,6 @@ export const JobFormPc = () => {
             }
         }
         setSearchParams(params);
-        console.log(params)
 
         const resultado = await getPageData(0 , formState);
         updatePage(resultado);
