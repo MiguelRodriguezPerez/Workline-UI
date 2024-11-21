@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { AuthContext } from '../../global/context/AuthContext'
-import '../styles/wkHeaderLogin.css'
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from '../../global/context/AuthContext';
+import '../styles/wkHeaderLogin.css';
 
 
 export const WkHeaderLogin = () => {
@@ -17,7 +17,7 @@ export const WkHeaderLogin = () => {
   return (
     <div className='header-login'>
         {
-          user.nombre === undefined ? <Link to={'/login'}>Iniciar sesión</Link> 
+          user.nombre === '' ? <Link to={'/login'}>Iniciar sesión</Link> 
             : 
             <>
               <img src="/images/ui/logout.png" id="logout" onClick={ logoutEvent }/>
@@ -25,7 +25,7 @@ export const WkHeaderLogin = () => {
             </>   
         }
         <img src='/images/ui/userLogin.png' onClick={ () => {
-          user.nombre === undefined ? 
+          user.nombre === '' ? 
             navigate('/login') 
           :
             navigate('/miPerfil/') 

@@ -13,7 +13,7 @@ export const EditarOfertaForm = ({ id, isEditable = true}) => {
 
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
-    const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(!isEditable);
+    const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(!isEditable,id);
     const navigate = useNavigate();
     const { register, formState: { errors }, handleSubmit } = useForm({
         defaultValues: async () => await obtenerOfertaPorId(id).data
@@ -36,7 +36,7 @@ export const EditarOfertaForm = ({ id, isEditable = true}) => {
                         <p onClick={ turnOnReadOnly }> Cancelar </p>
                 }
             </section>
-            <form className='oferta-form' onSubmit={handleSubmit(editSubmit)} method='post'>
+            <form className='oferta-form' onSubmit={handleSubmit(editSubmit)} method='post' id={id}>
                 <section className='nube primera-seccion'>
                     <div>
                         <label>Puesto</label>

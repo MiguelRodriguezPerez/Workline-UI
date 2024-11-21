@@ -8,7 +8,6 @@ export const useTiposContrato = () => {
     useEffect( () => {
         const fetchTipos = async() => {
             const resultado = await obtenerTiposContrato();
-            console.log(resultado)
             setTiposContrato(resultado.data);
         }
         fetchTipos();

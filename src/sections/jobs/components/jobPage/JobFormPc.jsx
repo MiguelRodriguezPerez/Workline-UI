@@ -8,6 +8,7 @@ import queryString from 'query-string';
 
 import '../../styles/jobPage/jobSearchForm.css';
 
+
 export const JobFormPc = () => {
 
     const location = useLocation();
@@ -18,6 +19,7 @@ export const JobFormPc = () => {
     const currentParams = queryString.parse(location.search)
 
     const initialSearch = {
+        numberPage: currentParams.numberPage || 0,
         puestoB: currentParams.puestoB || '',
         sectorB: currentParams.sectorB || '',
         tipoContratoB: currentParams.tipoContratoB || '',
@@ -34,10 +36,12 @@ export const JobFormPc = () => {
         //Obtener página   
         const loadResults = async() => {
             const resultado = await obtenerDatosPagina(currentParams.numberPage, formState);
-            if(resultado.status === 200) updatePage(resultado.data);
+            if(resultado.status === 200){
+                updatePage(resultado.data);
+            } 
         }
         loadResults();
-    }, [])
+    }, [location])
     
 
     //El submit solo cambia la url
@@ -55,8 +59,8 @@ export const JobFormPc = () => {
         }
         setSearchParams(params);
 
-        const resultado = await getPageData(0 , formState);
-        updatePage(resultado);
+        const resultado = await obtenerDatosPagina(0 , formState);
+        updatePage(resultado.data);
     }
 
 
@@ -83,8 +87,11 @@ export const JobFormPc = () => {
             ...resetSearch
         }));
     
-        const resultado = await getPageData(0, { ...formState, ...resetSearch });
-        updatePage(resultado);
+        const resultado = await obtenerDatosPagina(0, initialSearch);
+
+        updatePage(resultado.data);
+        updateSearch(initialSearch);
+        window.location.reload();
     }
     
   return (

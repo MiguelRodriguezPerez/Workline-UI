@@ -1,43 +1,38 @@
-import { useContext, useEffect, useState } from "react"
-import { AuthContext } from "/src/global/context"
-import { JobProvider } from "../../context/jobPage/JobProvider"
-import { comprobarInscripcion, inscribirBusca, desinscribirBusca } from "../../api";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { comprobarInscripcionOferta, desinscribirBusca, inscribirBusca } from "../../api";
+import { AuthContext } from "/src/global/context";
 
-import '/src/global/styles/elementos.css'
+import { JobOfferContext } from "../../context/jobOffer/jobOfferContext";
+import '/src/global/styles/elementos.css';
 
 
 export const ButtonInscribe = () => {
 
     const navigate = useNavigate();
-    const { oferta : id } = useContext(JobProvider);
-    const { user : rol } = useContext(AuthContext);
-
-    const [ usuarioEsBusca, setUsuarioEsBusca ] = useState( rol === 'BUSCA' );
+    const oferta  = useContext( JobOfferContext );
+    const { user } = useContext(AuthContext);
     const [ estaInscrito, setEstaInscrito ] = useState(false);
 
     const effectWrapper = async() => {
-        if( usuarioEsBusca ) {
+        if( user.rol === 'BUSCA' ) {
             /*No tiene sentido realizar la petición si el usuario logueado no es de tipo BUSCA*/
-            const resultadoPeticion = await comprobarInscripcion(id);
+            const resultadoPeticion = await comprobarInscripcionOferta(oferta.id);
+            console.log(resultadoPeticion)
             setEstaInscrito(resultadoPeticion);
         }
         else setEstaInscrito(false);
     }
 
-    useEffect(() => {
-      effectWrapper();
-    }, []);
-
     const buttonEvent = async() => {
-        switch(usuarioEsBusca) {
+        switch(user.rol === 'BUSCA') {
             case true:
                 if(estaInscrito) {
-                    const resultado = await desinscribirBusca(id);
+                    const resultado = await desinscribirBusca(oferta.id);
                     if(resultado.status === 204) setEstaInscrito(false);
                 }
                 else {
-                    const resultado = await inscribirBusca(id);
+                    const resultado = await inscribirBusca(oferta.id);
                     if(resultado.status === 201) setEstaInscrito(true);
                 }
             break;
@@ -46,6 +41,11 @@ export const ButtonInscribe = () => {
             break;
         }
     }
+
+    useEffect(() => {
+        effectWrapper();
+    }, [user]);
+
     
 
     return (

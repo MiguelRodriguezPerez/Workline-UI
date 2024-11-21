@@ -1,6 +1,3 @@
-import Cookies from 'js-cookie';
-
-
 export const getApiLoggedUser = async() => {
 
     try {

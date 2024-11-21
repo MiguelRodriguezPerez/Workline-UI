@@ -29,13 +29,7 @@
 
 .offer-heading > button{
     width: 200px;
-
-    background-color: green;
-    color: white;
-    border: 0px;
-    border-radius: 8px;
-    padding: 1% 1.5%;
-
+    
     justify-self: end;
 }
 

@@ -14,13 +14,13 @@ export const JobPage = () => {
     <>
         <WkHeaderWrapper/>
           <JobProvider>
-            <section className='job-page'>
-                <div></div>
-                <JobHeading/>
-                <JobFormWrapper/>
-                <JobFeed/>
-                <JobPagination/>
-            </section>
+              <section className='job-page'>
+                  <div></div>
+                  <JobHeading/>
+                  <JobFormWrapper/>
+                  <JobFeed/>
+                  <JobPagination/>
+              </section>
           </JobProvider>
         <WkFooter/>
     </>

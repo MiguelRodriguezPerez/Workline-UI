@@ -61,17 +61,16 @@
         align-items: center;
         margin: 0;
         margin-top: 4%;
+        margin-right: 8%;
         padding-bottom: 2%;
         border-bottom: solid 1px black;
     }
 
     .form-phone-heading > a:first-of-type{
-        padding-left: 8%;
         font-size: 1.1rem;
     }
 
     .form-phone-heading > a:last-of-type{
-        padding-right: 8%;
         font-size: 1.1rem;
         justify-self: end;
     }

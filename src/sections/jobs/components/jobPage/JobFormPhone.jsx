@@ -6,6 +6,7 @@ import { JobContext } from '../../context/jobPage/JobContext';
 import queryString from 'query-string';
 import useForm from '../../hooks/useForm';
 import { obtenerDatosPagina } from '../../api';
+
 import '../../styles/jobPage/jobFormPhone.css';
 
 export const JobFormPhone = () => {
@@ -22,12 +23,10 @@ export const JobFormPhone = () => {
         document.body.classList.remove("remove-scrolling"); 
     }
 
-
     const location = useLocation();
-    const [ isSearch , setIsSearch ] = useState(false);
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
-    const { jobPageState , updatePage } = useContext( JobContext );
+    const { updatePage } = useContext( JobContext );
     const [ searchParams, setSearchParams ] = useSearchParams();
     const currentParams = queryString.parse(location.search)
 
@@ -48,7 +47,9 @@ export const JobFormPhone = () => {
         //Obtener página   
         const loadResults = async() => {
             const resultado = await obtenerDatosPagina(currentParams.numberPage, formState);
-            if(resultado.status === 200) updatePage(resultado.data);
+            if(resultado.status === 200){
+                updatePage(resultado.data);
+            } 
         }
         loadResults();
     }, [])
@@ -69,9 +70,8 @@ export const JobFormPhone = () => {
         }
         setSearchParams(params);
 
-        const resultado = await getPageData(0 , formState);
-        updatePage(resultado);
-        closeMenu();
+        const resultado = await obtenerDatosPagina(0 , formState);
+        updatePage(resultado.data);
     }
 
 
@@ -83,7 +83,7 @@ export const JobFormPhone = () => {
         const params = {};
         params.numberPage = 0;
         setSearchParams(params)
-        
+
         const resetSearch = {
             puestoB: '',
             sectorB: '',
@@ -98,8 +98,10 @@ export const JobFormPhone = () => {
             ...resetSearch
         }));
     
-        const resultado = await getPageData(0, { ...formState, ...resetSearch });
-        updatePage(resultado);
+        const resultado = await obtenerDatosPagina(0, initialSearch);
+
+        updatePage(resultado.data);
+        window.location.reload();
     }
 
 

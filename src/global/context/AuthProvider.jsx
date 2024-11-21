@@ -4,7 +4,13 @@ import { authReducer } from "./authReducer";
 import { uploadLogout } from '../../sections/login/helpers/'
 import { getApiLoggedUser } from '../../sections/login/helpers/getApiLoggedUser'
 
-const init = () => { return {} };
+const init = () => { 
+    return {
+        nombre : '',
+        email : '',
+        rol : ''
+    } 
+};
 
 export const AuthProvider = ({ children }) => {
 
@@ -29,16 +35,22 @@ export const AuthProvider = ({ children }) => {
         uploadLogout();
         const action = {
             type: 'reset_user',
-            payload: {}
+            payload: {
+                nombre : '',
+                email : '',
+                rol : ''
+            } 
         }
         dispatch(action);
     };
 
     useEffect(() => {
         const fetchUser = async () => {
+            
             const usuario = await getApiLoggedUser();
             if (usuario) updateUser(usuario);
             setIsLoading(false);
+
         };
         fetchUser();
     }, []);

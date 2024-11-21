@@ -1,3 +1,3 @@
 export * from './AuthContext'
 export * from './AuthProvider'
-export * from './userReducer'
+export * from './authReducer'
