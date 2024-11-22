@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { editarExperiencia, borrarExperiencia } from '/src/global/api/seccionBusca/experiencia'
 import { compararFechas } from '/src/global/helpers/fechas'
-import { useSwitchReadOnly } from '/src/global/hooks'
+import { useSwitchReadOnly, useSwitchHideLabel, useSwitchHideBottomBorder } from '/src/global/hooks'
 import { prepararExperienciaDto } from '../../../helpers'
 import { OpcionesCard } from '../OpcionesCard'
 
@@ -13,7 +13,9 @@ import '/src/global/styles/elementos.css'
 export const ExperienciaCard = ({ data = {} }) => {
 
   const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
-  const { register, formState: { errors }, getValues, handleSubmit } = useForm({
+  const { turnOffHideLabel, turnOnHideLabel } = useSwitchHideLabel(true, data.id);
+  const { turnOnHideBorder, turnOffHideBorder} = useSwitchHideBottomBorder(true, data.id);
+  const { register, reset, formState: { errors }, getValues, handleSubmit } = useForm({
     defaultValues: data
   });
 
@@ -24,7 +26,22 @@ export const ExperienciaCard = ({ data = {} }) => {
     if (resultado.status === 201) {
       window.location.reload();
       turnOnReadOnly();
+      turnOnHideLabel();
+      turnOnHideBorder();
     }
+  }
+
+  const callbackOpcionesCard = () => {
+    turnOffHideLabel();
+    turnOffReadOnly();
+    turnOffHideBorder();
+  }
+
+  const cancelEvent = () => {
+    turnOnHideLabel();
+    turnOnReadOnly();
+    turnOnHideBorder();
+    reset();
   }
 
   return (
@@ -60,7 +77,7 @@ export const ExperienciaCard = ({ data = {} }) => {
             <p className='mensaje-error'>{errors.empresa?.message}</p>
           </div>
           <div>
-            <OpcionesCard activarEdicion={turnOffReadOnly} borrarEntidad={() => borrarExperiencia(data.id)}/>
+            <OpcionesCard activarEdicion={callbackOpcionesCard} borrarEntidad={() => borrarExperiencia(data.id)}/>
           </div>
         </section>
 
@@ -100,7 +117,7 @@ export const ExperienciaCard = ({ data = {} }) => {
         {
           !isReadOnly &&
           <section className='entidad-card-section'>
-            <p onClick={turnOnReadOnly}>Cancelar</p>
+            <p onClick={cancelEvent}>Cancelar</p>
             <button className='green-button'> Subir cambios </button>
           </section>
         }

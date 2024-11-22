@@ -1,3 +1,5 @@
 export * from './useModalidades.js'
 export * from './useTiposContrato.js'
 export * from './useSwitchReadOnly.js'
+export * from './useSwitchHideLabel.js'
+export * from './useSwitchHideBottomBorder.js'

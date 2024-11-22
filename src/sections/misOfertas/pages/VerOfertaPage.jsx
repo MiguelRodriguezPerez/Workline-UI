@@ -4,12 +4,10 @@ import { EditarOfertaForm } from '../components/nuevaOferta/EditarOfertaForm'
 
 export const VerOfertaPage = () => {
 
-    const id = parseInt(location.pathname.substring(22));
-
   return (
     <>
         <WkHeaderWrapper/>
-        <EditarOfertaForm id={id} isEditable={false}/>
+        <EditarOfertaForm/>
         <WkFooter/>
     </>
   )

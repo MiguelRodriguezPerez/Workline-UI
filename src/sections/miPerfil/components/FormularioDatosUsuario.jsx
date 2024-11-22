@@ -3,7 +3,7 @@ import { CabeceraMiPerfil } from "./CabeceraMiPerfil"
 import { editarUsuarioEntidad, obtenerUsuarioEntidad } from "../api";
 import { useContext } from "react";
 import { AuthContext } from "../../../global/context/AuthContext";
-import { useSwitchReadOnly } from "../../../global/hooks";
+import { useSwitchHideLabel, useSwitchReadOnly, useSwitchHideBottomBorder } from "../../../global/hooks";
 
 import '../styles/formularioDatos.css';
 import '/src/global/styles/formularios.css';
@@ -13,13 +13,30 @@ export const FormularioDatosUsuario = () => {
 
   const { updateUser } = useContext(AuthContext);
   const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true , 'form-user');
+  const { turnOnHideLabel, turnOffHideLabel } = useSwitchHideLabel(true, 'form-user');
+  const { turnOnHideBorder, turnOffHideBorder} = useSwitchHideBottomBorder(true, 'form-user');
 
-  const { register, formState: { errors }, handleSubmit } = useForm({
+  const { register, reset, formState: { errors }, handleSubmit } = useForm({
     defaultValues: async () => await obtenerUsuarioEntidad()
   });
 
+  const editClick = () => {
+    turnOffReadOnly();
+    turnOffHideLabel();
+    turnOffHideBorder();
+  }
+
+  const cancelClick = () => {
+    turnOnReadOnly();
+    turnOnHideLabel();
+    turnOnHideBorder();
+    reset();
+  }
+
   const submitEdit = async (data) => {
-    setIsEditEnabled(false);
+    turnOnReadOnly();
+    turnOnHideLabel();
+    turnOnHideBorder();
     const resultado = await editarUsuarioEntidad(data);
     if (resultado.status === 201) updateUser(resultado.content);
   }
@@ -29,9 +46,9 @@ export const FormularioDatosUsuario = () => {
       <CabeceraMiPerfil />
       {
         (isReadOnly) ?
-          <p className="heading-link" onClick={ turnOffReadOnly }>Editar datos</p>
+          <p className="heading-link" onClick={ editClick }>Editar datos</p>
           :
-          <p className="heading-link" onClick={ turnOnReadOnly }>Cancelar</p>
+          <p className="heading-link" onClick={ cancelClick }>Cancelar</p>
       }
       <form method="post" onSubmit={handleSubmit(submitEdit)} className="formulario-datos">
         <div>

@@ -7,22 +7,30 @@ import { obtenerOfertaPorId } from "../../../jobs/api"
 
 import '/src/global/styles/formularios.css';
 import '/src/global/styles/elementos.css'
+import { useEffect } from "react";
 
 
-export const EditarOfertaForm = ({ id, isEditable = true}) => {
+export const EditarOfertaForm = () => {
+
+    const id = parseInt(location.pathname.substring(22));
 
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
-    const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(!isEditable,id);
+    const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true,id);
     const navigate = useNavigate();
-    const { register, formState: { errors }, handleSubmit } = useForm({
-        defaultValues: async () => await obtenerOfertaPorId(id).data
+    const { register, reset, formState: { errors }, handleSubmit } = useForm({
+        defaultValues: async () => (await obtenerOfertaPorId(id)).data
     });
 
     const editSubmit = async (data) => {
         const ofertaPreparada = prepararOfertaApi(data);
         const resultado = await editarOferta(ofertaPreparada,id);
         if(resultado.status === 201) navigate('/misOfertas/');
+    }
+
+    const cancelEvent = () => {
+        reset();
+        turnOnReadOnly();
     }
 
     return (
@@ -33,7 +41,7 @@ export const EditarOfertaForm = ({ id, isEditable = true}) => {
                     isReadOnly ? 
                         <p onClick={ turnOffReadOnly }> Editar oferta </p>
                         :
-                        <p onClick={ turnOnReadOnly }> Cancelar </p>
+                        <p onClick={ cancelEvent }> Cancelar </p>
                 }
             </section>
             <form className='oferta-form' onSubmit={handleSubmit(editSubmit)} method='post' id={id}>

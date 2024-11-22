@@ -1,21 +1,36 @@
 import { OpcionesCard } from '../OpcionesCard'
-import { useSwitchReadOnly } from '/src/global/hooks'
+import { useSwitchHideLabel, useSwitchReadOnly, useSwitchHideBottomBorder } from '/src/global/hooks'
 import { useForm } from 'react-hook-form'
 import { prepararConocimientoDto } from '../../../helpers'
 import { editarConocimiento, borrarConocimiento } from '/src/global/api/seccionBusca/conocimiento'
-
+import { compararFechas } from '../../../../../global/helpers/fechas/compararFechas'
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
-import { compararFechas } from '../../../../../global/helpers/fechas/compararFechas'
+
 
 
 export const ConocimientoCard = ( { data = {} }) => {
 
+  const { turnOnHideLabel, turnOffHideLabel } = useSwitchHideLabel(true, data.id);
   const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
-  const { register, formState: { errors }, getValues, handleSubmit } = useForm({
+  const { turnOnHideBorder, turnOffHideBorder} = useSwitchHideBottomBorder(true, data.id);
+  const { register, reset, formState: { errors }, getValues, handleSubmit } = useForm({
     defaultValues: data
   });
+
+  const callbackOpcionesCard = () => {
+    turnOffHideLabel();
+    turnOffReadOnly();
+    turnOffHideBorder();
+  }
+
+  const cancelEvent = () => {
+    turnOnReadOnly();
+    turnOnHideLabel();
+    turnOnHideBorder();
+    reset();
+  }
 
   const editSubmit = async (data) => {
     const conocimientoDto = prepararConocimientoDto(data);
@@ -24,6 +39,8 @@ export const ConocimientoCard = ( { data = {} }) => {
     if (resultado.status === 201) {
       window.location.reload();
       turnOnReadOnly();
+      turnOnHideLabel();
+      turnOnHideBorder();
     }
   }
 
@@ -58,7 +75,9 @@ export const ConocimientoCard = ( { data = {} }) => {
               <p className='mensaje-error'>{errors.centroEducativo?.message}</p>
             </div>
             <div>
-              <OpcionesCard activarEdicion={turnOffReadOnly} borrarEntidad={() => borrarConocimiento(data.id)}/>
+              <OpcionesCard activarEdicion={callbackOpcionesCard} 
+                borrarEntidad={() => borrarConocimiento(data.id)}
+              />
             </div>
           </section>
 
@@ -98,7 +117,7 @@ export const ConocimientoCard = ( { data = {} }) => {
         {
           !isReadOnly &&
           <section className='entidad-card-section'>
-            <p onClick={turnOnReadOnly}>Cancelar</p>
+            <p onClick={cancelEvent}>Cancelar</p>
             <button className='green-button'> Subir cambios </button>
           </section>
         }
