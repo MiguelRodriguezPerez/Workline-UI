@@ -1,0 +1,19 @@
+.card-heading {
+    display: grid;
+    grid-template-columns: 60% 22% 17%;
+    justify-items: right;
+    align-items: center;
+
+    border-radius: 8px 8px 0px 0px;
+    background-color: green;
+    padding: 4%;
+}
+
+.card-heading > h4 {
+    margin: 0;
+    justify-self: left;
+
+    font-weight: normal;
+    font-size: 1.2rem;
+    color: white;
+}

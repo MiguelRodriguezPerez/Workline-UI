@@ -1,0 +1,12 @@
+.candidate-counter {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    align-items: center;
+    color: white;
+}
+
+.candidate-counter > * {
+    margin: 0;
+    font-weight: normal;
+    font-size: 1.2rem;
+}
