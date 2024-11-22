@@ -1,11 +1,9 @@
-import {borrarOferta } from '/src/global/api/seccionContrata'
+import { borrarOferta } from '/src/global/api/seccionContrata'
 
 import '../../styles/ofertaCardHeading.css'
-import { CandidateCounter } from './CandidateCounter'
+import { CandidateCounter } from '../nuevaOferta/candidateRelated/CandidateCounter'
 
 export const OfertaCardHeading = ({oferta = {}}) => {
-
-    console.log(oferta)
 
     const redirectDelete = () => {
         borrarOferta(oferta.id);
@@ -15,7 +13,7 @@ export const OfertaCardHeading = ({oferta = {}}) => {
     return (
     <section className='card-heading'>
         <h4>{oferta.puesto}</h4>
-        <CandidateCounter id={oferta.id}/>
+        <CandidateCounter num={oferta.listaCandidatos.length}/>
         <img src="/images/misOfertas/borrar.png" alt="borrar.png" onClick={redirectDelete} />
     </section>
     )

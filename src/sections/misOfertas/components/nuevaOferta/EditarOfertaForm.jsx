@@ -1,31 +1,32 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useModalidades, useSwitchReadOnly, useTiposContrato } from "../../../../global/hooks";
-import { editarOferta } from "/src/global/api/seccionContrata";
+import { obtenerOfertaPorId } from "../../../jobs/api";
 import { prepararOfertaApi } from "../../helpers/prepararOfertaApi.js";
-import { obtenerOfertaPorId } from "../../../jobs/api"
+import { editarOferta } from "/src/global/api/seccionContrata";
 
+import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
-import '/src/global/styles/elementos.css'
-import { useEffect } from "react";
+import { VerOfertaContext } from "../../context/VerOfertaContext.jsx";
+import { useContext } from "react";
 
 
 export const EditarOfertaForm = () => {
 
-    const id = parseInt(location.pathname.substring(22));
-
+    const { oferta } = useContext(VerOfertaContext);
+    console.log(oferta)
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
-    const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true,id);
+    const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true, oferta.id);
     const navigate = useNavigate();
     const { register, reset, formState: { errors }, handleSubmit } = useForm({
-        defaultValues: async () => (await obtenerOfertaPorId(id)).data
+        defaultValues: oferta
     });
 
     const editSubmit = async (data) => {
         const ofertaPreparada = prepararOfertaApi(data);
-        const resultado = await editarOferta(ofertaPreparada,id);
-        if(resultado.status === 201) navigate('/misOfertas/');
+        const resultado = await editarOferta(ofertaPreparada, oferta.id);
+        if (resultado.status === 201) navigate('/misOfertas/');
     }
 
     const cancelEvent = () => {
@@ -34,64 +35,64 @@ export const EditarOfertaForm = () => {
     }
 
     return (
-        <>  
+        <>
             <section className="link-section">
-                <p className='heading-link' onClick={ () => { navigate(-1) } }> Volver atrás </p>
+                <p className='heading-link' onClick={() => { navigate(-1) }}> Volver atrás </p>
                 {
-                    isReadOnly ? 
-                        <p onClick={ turnOffReadOnly }> Editar oferta </p>
+                    isReadOnly ?
+                        <p onClick={turnOffReadOnly}> Editar oferta </p>
                         :
-                        <p onClick={ cancelEvent }> Cancelar </p>
+                        <p onClick={cancelEvent}> Cancelar </p>
                 }
             </section>
-            <form className='oferta-form' onSubmit={handleSubmit(editSubmit)} method='post' id={id}>
+            <form className='oferta-form' onSubmit={handleSubmit(editSubmit)} method='post' id={oferta.id}>
                 <section className='nube primera-seccion'>
                     <div>
                         <label>Puesto</label>
-                        <input type="text" className={errors.puesto ? 'input-error' : ''} 
+                        <input type="text" className={errors.puesto ? 'input-error' : ''}
                             name='puesto'
                             {
-                                ...register('puesto', {
-                                    required: 'Campo obligatorio',
-                                    maxLength: {
-                                        value: 30,
-                                        message: 'Máximo 30 carácteres'
-                                    },
-                                    pattern: {
-                                        value: /^[a-zA-Z\s]+$/,
-                                        message: 'Solo se admiten letras y espacios sin acentos'
-                                    }
-                                })
+                            ...register('puesto', {
+                                required: 'Campo obligatorio',
+                                maxLength: {
+                                    value: 30,
+                                    message: 'Máximo 30 carácteres'
+                                },
+                                pattern: {
+                                    value: /^[a-zA-Z\s]+$/,
+                                    message: 'Solo se admiten letras y espacios sin acentos'
+                                }
+                            })
                             }
                         />
                         <p className="mensaje-error">{errors.puesto?.message}</p>
 
                         <label>Sector</label>
                         <input type="text" className={errors.sector ? 'input-error' : ''}
-                            name='sector' 
+                            name='sector'
                             {
-                                ...register('sector', {
-                                    required: 'Campo obligatorio',
-                                    maxLength: {
-                                        value: 25,
-                                        message: 'Máximo 25 carácteres'
-                                    },
-                                    pattern: {
-                                        value: /^[a-zA-Z\s]+$/,
-                                        message: 'Solo se admiten letras y espacios sin acentos'
-                                    }
-                                })
+                            ...register('sector', {
+                                required: 'Campo obligatorio',
+                                maxLength: {
+                                    value: 25,
+                                    message: 'Máximo 25 carácteres'
+                                },
+                                pattern: {
+                                    value: /^[a-zA-Z\s]+$/,
+                                    message: 'Solo se admiten letras y espacios sin acentos'
+                                }
+                            })
                             }
                         />
                         <p className="mensaje-error">{errors.sector?.message}</p>
 
                         <label>Modalidad de Trabajo</label>
                         <select className={errors.modalidad ? 'input-error' : ''}
-                            name="modalidad" 
+                            name="modalidad"
                             {
-                                ...register('modalidadTrabajo', {
-                                    required: 'Selecciona un campo'
-                                })
+                            ...register('modalidadTrabajo', {
+                                required: 'Selecciona un campo'
+                            })
                             }>
                             <option value="">Selecciona una opción ...</option>
                             {
@@ -102,14 +103,14 @@ export const EditarOfertaForm = () => {
 
                         <label>Salario Anual</label>
                         <input type="text" className={errors.salarioAnual ? 'input-error' : ''}
-                            name='salarioAnual' 
+                            name='salarioAnual'
                             {
-                                ...register('salarioAnual', {
-                                    pattern: {
-                                        value: /^[0-9]+$/,
-                                        message: 'Solo se admiten números'
-                                    }
-                                })
+                            ...register('salarioAnual', {
+                                pattern: {
+                                    value: /^[0-9]+$/,
+                                    message: 'Solo se admiten números'
+                                }
+                            })
                             }
                             placeholder='Salario anual'
                         />
@@ -119,11 +120,11 @@ export const EditarOfertaForm = () => {
                     <div>
                         <label>Tipo de Contrato</label>
                         <select className={errors.tipoContrato ? 'input-error' : ''}
-                            name="tipoContrato" 
+                            name="tipoContrato"
                             {
-                                ...register('tipoContrato', {
-                                    required: 'Selecciona un campo'
-                                })
+                            ...register('tipoContrato', {
+                                required: 'Selecciona un campo'
+                            })
                             }>
                             <option value="">Selecciona una opción ...</option>
                             {
@@ -134,15 +135,15 @@ export const EditarOfertaForm = () => {
 
                         <label>Ciudad</label>
                         <input type="text" className={errors.ciudad ? 'input-error' : ''}
-                            name='ciudad' 
+                            name='ciudad'
                             {
-                                ...register('ciudad', {
-                                    required: 'Campo obligatorio',
-                                    pattern: {
-                                        value: /^[a-zA-Z\s]+$/,
-                                        message: 'Solo se admiten letras y espacios sin acentos'
-                                    }
-                                })
+                            ...register('ciudad', {
+                                required: 'Campo obligatorio',
+                                pattern: {
+                                    value: /^[a-zA-Z\s]+$/,
+                                    message: 'Solo se admiten letras y espacios sin acentos'
+                                }
+                            })
                             }
                             placeholder='Ciudad'
                         />
@@ -150,15 +151,15 @@ export const EditarOfertaForm = () => {
 
                         <label>Horas</label>
                         <input type="text" className={errors.horas ? 'input-error' : ''}
-                            name='horas' 
+                            name='horas'
                             {
-                                ...register('horas', {
-                                    required: 'Campo obligatorio',
-                                    pattern: {
-                                        value: /^[0-9]+$/,
-                                        message: 'Solo se permiten números',
-                                    }
-                                })
+                            ...register('horas', {
+                                required: 'Campo obligatorio',
+                                pattern: {
+                                    value: /^[0-9]+$/,
+                                    message: 'Solo se permiten números',
+                                }
+                            })
                             }
                             placeholder='Horas'
                         />
@@ -173,18 +174,18 @@ export const EditarOfertaForm = () => {
                 <section className='nube segunda-seccion'>
                     <label>Descripción</label>
                     <textarea rows={4} className={errors.descripcion ? 'input-error' : ''}
-                        name='descripcion'  
+                        name='descripcion'
                         {
-                            ...register('descripcion', {
-                                pattern: {
-                                    value: /^[a-zA-Z0-9.,áéíóúÁÉÍÓÚñÑüÜ\s]+$/,
-                                    message: 'No se admiten acentos',
-                                },
-                                maxLength: {
-                                    value: 80,
-                                    message: 'Máximo 80 carácteres',
-                                }
-                            })
+                        ...register('descripcion', {
+                            pattern: {
+                                value: /^[a-zA-Z0-9.,áéíóúÁÉÍÓÚñÑüÜ\s]+$/,
+                                message: 'No se admiten acentos',
+                            },
+                            maxLength: {
+                                value: 80,
+                                message: 'Máximo 80 carácteres',
+                            }
+                        })
                         }
                     />
                     <p className="mensaje-error">{errors.descripcion?.message}</p>
