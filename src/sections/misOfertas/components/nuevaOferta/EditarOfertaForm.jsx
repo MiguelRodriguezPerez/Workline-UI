@@ -7,20 +7,17 @@ import { editarOferta } from "/src/global/api/seccionContrata";
 
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
-import { VerOfertaContext } from "../../context/VerOfertaContext.jsx";
-import { useContext } from "react";
 
 
 export const EditarOfertaForm = () => {
-
-    const { oferta } = useContext(VerOfertaContext);
-    console.log(oferta)
+  
+    const id = parseInt(location.pathname.substring(22));
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
-    const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true, oferta.id);
+    const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true, id);
     const navigate = useNavigate();
     const { register, reset, formState: { errors }, handleSubmit } = useForm({
-        defaultValues: oferta
+        defaultValues: async () => (await obtenerOfertaPorId(id)).data
     });
 
     const editSubmit = async (data) => {
@@ -45,7 +42,7 @@ export const EditarOfertaForm = () => {
                         <p onClick={cancelEvent}> Cancelar </p>
                 }
             </section>
-            <form className='oferta-form' onSubmit={handleSubmit(editSubmit)} method='post' id={oferta.id}>
+            <form className='oferta-form' onSubmit={handleSubmit(editSubmit)} method='post' id={id}>
                 <section className='nube primera-seccion'>
                     <div>
                         <label>Puesto</label>

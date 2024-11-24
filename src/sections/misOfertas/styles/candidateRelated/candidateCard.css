@@ -1,0 +1,28 @@
+.candidate-li {
+    margin-bottom: 5%;
+    cursor: pointer;
+}
+
+.candidate-li > h3 {
+    background-color: rgb(60, 144, 229);
+    border-radius: 8px 8px 0px 0px;
+    border-bottom: 0px;
+    padding: 1.5% 4%;
+
+    color: white;
+    font-weight: lighter;
+    font-size: 1.3rem;
+
+    margin: 0;
+}
+
+.candidate-li > ul{
+    background-color: white;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 5%;
+    border-radius: 0px 0px 8px 8px;
+
+    list-style-type: disc;
+    word-wrap: break-word;
+}

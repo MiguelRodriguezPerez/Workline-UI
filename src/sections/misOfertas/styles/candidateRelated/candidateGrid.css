@@ -1,0 +1,33 @@
+.candidate-grid-h3{
+    text-align: center;
+    font-weight: normal;
+    font-size: 1.4rem;
+    margin:0;
+    padding-bottom: 0.5%;
+    border-bottom: solid 1px gray;
+}
+
+.candidate-grid {
+    list-style-type: none;
+    margin: 1% 0% 3%;
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: repeat(4, 23%);
+    gap: 2%;
+}
+
+@media screen and (max-width:1600px) {
+    .candidate-grid {
+        grid-template-columns: repeat(2, 48%);
+        gap: 4%;
+    }
+}
+
+@media screen and (max-width:700px) {
+    .candidate-grid {
+        grid-template-columns: 100%;
+        gap: 0%;
+        margin-top: 5%;
+    }
+}

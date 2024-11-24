@@ -1,0 +1,23 @@
+.card-view{
+    padding : 1% 2%;
+    margin: 2% 0%;
+}
+
+.card-view h5{
+    font-weight: normal;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.card-view p{
+    margin: 0;
+}
+
+.card-view > div {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.card-view > div > p:last-child {
+    text-align: right;
+}
