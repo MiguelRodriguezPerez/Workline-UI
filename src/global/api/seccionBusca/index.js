@@ -1,3 +1,2 @@
 export * from './buscaApi'
-export * from './obtenerMisConocimientos'
-export * from './comprobarInscripcionOferta'
+export * from './obtenerMisInscripciones'

@@ -6,10 +6,13 @@ import { ConocimientoCard } from './usuarioBusca/conocimiento';
 import { EntidadGrid } from './usuarioBusca/EntidadGrid';
 import { obtenerMisConocimientos } from '/src/global/api/seccionBusca/conocimiento';
 import { obtenerMisExperiencias } from '/src/global/api/seccionBusca/experiencia';
+import { obtenerMisInscripciones } from '/src/global/api/seccionBusca';
 import { NuevaExperienciaCard } from './usuarioBusca/experiencia';
+import { JobCard } from '../../jobs/components/jobPage/JobCard'
 
 import '../styles/barraLateral.css';
 import { NuevoConocimientoCard } from './usuarioBusca/conocimiento/NuevoConocimientoCard';
+import { MisOfertasGrid } from './usuarioBusca/ofertas/MisOfertasGrid';
 
 export const BarraLateral = ({ cambiarComponenteActivo }) => {
 
@@ -23,14 +26,15 @@ export const BarraLateral = ({ cambiarComponenteActivo }) => {
                     user?.rol === 'BUSCA' &&
                     <>
                         <li onClick={() => cambiarComponenteActivo(
-                            <EntidadGrid clave='conocimientos' peticion={obtenerMisConocimientos}
+                            <EntidadGrid key={'conocimientos'} peticion={obtenerMisConocimientos} titulo={'Conocimientos'}
                                 Componente={ConocimientoCard} NuevaEntidadComponente={NuevoConocimientoCard} />)}
                         >Mis conocimientos</li>
                         <li onClick={() => cambiarComponenteActivo(
-                            <EntidadGrid clave='experiencias' peticion={obtenerMisExperiencias}
+                            <EntidadGrid key={'experiencias'} peticion={obtenerMisExperiencias} titulo={'Conocimientos'}
                                 Componente={ExperienciaCard} NuevaEntidadComponente={NuevaExperienciaCard} />)}
                         >Mis experiencias</li>
-                        <li>Mis ofertas</li>
+                        <li onClick={() => cambiarComponenteActivo(<MisOfertasGrid/>)}
+                        >Mis ofertas</li>
                     </>
                 }
             </ul>

@@ -1,6 +1,6 @@
-import { useEffect, useReducer } from "react";
-import { jobsReducer } from "./jobsReducer";
+import { useReducer } from "react";
 import { JobContext } from "./JobContext";
+import { jobsReducer } from "./jobsReducer";
 
 
 const init = () => {
@@ -29,6 +29,7 @@ export const JobProvider = ({ children }) => {
             }
         };
         dispatch(action);
+        console.log(action.payload)
     };
 
 

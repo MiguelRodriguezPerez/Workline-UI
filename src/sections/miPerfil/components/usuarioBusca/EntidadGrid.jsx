@@ -10,13 +10,14 @@ de entidad grid (usando clave como dependencia del efecto).
 
 Si no lo pones al cambiar de EntidadGrid react no distinguirá los cambios, 
 pensará que es el mismo componente y no ejecutará el efecto.*/
-export const EntidadGrid = ( { peticion, Componente, NuevaEntidadComponente ,clave } ) => {
+export const EntidadGrid = ( { peticion, Componente, NuevaEntidadComponente , titulo } ) => {
 
     const [ listaEntidades, setListaEntidades ] = useState([]);
     const [ peticionResuelta, setPeticionResuelta ] = useState(false);
 
     useEffect( () => {
         const fetchData = async () => {
+
             const resultado = await peticion();
             if(resultado.status == 200){
                 setListaEntidades( resultado.data );
@@ -25,12 +26,12 @@ export const EntidadGrid = ( { peticion, Componente, NuevaEntidadComponente ,cla
             else setPeticionResuelta( true );
         }
         fetchData();
-    } , [clave] );
+    } , [peticion]);
 
     return (
         <div>
             <CabeceraMiPerfil/>
-            <h3>{getViewString(clave)}</h3>
+            <h3>{titulo}</h3>
             <NuevaEntidadComponente/>
             <ul className="lista-elementos">
                 {

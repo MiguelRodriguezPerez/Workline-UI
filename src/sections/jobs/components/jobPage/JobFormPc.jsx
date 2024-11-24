@@ -36,6 +36,7 @@ export const JobFormPc = () => {
         //Obtener página   
         const loadResults = async() => {
             const resultado = await obtenerDatosPagina(currentParams.numberPage, formState);
+            console.log(resultado.data)
             if(resultado.status === 200){
                 updatePage(resultado.data);
             } 
