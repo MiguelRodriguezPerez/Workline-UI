@@ -39,6 +39,11 @@ export const LoginForm = () => {
         navigate(-1);
     }
 
+    const goNewAccount = (event) => {
+        event.preventDefault();
+        navigate('/nuevaCuenta/primeraParte');
+    }
+
     return (
         <form className='login-form'>
             <section className='login-input'>
@@ -54,7 +59,7 @@ export const LoginForm = () => {
             <p hidden className='login-error' id='mensaje-error'>Nombre de usuario o contraseña incorrectos</p>
         
             <button onClick={ submitLogin }>Iniciar Sesión</button>
-            <button>¿No tiene cuenta? Cree una</button>
+            <button onClick={ goNewAccount }>¿No tiene cuenta? Cree una</button>
 
             <a onClick={ goBackEvent }>Volver atrás</a>
         </form>

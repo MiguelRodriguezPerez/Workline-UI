@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router"
+import { CrearCuentaRouter } from "../sections/crearCuenta/router/CrearCuentaRouter"
 import { HomePage } from "../sections/home/pages/HomePage"
-import { JobPage } from "../sections/jobs/pages/JobPage"
 import { JobRouter } from "../sections/jobs/router/JobRouter"
 import { LoginRouter } from "../sections/login/router/LoginRouter"
-import { ContrataRouter } from "../sections/misOfertas/routes/ContrataRouter"
 import { MiPerfilRouter } from "../sections/miPerfil/routes/MiPerfilRouter"
+import { ContrataRouter } from "../sections/misOfertas/routes/ContrataRouter"
 
 export const AppRouter = () => {
   return (
@@ -14,6 +14,7 @@ export const AppRouter = () => {
         <Route path="/login/*" element={ <LoginRouter/>}/>
         <Route path="/misOfertas/*" element={ <ContrataRouter/>}/>
         <Route path="/miPerfil/*" element={ <MiPerfilRouter/>}/>
+        <Route path="/nuevaCuenta/*" element= { <CrearCuentaRouter/>}/>
       </Routes>
   )
 }
