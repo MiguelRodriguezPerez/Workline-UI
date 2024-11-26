@@ -2,6 +2,9 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useModalidades, useTiposContrato } from '../../../../global/hooks';
 import { publicarNuevaOferta } from "/src/global/api/seccionContrata";
+import { prepararOfertaApi } from '../../helpers'
+
+
 import '/src/global/styles/elementos.css'
 import '../../styles/ofertaForm.css';
 
@@ -12,7 +15,9 @@ export const NuevaOfertaForm = () => {
     const navigate = useNavigate();
 
     const gestionarSubmit = async (data) => {
+        
         const ofertaPreparada = prepararOfertaApi(data);
+        console.log(ofertaPreparada)
         const resultado = await publicarNuevaOferta(ofertaPreparada);
         if(resultado.status === 201) navigate('/misOfertas/')
     }

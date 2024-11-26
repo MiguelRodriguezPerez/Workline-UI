@@ -9,9 +9,7 @@ export const Logo = () => {
     }
 
   return (
-    <div>
-      <img src='/images/ui/Wk.png' onClick={onRedirectHome}/>
-    </div>
+    <img src='/images/ui/Wk.png' onClick={onRedirectHome}/>
   )
 }
 

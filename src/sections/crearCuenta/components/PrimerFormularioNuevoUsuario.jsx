@@ -3,6 +3,7 @@ import { prepararUsuarioDto } from "../helpers/prepararUsuarioDto";
 import { useContext } from "react";
 import { AuthContext } from "../../../global/context/AuthContext";
 import { useNavigate } from "react-router";
+import { crearNuevoContrata, esNombreRepetido } from '../api'
 
 import '../styles/formularioNuevoUsuario.css';
 import '/src/global/styles/formularios.css';
@@ -10,9 +11,7 @@ import '/src/global/styles/elementos.css';
 
 export const PrimerFormularioNuevoUsuario = () => {
 
-    const { register, reset, formState: { errors }, handleSubmit } = useForm({
-        defaultValues: async () => await obtenerUsuarioEntidad()
-    });
+    const { register, reset, formState: { errors }, handleSubmit } = useForm({});
     const { updateUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -44,8 +43,13 @@ export const PrimerFormularioNuevoUsuario = () => {
                             maxLength: {
                                 value: 25,
                                 message: 'Máximo 25 carácteres'
+                            },
+                            validate: async (nombre) => { 
+                                const esValido = await esNombreRepetido(nombre); 
+                                // devuelve false si el nombre no es repetido
+                                return !esValido || 'Este usuario ya existe';
                             }
-                        })
+                            })
                         } />
                     <p className="mensaje-error">{errors.nombre?.message}</p>
 
@@ -76,7 +80,7 @@ export const PrimerFormularioNuevoUsuario = () => {
                         <option value="CONTRATA">Contratar</option>
                         <option value="BUSCA">Busca</option>
                     </select>
-                    <p>{errors.rol?.message}</p>
+                    <p className="mensaje-error">{errors.rol?.message}</p>
 
                 </div>
 

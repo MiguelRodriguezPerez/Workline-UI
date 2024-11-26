@@ -1,6 +1,6 @@
 
 .wk-header-phone{
-    padding: 2%;
+    padding: 3%;
     background-color: #333;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -11,9 +11,10 @@
 }
 
 .wk-header-phone > img{
-    justify-self: end;
+    justify-self: start;
+    align-self: center;
     margin-right: 2%;
-    margin-top: 1vh;
+
 }
 
 #menuDesplegable{

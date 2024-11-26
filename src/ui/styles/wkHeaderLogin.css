@@ -8,7 +8,7 @@
 .header-login > a{
     font-size: 1rem;
     margin: 0% 5%;
-    margin-top: 1vh;
+
 }
 
 .header-login > img {
@@ -16,5 +16,5 @@
 }
 
 #logout{
-    height: 80%;
+    margin-right: 5%;
 }

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import '../styles/wkHeaderPhone.css'
-import { Logo } from './Logo'
+import { Logo, WkHeaderLogin } from './'
 import { useState } from 'react'
-import { WkHeaderLogin } from './WkHeaderLogin'
+
+import '../styles/wkHeaderPhone.css'
 
 export const WkHeaderPhone = () => {
 
@@ -21,6 +21,7 @@ export const WkHeaderPhone = () => {
             <Logo/>
             <div id='menuDesplegable'>
                 <img src="/images/ui/cerrar.png" alt="close" onClick={ closeMenu } />
+                <Link to={'/miPerfil/'}>Mi Perfil</Link>
                 <Link to={'/'}>Inicio</Link>
                 <Link to={'/ofertasDeTrabajo/?numberPage=0'}>Ofertas</Link>
                 <Link to={'/misOfertas/'}>Contratar</Link>
