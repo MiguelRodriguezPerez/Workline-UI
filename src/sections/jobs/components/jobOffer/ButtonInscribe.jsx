@@ -16,7 +16,7 @@ export const ButtonInscribe = () => {
     const effectWrapper = async() => {
         if( user.rol === 'BUSCA' ) {
             /*No tiene sentido realizar la petición si el usuario logueado no es de tipo BUSCA*/
-            const resultadoPeticion = await comprobarInscripcionOferta(oferta.id);
+            const resultadoPeticion = await comprobarInskwripcionOferta(oferta.id);
             setEstaInscrito(resultadoPeticion);
             
         }

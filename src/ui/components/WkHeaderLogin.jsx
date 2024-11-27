@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../global/context/AuthContext';
+import { uploadLogout } from '/src/sections/login/helpers'
 
 import '../styles/wkHeaderLogin.css';
 
@@ -11,8 +12,7 @@ export const WkHeaderLogin = () => {
   const navigate = useNavigate();
 
   const logoutEvent = () => {
-    resetUser();
-    navigate('/');
+    uploadLogout();
   }
 
   return (

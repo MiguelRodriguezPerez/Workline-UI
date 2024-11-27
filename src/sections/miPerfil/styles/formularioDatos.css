@@ -25,3 +25,9 @@
     width: 60%;
     margin-left: auto;
 }
+
+
+.borrar-cuenta-button {
+    align-self: flex-start;
+    margin-top: 2%;
+}

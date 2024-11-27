@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { CabeceraMiPerfil } from "./CabeceraMiPerfil"
+import { CabeceraMiPerfil, BorrarCuentaButton } from "./"
 import { editarUsuarioEntidad, obtenerUsuarioEntidad } from "../api";
 import { useContext } from "react";
 import { AuthContext } from "../../../global/context/AuthContext";
@@ -113,6 +113,7 @@ export const FormularioDatosUsuario = () => {
           {!isReadOnly && <input type="submit" value="Subir cambios" className="green-button" />}
         </div>
       </form>
+      <BorrarCuentaButton/>
     </section>
   )
 }

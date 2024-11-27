@@ -8,6 +8,7 @@ export const authReducer = (state = {}, action) => {
     
         case 'reset_user':
             return {
+                ...state,
                 ...action.payload
             }
         default:
