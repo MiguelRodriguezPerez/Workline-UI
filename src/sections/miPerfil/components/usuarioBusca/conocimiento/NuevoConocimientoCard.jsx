@@ -1,13 +1,10 @@
-import { OpcionesCard } from '../OpcionesCard'
-import { useSwitchReadOnly } from '/src/global/hooks'
 import { useForm } from 'react-hook-form'
 import { prepararConocimientoDto } from '../../../helpers'
 import { guardarNuevoConocimiento } from '/src/global/api/seccionBusca/conocimiento'
-
+import { compararFechas } from '../../../../../global/helpers/fechas/compararFechas'
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
-import { compararFechas } from '../../../../../global/helpers/fechas/compararFechas'
 
 
 export const NuevoConocimientoCard = ( { data = {} }) => {
@@ -73,7 +70,7 @@ export const NuevoConocimientoCard = ( { data = {} }) => {
             <p className='mensaje-error'>{errors.inicioPeriodoConocimiento?.message}</p>
           </div>
           <div>
-            <label htmlFor="finPeriodoConocimiento">Fin período estudios</label>
+            <label htmlFor="finPeriodoConocimiento">Fin  estudios</label>
             <input type="text" className='form-input'
               {...register('finPeriodoConocimiento', {
                 required: 'Fecha obligatoria',

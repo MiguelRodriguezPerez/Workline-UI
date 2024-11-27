@@ -19,8 +19,7 @@ export const MisOfertasGrid = () => {
     },[])
 
     return (
-        <section>
-            <CabeceraMiPerfil/>
+        <section className="grid-entidad">
             <h3>Mis ofertas</h3>
             <ul className="lista-elementos">
             {

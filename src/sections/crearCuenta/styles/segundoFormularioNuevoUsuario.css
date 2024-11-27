@@ -1,0 +1,46 @@
+.new-busca-forms-container {
+    display: block;
+    /*Estas pisando la regla que pone márgenes al resto de componentes.
+    Si no la pisaras, no quedaría centrado*/
+    margin: 0 auto auto !important;
+    width: 73%;
+}
+
+.new-busca-forms-container > button{
+    width: auto;
+    display: block;
+
+    margin: 0;
+    margin-left: auto;
+
+    padding: 0.5% 2%;
+}
+
+.new-busca-columns{
+    display: grid;
+    grid-template-columns: repeat(2,48%);
+    gap: 4%;
+}
+
+/*Incrementa la especifidad de la regla css de grid-entidad
+para pisar la regla anterior sin usar !important*/
+.new-busca-columns .grid-entidad > h3 {
+    text-align: center;
+}
+
+@media screen and (max-width:1600px) {
+
+    .new-busca-forms-container {
+        display: block;
+        /*Estas pisando la regla que pone margenes al resto de componentes.
+        Si no la pisaras, no quedaría centrado*/
+        margin: 0 auto auto !important;
+        width: 80%;
+    }
+
+    .new-busca-columns{
+        display: grid;
+        grid-template-columns: 100%;
+        gap: 0%;
+    }
+}

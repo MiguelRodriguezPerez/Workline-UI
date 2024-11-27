@@ -2,7 +2,7 @@
     padding: 0;
 }
 
- h3{
+ .grid-entidad > h3{
     font-weight: normal;
     font-size: 1.4rem;
     margin:0;

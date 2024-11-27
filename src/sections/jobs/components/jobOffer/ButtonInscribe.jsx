@@ -44,7 +44,7 @@ export const ButtonInscribe = () => {
 
     useEffect(() => {
         effectWrapper();
-    }, [user]);
+    }, [user,oferta]);
 
     
 

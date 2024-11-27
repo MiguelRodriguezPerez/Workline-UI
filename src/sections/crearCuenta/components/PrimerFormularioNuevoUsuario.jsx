@@ -1,32 +1,34 @@
 import { useForm } from "react-hook-form";
-import { prepararUsuarioDto } from "../helpers/prepararUsuarioDto";
-import { useContext } from "react";
-import { AuthContext } from "../../../global/context/AuthContext";
-import { useNavigate } from "react-router";
-import { crearNuevoContrata, esNombreRepetido } from '../api'
+import { esNombreRepetido } from '../api';
+import { prepararUsuarioDto } from "../helpers";
+import { useCrearBusca, useCrearContrata } from "../hooks";
 
 import '../styles/formularioNuevoUsuario.css';
-import '/src/global/styles/formularios.css';
 import '/src/global/styles/elementos.css';
+import '/src/global/styles/formularios.css';
 
 export const PrimerFormularioNuevoUsuario = () => {
 
     const { register, reset, formState: { errors }, handleSubmit } = useForm({});
-    const { updateUser } = useContext(AuthContext);
-    const navigate = useNavigate();
+    const { gestionarCrearBusca } = useCrearBusca();
+    const { gestionarCrearContrata } = useCrearContrata();
 
     const submitFirstStep = async (data) => {
-        console.log(data)
         const dtoPreparado = prepararUsuarioDto(data);
-
-        const resultado = await crearNuevoContrata(dtoPreparado);
-        console.log(resultado);
-        if(resultado.status === 200) {
-            console.log('BIEEEEEEEEEEN');
-            updateUser(resultado.data)
-            navigate('/');
+        console.log(dtoPreparado)
+        switch(dtoPreparado.rol){
+            case 'CONTRATA' :
+                //Sospechoso de fallar
+                await gestionarCrearContrata(dtoPreparado);
+                break;
+            case 'BUSCA' :
+                console.log('AAAAAAAAAAAAAAAAAAAAAAAAA')
+                await gestionarCrearBusca(dtoPreparado);
+                break;
+            default :
+                console.warn('¿Como has llegado aquí?');
+                break;
         }
-        else console.log('Es normal tranquilo')
     }
 
     return (
