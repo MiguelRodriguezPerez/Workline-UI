@@ -1,18 +1,16 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../../global/context/AuthContext';
 import { FormularioDatosUsuario } from './FormularioDatosUsuario';
-import { ExperienciaCard } from './usuarioBusca/experiencia';
 import { ConocimientoCard } from './usuarioBusca/conocimiento';
 import { EntidadGrid } from './usuarioBusca/EntidadGrid';
+import { ExperienciaCard, NuevaExperienciaCard } from './usuarioBusca/experiencia';
 import { obtenerMisConocimientos } from '/src/global/api/seccionBusca/conocimiento';
 import { obtenerMisExperiencias } from '/src/global/api/seccionBusca/experiencia';
-import { obtenerMisInscripciones } from '/src/global/api/seccionBusca';
-import { NuevaExperienciaCard } from './usuarioBusca/experiencia';
-import { JobCard } from '../../jobs/components/jobPage/JobCard'
-
-import '../styles/barraLateral.css';
 import { NuevoConocimientoCard } from './usuarioBusca/conocimiento/NuevoConocimientoCard';
 import { MisOfertasGrid } from './usuarioBusca/ofertas/MisOfertasGrid';
+
+
+import '../styles/barraLateral.css';
 
 export const BarraLateral = ({ cambiarComponenteActivo }) => {
 

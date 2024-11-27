@@ -3,3 +3,9 @@
     font-size: 2rem;
     margin: 2% 0%;
 }
+
+@media screen and (max-width:1600px) {
+    .cabecera {
+        margin-top: 0;
+    }
+}

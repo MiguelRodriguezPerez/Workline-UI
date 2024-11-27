@@ -30,7 +30,6 @@ export const WkHeaderPhone = () => {
                 <WkHeaderLogin/>
                 <img src='/images/ui/barras3.png' onClick={openMenu} alt='menu'/>
             </div>
-            
         </header>
     )
 }

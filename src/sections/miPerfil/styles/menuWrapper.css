@@ -4,3 +4,9 @@
     gap: 3%;
     margin: 2vh 0%;
 }
+
+@media screen and (max-width:1600px) {
+    .menu-container {
+        grid-template-columns: 5% 95%;
+    }
+}

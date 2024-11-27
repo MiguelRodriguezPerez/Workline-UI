@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { comprobarInscripcionOferta, desinscribirBusca, inscribirBusca } from "../../api";
 import { AuthContext } from "/src/global/context";
-
 import { JobOfferContext } from "../../context/jobOffer/jobOfferContext";
 import '/src/global/styles/elementos.css';
 
@@ -18,11 +17,20 @@ export const ButtonInscribe = () => {
         if( user.rol === 'BUSCA' ) {
             /*No tiene sentido realizar la petición si el usuario logueado no es de tipo BUSCA*/
             const resultadoPeticion = await comprobarInscripcionOferta(oferta.id);
-            console.log(resultadoPeticion)
             setEstaInscrito(resultadoPeticion);
+            
         }
         else setEstaInscrito(false);
     }
+
+    useEffect(() => {
+        /*No tengo ni la mas remota idea de porque estaba llamando a la función del wrapper
+        con una oferta nula. Imagino que useContext se comporta de manera asíncrona
+        
+        En cualquier caso, como se estaba llamando a la función sin un id de oferta, lo que
+        hice fue obligar a que oferta tuviera un id definido antes de llamar a la función del efecto*/
+        oferta.id ==! undefined && effectWrapper();
+    }, [oferta]);
 
     const buttonEvent = async() => {
         switch(user.rol === 'BUSCA') {
@@ -34,6 +42,7 @@ export const ButtonInscribe = () => {
                 else {
                     const resultado = await inscribirBusca(oferta.id);
                     if(resultado.status === 201) setEstaInscrito(true);
+                    
                 }
             break;
             case false:
@@ -41,12 +50,6 @@ export const ButtonInscribe = () => {
             break;
         }
     }
-
-    useEffect(() => {
-        effectWrapper();
-    }, [user,oferta]);
-
-    
 
     return (
         <button onClick={buttonEvent} className={ estaInscrito ? 'red-button' : 'green-button'}>

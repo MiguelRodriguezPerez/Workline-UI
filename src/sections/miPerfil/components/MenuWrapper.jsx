@@ -1,12 +1,8 @@
-import { FormularioDatosUsuario } from "./FormularioDatosUsuario";
 import { useState } from "react";
-import { BarraLateral } from "./BarraLateral";
-import { obtenerMisExperiencias } from '/src/global/api/seccionBusca/experiencia'
-import { ExperienciaCard } from "./usuarioBusca/experiencia";
-import { NuevaExperienciaCard } from './usuarioBusca/experiencia';
+import { FormularioDatosUsuario } from "./FormularioDatosUsuario";
 
 import '../styles/menuWrapper.css';
-import { EntidadGrid } from "./usuarioBusca";
+import { BarraLateralWrapper } from "./BarraLateralWrapper";
 
 export const MenuWrapper = () => {
 
@@ -14,7 +10,7 @@ export const MenuWrapper = () => {
 
     return (
         <main className="menu-container">
-            <BarraLateral cambiarComponenteActivo={setComponenteActivo} />
+            <BarraLateralWrapper setComponenteActivo={setComponenteActivo}/>
             {componenteActivo}
         </main>
     )

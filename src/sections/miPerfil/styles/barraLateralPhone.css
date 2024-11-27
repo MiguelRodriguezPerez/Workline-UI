@@ -1,0 +1,40 @@
+#abrir-menu {
+    display: block;
+    /*No me preguntes porque, pero el navegador tenía un margin-top por defecto*/
+    margin-top: 50% !important;
+}
+
+#menu-perfil-desplegable {
+    width: 0vw;
+    height: 100vh;
+    top: 100;
+    left: 0;
+
+    position: fixed;
+    z-index: 3;
+    overflow-x: hidden;
+
+    transition: 0.5s;
+
+    background-color: black;
+    margin-top : -2vh;
+}
+
+#menu-perfil-desplegable > img {
+    margin: 2% 1% 1%;
+}
+
+#menu-perfil-desplegable > ul{
+    margin: 0;
+    margin-left: 2%;
+    padding: 0;
+    list-style: none;
+}
+
+#menu-perfil-desplegable li {
+    color: white;
+    font-size: 1.5rem;
+    border-bottom: solid 1px white;
+    padding-left: 1%;
+    padding: 1%;
+}
