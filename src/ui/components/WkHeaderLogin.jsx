@@ -1,7 +1,8 @@
+import Cookies from "js-cookie";
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from '../../global/context/AuthContext';
-import { uploadLogout } from '/src/sections/login/helpers'
+import { uploadLogout } from '/src/sections/login/helpers';
 
 import '../styles/wkHeaderLogin.css';
 
@@ -9,10 +10,12 @@ import '../styles/wkHeaderLogin.css';
 export const WkHeaderLogin = () => {
 
   const { user, resetUser } = useContext(AuthContext);
-  const navigate = useNavigate();
+
 
   const logoutEvent = () => {
     uploadLogout();
+    Cookies.remove('jwtToken', { path : '/ '});
+    resetUser();
   }
 
   return (
