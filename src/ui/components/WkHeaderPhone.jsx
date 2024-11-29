@@ -19,16 +19,14 @@ export const WkHeaderPhone = () => {
     return (
         <header className='wk-header-phone wk-header'>
             <Logo/>
+            <WkHeaderLogin/>
+            <img src='/images/ui/barras3.png' onClick={openMenu} alt='menu' className='boton-heading-desplegable'/>
             <div id='menuDesplegable'>
                 <img src="/images/ui/cerrar.png" alt="close" onClick={ closeMenu } />
                 <Link to={'/miPerfil/'}>Mi Perfil</Link>
                 <Link to={'/'}>Inicio</Link>
                 <Link to={'/ofertasDeTrabajo/?numberPage=0'}>Ofertas</Link>
                 <Link to={'/misOfertas/'}>Contratar</Link>
-            </div>
-            <div id='header-second-child'>
-                <WkHeaderLogin/>
-                <img src='/images/ui/barras3.png' onClick={openMenu} alt='menu'/>
             </div>
         </header>
     )

@@ -8,7 +8,8 @@
 .header-login > a{
     font-size: 1rem;
     margin: 0% 5%;
-
+    color: white;
+    text-decoration: none;
 }
 
 .header-login > img {

@@ -9,7 +9,7 @@ export const Logo = () => {
     }
 
   return (
-    <img src='/images/ui/Wk.png' onClick={onRedirectHome}/>
+    <img src='/images/ui/Wk.png' onClick={onRedirectHome} className="wk-logo"/>
   )
 }
 
