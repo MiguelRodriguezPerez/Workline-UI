@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
+
 import '../styles/homeBanner.css'
+import '/src/global/styles/elementos.css'
 
 export const HomeBanner = () => {
   return (
@@ -14,7 +16,7 @@ export const HomeBanner = () => {
             Comienza una nueva etapa en tu vida a través de nuestras
             ofertas de trabajo.  
         </p>
-        <Link>Encuentra empleo</Link>
+        <Link className='green-button'>Encuentra empleo</Link>
       </div>
       <div>
         <img src='/images/home/cartoonTelefono.png' alt="anuncio" />
