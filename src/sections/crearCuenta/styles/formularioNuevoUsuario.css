@@ -19,7 +19,14 @@
     margin: 1% 0%;
 }
 
-.new-user-form > a:first-child, .new-user-form > p:nth-child(2) {
+.new-user-form > .primer-div {
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: repeat(2,50%);
+    margin: 0;
+}
+
+.new-user-form > .primer-div > a:first-child, .new-user-form > .primer-div > p:nth-child(2) {
     margin: 0%;
     margin-top: 2%;
     margin-bottom: 4%;
@@ -28,11 +35,11 @@
     cursor: pointer;
 }
 
-.new-user-form > a:first-child {
+.new-user-form > .primer-div > a:first-child {
     margin-left: 5%;
 }
 
-.new-user-form > p:nth-child(2){
+.new-user-form > .primer-div > p:nth-child(2){
     margin-right: 5%;
     margin-left: auto;   
 }
@@ -58,6 +65,11 @@
 
     .form-container {
         width: 70%;
+    }
+
+    .new-user-form > .primer-div {
+        grid-column: 1;
+        padding: 2% 2% 1%;
     }
 
     .new-user-form {

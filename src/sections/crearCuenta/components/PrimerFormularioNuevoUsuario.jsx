@@ -36,8 +36,10 @@ export const PrimerFormularioNuevoUsuario = () => {
         // Este elemento debería estar en su propio componente
         <main className="form-container">
             <form method="post" onSubmit={handleSubmit(submitFirstStep)} className="new-user-form">
-                <Link to={'/login'} className="heading-link">Volver atrás</Link>
-                <p onClick={reset}>Borrar datos</p>
+                <div className="primer-div">
+                    <Link to={'/login'} className="heading-link">Volver atrás</Link>
+                    <p onClick={reset}>Borrar datos</p>
+                </div>
                 <div>
                     <label className="form-label">Nombre</label>
                     <input type="text" className="form-input"
