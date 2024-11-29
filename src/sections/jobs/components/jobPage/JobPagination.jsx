@@ -23,7 +23,8 @@ export const JobPagination = () => {
   };
 
   return (
-    <Stack 
+
+      <Stack 
         spacing={2} 
         sx={{
           justifyContent: 'center', // Centra horizontalmente el contenido
@@ -46,5 +47,6 @@ export const JobPagination = () => {
         }} 
       />
     </Stack>
+
   );
 };

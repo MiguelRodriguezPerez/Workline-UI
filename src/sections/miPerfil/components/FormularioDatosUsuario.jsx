@@ -4,9 +4,11 @@ import { editarUsuarioEntidad, obtenerUsuarioEntidad } from "../api";
 import { useContext } from "react";
 import { AuthContext } from "../../../global/context/AuthContext";
 import { useSwitchHideLabel, useSwitchReadOnly, useSwitchHideBottomBorder } from "../../../global/hooks";
+import { useNavigate } from "react-router";
 
 import '../styles/formularioDatos.css';
 import '/src/global/styles/formularios.css';
+
 
 
 export const FormularioDatosUsuario = () => {
@@ -15,6 +17,7 @@ export const FormularioDatosUsuario = () => {
   const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true , 'form-user');
   const { turnOnHideLabel, turnOffHideLabel } = useSwitchHideLabel(true, 'form-user');
   const { turnOnHideBorder, turnOffHideBorder} = useSwitchHideBottomBorder(true, 'form-user');
+  const navigate = useNavigate();
 
   const { register, reset, formState: { errors }, handleSubmit } = useForm({
     defaultValues: async () => await obtenerUsuarioEntidad()
@@ -113,7 +116,11 @@ export const FormularioDatosUsuario = () => {
           {!isReadOnly && <input type="submit" value="Subir cambios" className="green-button" />}
         </div>
       </form>
-      <BorrarCuentaButton/>
+      <div className="row-botones">
+        <BorrarCuentaButton/>
+        <button className="green-button" style={{ display: "none" }}
+          onClick={()=> { navigate('/miPerfil/confirmarPassword') } }>Cambiar contraseña</button>
+      </div>
     </section>
   )
 }

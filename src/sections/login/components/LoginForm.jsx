@@ -28,7 +28,7 @@ export const LoginForm = () => {
 
         if(loggedUser){
             updateUser(loggedUser);
-            navigate( -1 );
+            navigate('/');
         }
         else document.getElementById('mensaje-error').removeAttribute('hidden');
 
@@ -36,7 +36,7 @@ export const LoginForm = () => {
 
     const goBackEvent = (event) => {
         event.preventDefault();
-        navigate(-1);
+        navigate('/');
     }
 
     const goNewAccount = (event) => {

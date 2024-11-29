@@ -2,10 +2,12 @@ import { useForm } from "react-hook-form";
 import { esNombreRepetido } from '../api';
 import { prepararUsuarioDto } from "../helpers";
 import { useCrearBusca, useCrearContrata } from "../hooks";
+import { Link } from "react-router-dom";
 
 import '../styles/formularioNuevoUsuario.css';
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
+
 
 export const PrimerFormularioNuevoUsuario = () => {
 
@@ -15,14 +17,13 @@ export const PrimerFormularioNuevoUsuario = () => {
 
     const submitFirstStep = async (data) => {
         const dtoPreparado = prepararUsuarioDto(data);
-        console.log(dtoPreparado)
+
         switch(dtoPreparado.rol){
             case 'CONTRATA' :
                 //Sospechoso de fallar
                 await gestionarCrearContrata(dtoPreparado);
                 break;
             case 'BUSCA' :
-                console.log('AAAAAAAAAAAAAAAAAAAAAAAAA')
                 await gestionarCrearBusca(dtoPreparado);
                 break;
             default :
@@ -35,6 +36,7 @@ export const PrimerFormularioNuevoUsuario = () => {
         // Este elemento debería estar en su propio componente
         <main className="form-container">
             <form method="post" onSubmit={handleSubmit(submitFirstStep)} className="new-user-form">
+                <Link to={'/login'} className="heading-link">Volver atrás</Link>
                 <p onClick={reset}>Borrar datos</p>
                 <div>
                     <label className="form-label">Nombre</label>
@@ -117,7 +119,7 @@ export const PrimerFormularioNuevoUsuario = () => {
                     <p className="mensaje-error">{errors.telefono?.message}</p>
 
                     <label htmlFor="password" className="form-label">Contraseña</label>
-                    <input type="text" className="form-input"
+                    <input type="password" className="form-input"
                         {
                         ...register('password', {
                             required: 'Campo obligatorio',

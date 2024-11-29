@@ -10,9 +10,6 @@
     background-color: green;
 }
 
-.home-action-container > .action-call:nth-child(2) >* {
-    border: solid 1px white;
-}
 
 @media screen and (max-width:1400px) {
     .home-action-container{

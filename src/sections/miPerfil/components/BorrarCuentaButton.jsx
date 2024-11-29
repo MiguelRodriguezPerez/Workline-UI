@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import { AuthContext } from '/src/global/context'
 import { borrarCuenta } from '../api'
+import { useNavigate } from 'react-router'
 
 import '/src/global/styles/elementos.css'
-import { useNavigate } from 'react-router'
 
 export const BorrarCuentaButton = () => {
 

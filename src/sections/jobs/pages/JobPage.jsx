@@ -19,6 +19,7 @@ export const JobPage = () => {
                   <JobHeading/>
                   <JobFormWrapper/>
                   <JobFeed/>
+                  <div></div>
                   <JobPagination/>
               </section>
           </JobProvider>

@@ -3,7 +3,7 @@ import '/src/global/styles/elementos.css'
 
 export const JobOfferRequirements = () => {
   return (
-    <section className='offer-requirements nube'>
+    <section className='offer-requirements nube' hidden>
       <div>
         <h4>Requisitos necesarios</h4>
           <ul>
