@@ -12,12 +12,12 @@ export const WkFooter = () => {
     <footer className='wk-footer'>
       <img src="/images/ui/wkFooter.png" alt="logo" onClick={onRedirectHome}/>
       <div>
-        <Link>Inicio</Link>
-        <Link>Encontrar trabajo</Link>
+        <Link to={'/'}>Inicio</Link>
+        <Link to={'/ofertasDeTrabajo/?numberPage=0'}>Encontrar trabajo</Link>
       </div>
       <div>
-        <Link>Mi perfil</Link>
-        <Link>Crear cuenta</Link>
+        <Link to={'/miPerfil/'}>Mi perfil</Link>
+        <Link to={'nuevaCuenta/primeraParte'}>Crear cuenta</Link>
       </div>
     </footer>
   )
