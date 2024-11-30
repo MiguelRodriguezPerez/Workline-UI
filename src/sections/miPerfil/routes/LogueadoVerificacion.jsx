@@ -4,7 +4,9 @@ import { useContext } from "react";
 
 export const LogueadoVerificacion = ({ children }) => {
 
-    const { user } = useContext(AuthContext);
+    const { user, isLoading } = useContext(AuthContext);
+    console.log(user.nombre)
 
-    return (user.nombre !== '') ? children : <Navigate to={'/login'}/>
+    //Sospechoso de fallar
+    if (!isLoading) return (user.nombre !== '') ? children : <Navigate to={'/login'}/>
 }

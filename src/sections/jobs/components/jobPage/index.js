@@ -3,3 +3,4 @@ export * from '../../components/jobPage/JobFormPc';
 export * from '../../components/jobPage/JobFeed';
 export * from '../../components/jobPage/JobHeading';
 export * from '../../components/jobPage/JobPagination';
+export * from './JobCard'

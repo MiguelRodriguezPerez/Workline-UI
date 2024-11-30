@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form"
 import { CabeceraMiPerfil, BorrarCuentaButton } from "./"
-import { editarUsuarioEntidad, obtenerUsuarioEntidad } from "../api";
+import { editarUsuarioEntidad, obtenerUsuarioEntidad } from "../../api";
 import { useContext } from "react";
-import { AuthContext } from "../../../global/context/AuthContext";
-import { useSwitchHideLabel, useSwitchReadOnly, useSwitchHideBottomBorder } from "../../../global/hooks";
+import { AuthContext } from "../../../../global/context/AuthContext";
+import { useSwitchHideLabel, useSwitchReadOnly, useSwitchHideBottomBorder } from "../../../../global/hooks";
 import { useNavigate } from "react-router";
 
-import '../styles/formularioDatos.css';
+import '../../styles/general/formularioDatos.css';
 import '/src/global/styles/formularios.css';
 
 
@@ -14,9 +14,9 @@ import '/src/global/styles/formularios.css';
 export const FormularioDatosUsuario = () => {
 
   const { updateUser } = useContext(AuthContext);
-  const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true , 'form-user');
+  const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true, 'form-user');
   const { turnOnHideLabel, turnOffHideLabel } = useSwitchHideLabel(true, 'form-user');
-  const { turnOnHideBorder, turnOffHideBorder} = useSwitchHideBottomBorder(true, 'form-user');
+  const { turnOnHideBorder, turnOffHideBorder } = useSwitchHideBottomBorder(true, 'form-user');
   const navigate = useNavigate();
 
   const { register, reset, formState: { errors }, handleSubmit } = useForm({
@@ -46,12 +46,11 @@ export const FormularioDatosUsuario = () => {
 
   return (
     <section className="container-formulario" id="form-user">
-      <CabeceraMiPerfil />
       {
         (isReadOnly) ?
-          <p className="heading-link" onClick={ editClick }>Editar datos</p>
+          <p className="heading-link" onClick={editClick}>Editar datos</p>
           :
-          <p className="heading-link" onClick={ cancelClick }>Cancelar</p>
+          <p className="heading-link" onClick={cancelClick}>Cancelar</p>
       }
       <form method="post" onSubmit={handleSubmit(submitEdit)} className="formulario-datos">
         <div>
@@ -117,9 +116,9 @@ export const FormularioDatosUsuario = () => {
         </div>
       </form>
       <div className="row-botones">
-        <BorrarCuentaButton/>
+        <BorrarCuentaButton />
         <button className="green-button" style={{ display: "none" }}
-          onClick={()=> { navigate('/miPerfil/confirmarPassword') } }>Cambiar contraseña</button>
+          onClick={() => { navigate('/miPerfil/confirmarPassword') }}>Cambiar contraseña</button>
       </div>
     </section>
   )

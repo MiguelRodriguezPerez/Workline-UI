@@ -29,7 +29,7 @@ export const WkHeaderLogin = () => {
             </>
             : 
             <>
-              <Link to={'/miPerfil/'}>{user.nombre}</Link> 
+              <Link to={'/miPerfil/misDatos'}>{user.nombre}</Link> 
               <img src="/images/ui/logoutPc.png" id="logout" onClick={ logoutEvent }/> 
             </>   
         } 

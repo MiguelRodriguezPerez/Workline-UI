@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FormularioDatosUsuario } from "./FormularioDatosUsuario";
 
-import '../styles/menuWrapper.css';
+import '../../styles/general/menuWrapper.css';
 import { BarraLateralWrapper } from "./BarraLateralWrapper";
 
 export const MenuWrapper = () => {

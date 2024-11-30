@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 import { confirmarPassword } from '../../api';
 
-import '../../styles/verificarPassword.css';
+import '../../styles/cambiarPassword/verificarPassword.css';
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
 

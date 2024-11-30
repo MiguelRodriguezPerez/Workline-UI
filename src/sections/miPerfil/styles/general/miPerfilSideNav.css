@@ -1,8 +1,4 @@
-.barra-lateral {
-    border-right: solid 2px #4d4b4b5d;
-}
-
-.barra-lateral li {
+.lista-opciones li{
     list-style: none;
     text-align: left;
     padding: 3%;
@@ -10,4 +6,9 @@
     border-radius: 8px;
     border: solid 1px green;
     cursor: pointer;
+}
+
+.lista-opciones a {
+    text-decoration: none;
+    color: #333333
 }

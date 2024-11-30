@@ -1,7 +1,6 @@
 #abrir-menu {
     display: block;
     /*No me preguntes porque, pero el navegador tenía un margin-top por defecto*/
-    margin-top: 50% !important;
 }
 
 #menu-perfil-desplegable {
@@ -16,12 +15,12 @@
 
     transition: 0.5s;
 
-    background-color: black;
-    margin-top : -2vh;
+    background-color: gray;
+    margin-top : -3.5%;
 }
 
 #menu-perfil-desplegable > img {
-    margin: 2% 1% 1%;
+    margin: 2% 1% 0%;
 }
 
 #menu-perfil-desplegable > ul{
@@ -34,7 +33,14 @@
 #menu-perfil-desplegable li {
     color: white;
     font-size: 1.5rem;
+    border: 0px;
+    border-radius: 0px;
     border-bottom: solid 1px white;
     padding-left: 1%;
     padding: 1%;
+    margin: 0;
+}
+
+#menu-perfil-desplegable a {
+    color: white
 }

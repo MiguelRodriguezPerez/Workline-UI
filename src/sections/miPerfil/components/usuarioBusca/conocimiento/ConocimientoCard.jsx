@@ -8,9 +8,7 @@ import { compararFechas } from '../../../../../global/helpers/fechas/compararFec
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
 
-
-
-export const ConocimientoCard = ( { data = {} }) => {
+export const ConocimientoCard = ( { data = {}, refreshData }) => {
 
   const { turnOnHideLabel, turnOffHideLabel } = useSwitchHideLabel(true, data.id);
   const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
@@ -37,11 +35,16 @@ export const ConocimientoCard = ( { data = {} }) => {
     const resultado = await editarConocimiento(conocimientoDto, data.id);
 
     if (resultado.status === 201) {
-      window.location.reload();
+      refreshData();
       turnOnReadOnly();
       turnOnHideLabel();
       turnOnHideBorder();
     }
+  }
+
+  const borrarOfertaCallback = async (id) => {
+    const resultado = await borrarConocimiento(id);
+    if(resultado.status === 204) refreshData();
   }
 
   return (
@@ -76,7 +79,7 @@ export const ConocimientoCard = ( { data = {} }) => {
             </div>
             <div>
               <OpcionesCard activarEdicion={callbackOpcionesCard} 
-                borrarEntidad={() => borrarConocimiento(data.id)}
+                borrarEntidad={() => { borrarOfertaCallback(data.id) }}
               />
             </div>
           </section>

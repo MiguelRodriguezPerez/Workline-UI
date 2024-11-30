@@ -6,13 +6,13 @@ import { compararFechas } from '../../../../../global/helpers/fechas/compararFec
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
 
-export const NuevaExperienciaCard = () => {
+export const NuevaExperienciaCard = ({ refreshData }) => {
 
   const newSubmit = async(data) => {
     const experienciaPreparada = prepararExperienciaDto(data);
     const resultado = await guardarNuevaExperiencia(experienciaPreparada);
     if( resultado.status === 201 ){
-      window.location.reload();
+      refreshData();
     }
   }
 

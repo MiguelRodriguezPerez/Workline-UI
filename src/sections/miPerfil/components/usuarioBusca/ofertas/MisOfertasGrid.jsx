@@ -1,10 +1,8 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { obtenerMisInscripciones } from "../../../../../global/api/seccionBusca";
-import { AuthContext } from "../../../../../global/context/AuthContext";
 import { JobCard } from "../../../../jobs/components/jobPage/JobCard";
-import { CabeceraMiPerfil } from "../../CabeceraMiPerfil";
 
-import '../../../styles/seccionBusca/entidadGrid.css'
+import '../../../styles/seccionBusca/entidadGrid.css';
 
 export const MisOfertasGrid = () => {
 

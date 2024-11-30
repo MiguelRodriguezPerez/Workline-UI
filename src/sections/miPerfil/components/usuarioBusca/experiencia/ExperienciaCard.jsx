@@ -10,7 +10,7 @@ import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
 
 
-export const ExperienciaCard = ({ data = {} }) => {
+export const ExperienciaCard = ({ data = {}, refreshData }) => {
 
   const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
   const { turnOffHideLabel, turnOnHideLabel } = useSwitchHideLabel(true, data.id);
@@ -24,7 +24,7 @@ export const ExperienciaCard = ({ data = {} }) => {
     const resultado = await editarExperiencia(experienciaDto, data.id);
 
     if (resultado.status === 201) {
-      window.location.reload();
+      refreshData();
       turnOnReadOnly();
       turnOnHideLabel();
       turnOnHideBorder();
@@ -42,6 +42,12 @@ export const ExperienciaCard = ({ data = {} }) => {
     turnOnReadOnly();
     turnOnHideBorder();
     reset();
+  }
+
+  const borrarExperienciaCallback = async (id) => {
+    const resultado = await borrarExperiencia(id);
+
+    if(resultado.status === 204) refreshData();
   }
 
   return (
@@ -77,7 +83,7 @@ export const ExperienciaCard = ({ data = {} }) => {
             <p className='mensaje-error'>{errors.empresa?.message}</p>
           </div>
           <div>
-            <OpcionesCard activarEdicion={callbackOpcionesCard} borrarEntidad={() => borrarExperiencia(data.id)}/>
+            <OpcionesCard activarEdicion={callbackOpcionesCard} borrarEntidad={() => {borrarExperienciaCallback(data.id)}}/>
           </div>
         </section>
 

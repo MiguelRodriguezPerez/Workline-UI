@@ -7,7 +7,7 @@ import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
 
 
-export const NuevoConocimientoCard = ( { data = {} }) => {
+export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
 
   const { register, formState: { errors }, getValues, handleSubmit } = useForm({
     defaultValues: data
@@ -16,11 +16,7 @@ export const NuevoConocimientoCard = ( { data = {} }) => {
   const newSubmit = async (data) => {
     const conocimientoDto = prepararConocimientoDto(data);
     const resultado = await guardarNuevoConocimiento(conocimientoDto);
-
-    if (resultado.status === 201) {
-      window.location.reload();
-      turnOnReadOnly();
-    }
+    if(resultado.status === 201) refreshData();
   }
 
   return (
