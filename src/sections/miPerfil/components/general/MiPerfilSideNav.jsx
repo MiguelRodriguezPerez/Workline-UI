@@ -12,7 +12,7 @@ export const MiPerfilSideNav = () => {
     return (
         <ul className='lista-opciones'>
             <li onClick={() => navigate('/miPerfil/misDatos')}>Mis datos</li>
-            {user?.rol === 'BUSCA' && (
+            { user?.rol === 'BUSCA' && (
                 <>
                     <li onClick={() => navigate('/miPerfil/misConocimientos')}>Mis conocimientos</li>
                     <li onClick={() => navigate('/miPerfil/misExperiencias')}>Mis experiencias</li>

@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        // checkJs comprueba "fallos" de sintaxis
+        "checkJs": false
+    }
+}

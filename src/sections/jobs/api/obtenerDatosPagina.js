@@ -1,6 +1,6 @@
 import { ofertaApi } from './ofertaApi'
 
-export const obtenerDatosPagina = async (numPag, busquedaOferta) => {
+export const obtenerDatosPagina = async (numPag = 0, busquedaOferta) => {
     
     const bodyRequest = {
         pagina: numPag,
