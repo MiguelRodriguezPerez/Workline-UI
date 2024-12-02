@@ -32,18 +32,3 @@
 }
 
 
-/*¿Sabes ese azul raro que a veces se queda en un input en el navegador, sobre todo
-cuando editas una entidad, rerendirizas el componente padre y se queda ahí?
-Así es como se quita*/
-input:-webkit-autofill, 
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active { 
-    -webkit-box-shadow: 0 0 0 1000px white inset !important; 
-    /* Cambia el color de fondo */ 
-    -webkit-text-fill-color: #000 !important; 
-    /* Cambia el color del texto */ 
-    box-shadow: 0 0 0 1000px white inset !important; 
-    /* Asegura compatibilidad con navegadores */ 
-    text-fill-color: #000 !important; /* Asegura compatibilidad con navegadores */
-}

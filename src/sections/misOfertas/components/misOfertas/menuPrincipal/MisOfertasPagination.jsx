@@ -1,9 +1,10 @@
 import { Pagination, Stack } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
-import { MisOfertasContext } from '../../context';
-import '../../../jobs/styles/jobPage/jobPagination.css';
+import { MisOfertasContext } from '../../../context';
+import '../../../../jobs/styles/jobPage/jobPagination.css';
 
 export const MisOfertasPagination = () => {
+
     const { servirPagina, pagina: { totalPages } } = useContext(MisOfertasContext);
     const [pageCount, setPageCount] = useState(totalPages);
 

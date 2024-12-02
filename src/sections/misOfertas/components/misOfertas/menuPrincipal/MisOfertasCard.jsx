@@ -2,7 +2,7 @@ import { getViewString } from '/src/global/helpers/getViewString.js';
 import { OfertaCardHeading } from './OfertaCardHeading';
 import { useNavigate } from 'react-router';
 
-import '../../styles/misOfertasCard.css';
+import '../../../styles/misOfertasCard.css';
 
 export const MisOfertasCard = ({ oferta }) => {
 

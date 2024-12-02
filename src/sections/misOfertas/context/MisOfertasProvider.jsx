@@ -36,20 +36,20 @@ export const MisOfertasProvider = ({ children }) => {
         setNumPag(num);
     }
 
+    const refreshData = async () => {
+        const resultado = await getPaginaOfertaContrata(numPag);
+        updatePage(resultado.data);
+    }
 
     useEffect(() => {
         /*Axios no te devuelve el objeto de la api directamente, sino que devuelve un objeto
         con varios campos sobre la respuesta de la api, entre ellos data que son los datos que solicitaste */
-      const effectWrapper = async () => {
-        const resultado = await getPaginaOfertaContrata(numPag);
-        updatePage(resultado.data);
-      }
-      effectWrapper();
+      refreshData();
     }, [numPag])
 
     /*Cuando borras una oferta, la lista de ofertas cambia y necesitas volver a disparar el efecto
     para actualizar los componentes que utilizan los datos de este provider*/
-    return <MisOfertasContext.Provider value={{ pagina : misOfertas, servirPagina }}>
+    return <MisOfertasContext.Provider value={{ pagina : misOfertas, servirPagina, refreshData }}>
         {children}
     </MisOfertasContext.Provider>
 }

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import '../../styles/nuevaOfertaButton.css';
+import '../../../styles/nuevaOfertaButton.css';
 
 export const NuevaOfertaButton = () => {
 

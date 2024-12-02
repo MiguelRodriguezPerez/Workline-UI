@@ -17,7 +17,7 @@ export const JobFormBase = ({ closeMenu }) => {
     const { tiposContrato } = useTiposContrato();
     const { updatePage } = useContext( JobContext );
     const { initialSearch, resetSearch } = useUrlParams();
-    const { register, reset, handleSubmit } = useForm();
+    const { register, reset, formState : { errors }, handleSubmit } = useForm();
 
     useEffect(() => {
         //Desde url
@@ -74,7 +74,16 @@ export const JobFormBase = ({ closeMenu }) => {
             <input type="text" className='form-input' {...register('ciudad')} />
 
             <label>Salario minímo</label>
-            <input type="text" className='form-input' {...register('salarioAnualMinimo')} />
+            <input type="text" className='form-input' 
+                {...register('salarioAnualMinimo' , 
+                   { 
+                        pattern : {
+                            value : /^\d+$/,
+                            message : 'El salario debe ser un número'
+                        }
+                    }
+                )} />
+            <p className="mensaje-error">{errors.salarioAnualMinimo?.message}</p>
 
             <label>Modalidad</label>
             <select className='form-input' {...register('modalidad')}>
