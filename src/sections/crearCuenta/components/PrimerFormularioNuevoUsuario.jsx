@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import '../styles/formularioNuevoUsuario.css';
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
+import { useRef } from "react";
+import { PasswordEye } from "../../../ui/components/forms/PasswordEye";
 
 
 export const PrimerFormularioNuevoUsuario = () => {
@@ -14,6 +16,7 @@ export const PrimerFormularioNuevoUsuario = () => {
     const { register, reset, formState: { errors }, handleSubmit } = useForm({});
     const { gestionarCrearBusca } = useCrearBusca();
     const { gestionarCrearContrata } = useCrearContrata();
+    const passwordRef = useRef(null)
 
     const submitFirstStep = async (data) => {
         const dtoPreparado = prepararUsuarioDto(data);
@@ -121,17 +124,20 @@ export const PrimerFormularioNuevoUsuario = () => {
                     <p className="mensaje-error">{errors.telefono?.message}</p>
 
                     <label htmlFor="password" className="form-label">Contraseña</label>
-                    <input type="password" className="form-input"
-                        {
-                        ...register('password', {
-                            required: 'Campo obligatorio',
-                            pattern: {
-                                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{14,}$/,
-                                message: 'Minímo 14 carácteres combinando mayúsculas, minúsculas, números y carácteres especiales'
+                    <div className="password-div">
+                        <input type="password" className="form-input" ref={passwordRef} id="password-ref-new-user"
+                            {
+                            ...register('password', {
+                                required: 'Campo obligatorio',
+                                pattern: {
+                                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\w\s]).{14,}$/,
+                                    message: 'Minímo 14 carácteres combinando mayúsculas, minúsculas, números y carácteres especiales'
+                                }
+                            })
                             }
-                        })
-                        }
-                    />
+                        />
+                        <PasswordEye input={document.getElementById('password-ref-new-user')}/>
+                    </div>
                     <p className="mensaje-error">{errors.password?.message}</p>
 
                 </div>

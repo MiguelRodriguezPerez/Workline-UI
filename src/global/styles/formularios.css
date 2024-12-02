@@ -8,6 +8,7 @@
 .form-input {
     border: 0;
     border-bottom: solid 1px black;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .form-label{

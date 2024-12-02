@@ -8,29 +8,27 @@
     margin: 10% 0 5%;
 }
 
-.login-input{
+.login-input, .login-password{
     display: grid;
     grid-template-columns: 17% 80%;
     align-items: center;
+}
+
+.login-password {
+    grid-template-columns: 17% 73% 10%;
 }
 
 .login-input > img{
     margin-top: 10%;
 }
 
-.login-input > input{
-    background-color: rgba(0, 0, 0, 0);
-    border: 0;
-    border-bottom: solid 1px black;
-}
 
 .login-form > button {
     margin-top: 10%;
     border: 0;
-    background-color: green;
-    color: white;
     padding: 3%;
-    cursor: pointer;
+    width: 100%;
+    border-radius: 0px;
 }
 
 .login-form > button:last-of-type {
