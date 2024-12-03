@@ -1,11 +1,13 @@
 .mis-ofertas-grid {
     display: grid;
-    grid-template-columns: repeat(4, 22%);
+    grid-template-columns: repeat(4, 1fr);
     gap: 4%;
     margin: 0;
     margin-bottom: 5%;
     padding: 0;
+
 }
+
 
 @media screen and (max-width:1600px) {
     .mis-ofertas-grid{

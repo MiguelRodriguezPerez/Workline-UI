@@ -5,10 +5,13 @@ import { compararFechas } from '../../../../../global/helpers/fechas/compararFec
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
+import { useContext } from 'react'
+import { ComponenteActivoContext } from '../ComponenteActivoProvider'
 
 
 export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
 
+  const {setButtonNuevaEntidad}  = useContext(ComponenteActivoContext);
   const { register, formState: { errors }, getValues, handleSubmit } = useForm({
     defaultValues: data
   });
@@ -16,7 +19,10 @@ export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
   const newSubmit = async (data) => {
     const conocimientoDto = prepararConocimientoDto(data);
     const resultado = await guardarNuevoConocimiento(conocimientoDto);
-    if(resultado.status === 201) refreshData();
+    if(resultado.status === 201){
+      setButtonNuevaEntidad();
+      refreshData();
+    }
   }
 
   return (

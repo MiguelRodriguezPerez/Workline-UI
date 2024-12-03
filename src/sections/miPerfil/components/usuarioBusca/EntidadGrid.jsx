@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import '../../styles/seccionBusca/entidadGrid.css';
+import { NuevaEntidadWrapper } from "./NuevaEntidadWrapper";
 
 /*clave es un atributo para distinguir los distintos tipos de entidad grid.
 Lo necesitas para que cuando cambie el componente activo, se dispare el efecto
@@ -26,7 +27,8 @@ export const EntidadGrid = ( { peticion, Componente, NuevaEntidadComponente ,tit
     return (
         <div className="grid-entidad">
             {/*En el grid de ofertas no necesitas este componente*/}
-            {NuevaEntidadComponente && <NuevaEntidadComponente refreshData={fetchData}/>}
+            {NuevaEntidadComponente && 
+            <NuevaEntidadWrapper NuevaEntidadComponente={<NuevaEntidadComponente refreshData={fetchData}/>} titulo={titulo}/>}
             <h3>{titulo}</h3>
             
             <ul className="lista-elementos">

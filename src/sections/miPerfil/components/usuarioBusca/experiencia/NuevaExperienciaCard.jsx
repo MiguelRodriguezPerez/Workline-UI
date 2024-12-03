@@ -5,14 +5,19 @@ import { compararFechas } from '../../../../../global/helpers/fechas/compararFec
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
+import { useContext } from 'react';
+import { ComponenteActivoContext } from '../ComponenteActivoProvider';
 
 export const NuevaExperienciaCard = ({ refreshData }) => {
+
+  const { setButtonNuevaEntidad }  = useContext(ComponenteActivoContext);
 
   const newSubmit = async(data) => {
     const experienciaPreparada = prepararExperienciaDto(data);
     const resultado = await guardarNuevaExperiencia(experienciaPreparada);
     if( resultado.status === 201 ){
       refreshData();
+      setButtonNuevaEntidad();
     }
   }
 

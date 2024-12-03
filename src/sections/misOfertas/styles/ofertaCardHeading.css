@@ -1,6 +1,10 @@
 .card-heading {
     display: grid;
-    grid-template-columns: 60% 22% 17%;
+    grid-template-columns: 72% 11% 15%;
+    /*Si un puesto de trabajo tenía muchas letras provocaba que fuera más alto que 
+    el resto de sus hermanos y grid-auto-rows: 1fr no iba, así que lo force con
+    una unidad absoluta*/
+    grid-template-rows: 50px;
     justify-items: right;
     align-items: center;
 
