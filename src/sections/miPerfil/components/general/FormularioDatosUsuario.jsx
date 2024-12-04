@@ -41,7 +41,7 @@ export const FormularioDatosUsuario = () => {
     turnOnHideLabel();
     turnOnHideBorder();
     const resultado = await editarUsuarioEntidad(data);
-    if (resultado.status === 201) updateUser(resultado.content);
+    if (resultado.status === 201) updateUser(resultado.data);
   }
 
   return (
