@@ -44,3 +44,12 @@
 #menu-perfil-desplegable a {
     color: white
 }
+
+@media screen and (max-width : 1600px) {
+    
+    .red-button {
+        padding: 2%;
+        margin-top: 2%;
+    }
+    
+}

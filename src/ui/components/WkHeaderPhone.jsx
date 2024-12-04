@@ -3,18 +3,11 @@ import { Logo, WkHeaderLogin } from './'
 import { useState } from 'react'
 
 import '../styles/wkHeaderPhone.css'
+import { useMenuDesplegable } from '../../global/hooks'
 
 export const WkHeaderPhone = () => {
 
-    const [isOpen,setOpen] = useState(false);
-    const openMenu = () => {
-        setOpen(true);
-        document.getElementById('menuDesplegable').style.width = '100%'
-    }
-    const closeMenu = () => {
-        setOpen(false);
-        document.getElementById('menuDesplegable').style.width = '0%'   
-    }
+    const { openMenu, closeMenu } = useMenuDesplegable('menuDesplegable');
 
     return (
         <header className='wk-header-phone wk-header'>

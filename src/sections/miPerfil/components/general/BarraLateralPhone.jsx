@@ -1,20 +1,14 @@
 import { useState } from "react";
 import { MiPerfilSideNav } from "./MiPerfilSideNav";
+import { useMenuDesplegable } from "../../../../global/hooks";
 
 import '../../styles/general/barraLateralPhone.css';
 
 
+
 export const BarraLateralPhone = () => {
 
-    const [isOpen, setOpen] = useState(false);
-    const openMenu = () => {
-        setOpen(true);
-        document.getElementById('menu-perfil-desplegable').style.width = '100%'
-    }
-    const closeMenu = () => {
-        setOpen(false);
-        document.getElementById('menu-perfil-desplegable').style.width = '0%'
-    }
+    const { openMenu, closeMenu } = useMenuDesplegable('menu-perfil-desplegable');
 
     return (
         <>
