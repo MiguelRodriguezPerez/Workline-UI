@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form"
 import { CabeceraMiPerfil, BorrarCuentaButton } from "./"
 import { editarUsuarioEntidad, obtenerUsuarioEntidad } from "../../api";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../../../../global/context/AuthContext";
 import { useSwitchHideLabel, useSwitchReadOnly, useSwitchHideBottomBorder } from "../../../../global/hooks";
 import { useNavigate } from "react-router";
 
 import '../../styles/general/formularioDatos.css';
+import '../../styles/general/formularioDatosReadOnly.css';
 import '/src/global/styles/formularios.css';
 
 
@@ -43,6 +44,22 @@ export const FormularioDatosUsuario = () => {
     const resultado = await editarUsuarioEntidad(data);
     if (resultado.status === 201) updateUser(resultado.data);
   }
+
+  useEffect(() => {
+    if(isReadOnly) {
+      for(const nodo of Array.from(document.querySelectorAll('.formulario-datos  input[type=text]'))){
+        console.log('AAAAAAAAAAAAAAAAA')
+        nodo.classList.remove('form-input');
+        nodo.classList.add('read-only-input');
+      }
+    }
+    else {
+      for(const nodo of Array.from(document.querySelectorAll('.formulario-datos  input[type=text]'))){
+        nodo.classList.add('form-input');
+        nodo.classList.remove('read-only-input');
+      }
+    }
+  }, [isReadOnly]);
 
   return (
     <section className="container-formulario" id="form-user">
@@ -82,7 +99,7 @@ export const FormularioDatosUsuario = () => {
             })
             }
           />
-          <p>{errors.email?.message}</p>
+          <p className="mensaje-error">{errors.email?.message}</p>
         </div>
         <div>
           <label className="form-label">Ciudad</label>
