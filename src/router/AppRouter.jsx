@@ -5,6 +5,7 @@ import { JobRouter } from "../sections/jobs/router/JobRouter"
 import { LoginRouter } from "../sections/login/router/LoginRouter"
 import { MiPerfilRouter } from "../sections/miPerfil/routes/MiPerfilRouter"
 import { ContrataRouter } from "../sections/misOfertas/routes/ContrataRouter"
+import { Page404 } from "../errors/pages"
 
 export const AppRouter = () => {
   return (
@@ -15,6 +16,7 @@ export const AppRouter = () => {
         <Route path="/misOfertas/*" element={ <ContrataRouter/>}/>
         <Route path="/miPerfil/*" element={ <MiPerfilRouter/>}/>
         <Route path="/nuevaCuenta/*" element= { <CrearCuentaRouter/>}/>
+        <Route path="/*" element={ <Page404/> }/>
       </Routes>
   )
 }

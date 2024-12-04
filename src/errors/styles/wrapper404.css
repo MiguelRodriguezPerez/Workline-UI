@@ -1,0 +1,34 @@
+.wrapper-404 {
+    margin:  auto 0;
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content: center;
+}
+
+.wrapper-404 > img{
+    /*Forzaste el ancho porque la imagen era muy grande*/
+    width: 50%;
+    margin: 0 auto;
+}
+
+.wrapper-404 > h1 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+.wrapper-404 > button {
+    width: 250px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+@media screen and (max-width : 1600px) {
+    
+    .wrapper-404 > img{
+        /*Forzaste el ancho porque la imagen era muy grande*/
+        width: 100%;
+        margin: 0 auto;
+    }
+}
