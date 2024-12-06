@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router'
 import { LogueadoVerificacion } from './LogueadoVerificacion.jsx';
-import { CambiarPasswordFirstPage } from '../pages';
+import { CambiarPasswordFirstPage, CambiarPasswordSecondPage } from '../pages';
 import { MisDatosPage } from '../pages/general/MisDatosPage.jsx';
 import { MisConocimientosPage, MisExperienciasPage, MisInscripcionesPage } from '../pages/seccionBusca';
 
@@ -12,6 +12,7 @@ export const MiPerfilRouter = () => {
       <Routes>
           <Route path='/misDatos' element={<MisDatosPage/>}/>
           <Route path='/confirmarPassword' element={<CambiarPasswordFirstPage/>}/>
+          <Route path='/cambiarPassword' element={<CambiarPasswordSecondPage/>}/>
           {/* Pendiente HOC verificar rol busca */}
           <Route path='/misConocimientos' element={<MisConocimientosPage/>}/>
           <Route path='/misExperiencias' element={<MisExperienciasPage/>}/>

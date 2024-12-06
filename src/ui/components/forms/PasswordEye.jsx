@@ -4,8 +4,6 @@ import '../../styles/forms/passwordEye.css'
 
 export const PasswordEye = ({ input }) => {
 
-    console.log(input)
-
     const [ isPasswordVisible, setIsPasswordVisible ] = useState(false);
 
     const clickEvent = (event) => {

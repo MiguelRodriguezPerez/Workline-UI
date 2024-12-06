@@ -9,6 +9,7 @@ import { useNavigate } from "react-router";
 import '../../styles/general/formularioDatos.css';
 import '../../styles/general/formularioDatosReadOnly.css';
 import '/src/global/styles/formularios.css';
+import { CambiarPassword } from "../cambiarPassword/CambiarPassword";
 
 
 
@@ -134,9 +135,10 @@ export const FormularioDatosUsuario = () => {
       </form>
       <div className="row-botones">
         <BorrarCuentaButton />
-        <button className="green-button" style={{ display: "none" }}
+        <button className="green-button"
           onClick={() => { navigate('/miPerfil/confirmarPassword') }}>Cambiar contraseña</button>
       </div>
     </section>
   )
 }
+//1234kasdddddddjfA#

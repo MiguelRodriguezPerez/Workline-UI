@@ -5,8 +5,8 @@ import '../styles/homeActionCallContainer.css'
 export const HomeActionCallContainer = () => {
   return (
     <section className='home-action-container'>
-      <HomeActionCall url={'/ofertasDeTrabajo/0'}/>
-      <HomeActionCall url={'/contrata'}/>
+      <HomeActionCall url={'/ofertasDeTrabajo/?numPag=0'}/>
+      <HomeActionCall url={'/misOfertas/'}/>
     </section>
   )
 }

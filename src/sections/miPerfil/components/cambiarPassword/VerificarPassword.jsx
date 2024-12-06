@@ -32,8 +32,8 @@ export const VerificarPassword = () => {
                 <div>
                     <input type="password" id='user-password' className='form-input'/>
                     <button className='green-button' onClick={checkPassword}>Comprobar contraseña</button>
-                    <p className='login-error mensaje-error' id='password-error'></p>
                 </div>
+                <p className='login-error mensaje-error' id='password-error'></p>
             </form>
         </main>
     )
