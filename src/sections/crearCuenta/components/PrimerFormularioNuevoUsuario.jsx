@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { esNombreRepetido } from '../api';
 import { prepararUsuarioDto } from "../helpers";
 import { useCrearBusca, useCrearContrata } from "../hooks";
-import { Link } from "react-router-dom";
 
+import { useEffect, useState } from "react";
+import { PasswordEye } from "../../../ui/components/forms/PasswordEye";
 import '../styles/formularioNuevoUsuario.css';
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
-import { useRef } from "react";
-import { PasswordEye } from "../../../ui/components/forms/PasswordEye";
 
 
 export const PrimerFormularioNuevoUsuario = () => {
@@ -16,7 +16,12 @@ export const PrimerFormularioNuevoUsuario = () => {
     const { register, reset, formState: { errors }, handleSubmit } = useForm({});
     const { gestionarCrearBusca } = useCrearBusca();
     const { gestionarCrearContrata } = useCrearContrata();
-    const passwordRef = useRef(null)
+    const [ passwordNode, setPasswordNode ] = useState();
+
+    useEffect(() => {
+        document.getElementById("password-ref-new-user")
+        && setPasswordNode(document.getElementById("password-ref-new-user"));
+    }, [])
 
     const submitFirstStep = async (data) => {
         const dtoPreparado = prepararUsuarioDto(data);
@@ -125,7 +130,7 @@ export const PrimerFormularioNuevoUsuario = () => {
 
                     <label htmlFor="password" className="form-label">Contraseña</label>
                     <div className="password-div">
-                        <input type="password" className="form-input" ref={passwordRef} id="password-ref-new-user"
+                        <input type="password" className="form-input" id="password-ref-new-user"
                             {
                             ...register('password', {
                                 required: 'Campo obligatorio',
@@ -136,7 +141,7 @@ export const PrimerFormularioNuevoUsuario = () => {
                             })
                             }
                         />
-                        <PasswordEye input={document.getElementById('password-ref-new-user')}/>
+                        <PasswordEye input={passwordNode}/>
                     </div>
                     <p className="mensaje-error">{errors.password?.message}</p>
 
