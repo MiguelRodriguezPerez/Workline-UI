@@ -10,7 +10,7 @@ export const BorrarOfertaIcon = ( { id }) => {
     const deleteOferta = async() => {
         const resultado = await borrarOferta(id);
         console.log(resultado.status)
-        if(resultado.status === 200) refreshData();
+        if(resultado.status === 204) refreshData();
     }
 
     return (

@@ -18,6 +18,7 @@ export const CandidateGrid = () => {
 
   useEffect(() => {
     effectWrapper();
+    console.log(listaCandidatos)
   },[id]);
 
   return (
