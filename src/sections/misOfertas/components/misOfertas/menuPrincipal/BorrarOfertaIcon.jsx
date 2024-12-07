@@ -5,11 +5,12 @@ import { MisOfertasContext } from "../../../context";
 
 export const BorrarOfertaIcon = ( { id }) => {
 
-    const { refreshData} = useContext(MisOfertasContext);
+    const { refreshData } = useContext(MisOfertasContext);
 
     const deleteOferta = async() => {
         const resultado = await borrarOferta(id);
-        if(resultado.status === 204) refreshData();
+        console.log(resultado.status)
+        if(resultado.status === 200) refreshData();
     }
 
     return (

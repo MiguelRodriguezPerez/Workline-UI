@@ -1,12 +1,10 @@
-import { WkHeaderWrapper } from '../../../ui/components/WkHeaderWrapper'
-import { WkFooter } from '../../../ui/components/WkFooter'
-import { MisOfertasHeading } from '../components/misOfertas/menuPrincipal/MisOfertasHeading'
+import { WkHeaderWrapper, WkFooter } from '../../../ui/components'
+import { MisOfertasProvider } from '../context/MisOfertasProvider'
+import { MisOfertasHeading, NuevaOfertaButton, 
+MisOfertasGrid,MisOfertasPagination } from '../components/misOfertas/menuPrincipal'
 
 import '../styles/misOfertasPage.css'
-import { MisOfertasGrid } from '../components/misOfertas/menuPrincipal/MisOfertasGrid'
-import { MisOfertasProvider } from '../context/misOfertasProvider'
-import { MisOfertasPagination } from '../components/misOfertas/menuPrincipal/MisOfertasPagination'
-import { NuevaOfertaButton } from '../components/misOfertas/menuPrincipal/NuevaOfertaButton'
+
 
 export const MisOfertasPage = () => {
   return (

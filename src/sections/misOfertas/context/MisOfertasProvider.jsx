@@ -2,7 +2,6 @@ import { MisOfertasContext, misOfertasReducer } from './'
 import { getPaginaOfertaContrata } from "/src/global/api/seccionContrata"
 import { useEffect, useReducer, useState } from 'react';
 
-
 const init = () => {
     return {
         number: 0,
@@ -37,6 +36,7 @@ export const MisOfertasProvider = ({ children }) => {
     }
 
     const refreshData = async () => {
+        console.log(numPag)
         const resultado = await getPaginaOfertaContrata(numPag);
         updatePage(resultado.data);
     }

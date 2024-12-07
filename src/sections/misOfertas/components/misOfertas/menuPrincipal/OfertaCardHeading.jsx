@@ -1,20 +1,11 @@
-import { borrarOferta } from '/src/global/api/seccionContrata'
-import { CandidateCounter } from '../candidateRelated/CandidateCounter'
-import { useContext, useEffect, useState } from 'react';
-import { MisOfertasContext } from '../../../context';
-
-import '../../../styles/ofertaCardHeading.css'
+import { CandidateCounter } from '../candidateRelated/CandidateCounter';
 import { BorrarOfertaIcon } from './BorrarOfertaIcon';
 
+import '../../../styles/ofertaCardHeading.css';
 
 export const OfertaCardHeading = ({ oferta = {} }) => {
 
-    const { servirPagina, pagina: { totalPages } } = useContext(MisOfertasContext);
-    const [pageCount, setPageCount] = useState(totalPages);
 
-    useEffect(() => {
-        setPageCount(totalPages);
-    }, [totalPages]);
 
     return (
         <section className='card-heading'>
