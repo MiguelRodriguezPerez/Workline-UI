@@ -3,8 +3,8 @@ import { useNavigate } from "react-router";
 import { comprobarInscripcionOferta, desinscribirBusca, inscribirBusca } from "../../api";
 import { AuthContext } from "/src/global/context";
 import { JobOfferContext } from "../../context/jobOffer/jobOfferContext";
-import '/src/global/styles/elementos.css';
 
+import '/src/global/styles/elementos.css';
 
 export const ButtonInscribe = () => {
 
@@ -14,13 +14,10 @@ export const ButtonInscribe = () => {
     const [ estaInscrito, setEstaInscrito ] = useState(false);
 
     const effectWrapper = async() => {
-        if( user.rol === 'BUSCA' ) {
-            /*No tiene sentido realizar la petición si el usuario logueado no es de tipo BUSCA*/
-            const resultadoPeticion = await comprobarInscripcionOferta(oferta.id);
-            setEstaInscrito(resultadoPeticion);
-            
-        }
-        else setEstaInscrito(false);
+        /*No tiene sentido realizar la petición si el usuario logueado no es de tipo BUSCA*/
+        const resultadoPeticion = await comprobarInscripcionOferta(oferta.id);
+        setEstaInscrito(resultadoPeticion.data);
+        console.log(resultadoPeticion.data)
     }
 
     useEffect(() => {
@@ -29,7 +26,7 @@ export const ButtonInscribe = () => {
         
         En cualquier caso, como se estaba llamando a la función sin un id de oferta, lo que
         hice fue obligar a que oferta tuviera un id definido antes de llamar a la función del efecto*/
-        oferta.id ==! undefined && effectWrapper();
+        effectWrapper();
     }, [oferta]);
 
     const buttonEvent = async() => {

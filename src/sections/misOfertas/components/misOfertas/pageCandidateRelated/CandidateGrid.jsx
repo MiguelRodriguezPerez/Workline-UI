@@ -3,9 +3,10 @@ import { VerCandidatoContext } from "../../../context/verCandidato/VerCandidatoC
 import { CandidateConocimientoCard } from "./CandidateConocimientoCard";
 import { getViewString } from '/src/global/helpers';
 import { ExperienciaCard } from '/src/sections/miPerfil/components/usuarioBusca/experiencia';
+import { CandidateExperienciaCard } from "./CandidateExperienciaCard";
 
 import '../../../styles/pageCandidateRelated/candidateGridH4.css'
-import { CandidateExperienciaCard } from "./CandidateExperienciaCard";
+
 export const CandidateGrid = ({ entidad = ''}) => {
   
     const { candidato } = useContext(VerCandidatoContext);

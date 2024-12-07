@@ -21,3 +21,10 @@
 .card-view > div > p:last-child {
     text-align: right;
 }
+
+@media screen and (max-width : 700px) {
+    
+    .card-view > div {
+        grid-template-columns: 100%;
+    }
+}

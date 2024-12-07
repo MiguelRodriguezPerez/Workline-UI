@@ -17,7 +17,7 @@ export const CandidateHeading = () => {
 
     return (
         <>
-            <a onClick={goBack} className="heading-link">Volver atrás</a>
+            <a onClick={goBack} className="heading-link candidato-oferta-link">Volver atrás</a>
             <section className="candidate-heading nube">
                 <div>
                     <h3>{candidato.nombre}</h3>

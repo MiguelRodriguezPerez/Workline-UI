@@ -2,5 +2,15 @@
     display: grid;
     grid-template-columns: repeat(2,48%);
     gap: 4%;
-    margin-top: 1%;
+    margin-top: 1vh;
+    margin-bottom: 4vh;
+}
+
+@media screen and (max-width : 1600px) {
+    
+    .candidate-grid-container {
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+        gap: 0%;
+    }
 }
