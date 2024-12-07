@@ -1,14 +1,14 @@
 import { WkFooter } from '../../../ui/components/WkFooter'
 import { WkHeaderWrapper } from '../../../ui/components/WkHeaderWrapper'
-import { NuevaOfertaForm } from '../components/nuevaOferta/NuevaOfertaForm'
+import { NuevaOfertaWrapper } from '../components/formularioOfertas/NuevaOfertaWrapper'
 
 export const NuevaOfertaPage = () => {
 
   return (
     <>
-      <WkHeaderWrapper/>
-      <NuevaOfertaForm/>
-      <WkFooter/>
+      <WkHeaderWrapper />
+      <NuevaOfertaWrapper />
+      <WkFooter />
     </>
   )
 }

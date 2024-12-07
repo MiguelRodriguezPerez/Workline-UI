@@ -36,6 +36,15 @@
     padding: 2.5%;
 }
 
+/*En caso de que el formulario se muestre en la vista del PC, añadira
+un margen del 2vh para alinearlo con la feed de ofertas.
+
+Estas usando vh en vez de % porque % no garantiza la correcta alineación
+de dichos elementos*/
+.job-search-aside {
+    margin-top: 2vh;
+}
+
 
 @media screen and (max-width:1600px) {
     

@@ -16,7 +16,7 @@ export const HomeBanner = () => {
             Comienza una nueva etapa en tu vida a través de nuestras
             ofertas de trabajo.  
         </p>
-        <Link className='green-button'>Encuentra empleo</Link>
+        <Link className='green-button' to={'/ofertasDeTrabajo/?numberPage=0'}>Encuentra empleo</Link>
       </div>
       <div>
         <img src='/images/home/cartoonTelefono.png' alt="anuncio" />

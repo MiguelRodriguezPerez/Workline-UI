@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import '../../styles/jobPage/jobFormBase.css'
 import '/src/global/styles/formularios.css'
 import '/src/global/styles/elementos.css'
+import { getViewString } from '../../../../global/helpers';
 
 export const JobFormBase = ({ closeMenu }) => {
 
@@ -66,7 +67,7 @@ export const JobFormBase = ({ closeMenu }) => {
             <select className='form-input' {...register('tipoContrato')} >
                 <option value=''>Selecciona una opción</option>
                 {
-                    tiposContrato.map( (tipo) => <option value={tipo} key={tipo}>{tipo.toLowerCase()}</option>)
+                    tiposContrato.map( (tipo) => <option value={tipo} key={tipo}>{getViewString(tipo)}</option>)
                 }
             </select>
 
@@ -90,7 +91,7 @@ export const JobFormBase = ({ closeMenu }) => {
                 <option value='' >Selecciona una opción</option>
                 {
                     
-                    modalidades.map( (modalidad) => <option key={modalidad}>{modalidad.toLowerCase()}</option>)
+                    modalidades.map( (modalidad) => <option key={modalidad}>{getViewString(modalidad)}</option>)
                 }
             </select>
 

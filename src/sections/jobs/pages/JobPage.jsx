@@ -6,6 +6,7 @@ import { JobFormWrapper } from '../components/jobPage/JobFormWrapper'
 import { JobHeading } from '../components/jobPage/JobHeading'
 import { JobPagination } from '../components/jobPage/JobPagination'
 import { JobProvider } from '../context/jobPage/JobProvider'
+
 import '../styles/jobPage/jobPage.css'
 
 export const JobPage = () => {

@@ -2,8 +2,7 @@
     display: grid;
     grid-template-columns: 45% 45%;
     gap: 10%;
-    margin-top: 5vh;
-    margin-bottom: 3vh;
+    margin: 2% 0%;
 }
 
 .home-action-container > .action-call:nth-child(2){

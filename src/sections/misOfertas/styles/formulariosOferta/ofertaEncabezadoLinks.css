@@ -1,0 +1,17 @@
+.oferta-encabezado-links{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin: 2vh 0vw;
+}
+
+.oferta-encabezado-links > * {
+    width: auto;
+    margin: 0;
+}
+
+.oferta-encabezado-links > p {
+    margin-left: auto;
+    cursor: pointer;
+}

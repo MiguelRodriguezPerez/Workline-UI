@@ -1,23 +1,26 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { useModalidades, useSwitchReadOnly, useTiposContrato } from '../../../../global/hooks';
 import { obtenerOfertaPorId } from '../../../jobs/api';
 import { editarOferta, publicarNuevaOferta } from '../../../../global/api/seccionContrata';
+import { prepararOfertaApi } from '../../helpers';
+import { getViewString } from '../../../../global/helpers';
 
-import '../../styles/ofertaForm.css';
+import '../../styles/formulariosOferta/ofertaForm.css';
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
-import { prepararOfertaApi } from '../../helpers';
+import { NuevaOfertaLinks } from './NuevaOfertaLinks';
+import { EditarOfertaLinks } from './EditarOfertaLinks';
 
 /*Como 0 es el valor que se asignará al id en caso de no existir, servirá
 para comprobar si se esta creando una nueva oferta o se esta editando 
 una existente*/
 export const FormularioOferta = ({ id = 0 }) => {
 
+    const location = useLocation();
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
-    const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true, id);
     const navigate = useNavigate();
     const { register, reset, formState: { errors }, handleSubmit } = useForm({});
 
@@ -29,19 +32,12 @@ export const FormularioOferta = ({ id = 0 }) => {
             console.log(resultado.data)
             if(resultado.status === 200) reset(resultado.data);
         }
-
-        else turnOffReadOnly();
     }
     
     useEffect(() => {
         asyncEffectWrapper();
     },[id])
 
-
-    const cancelEvent = () => {
-        reset();
-        turnOnReadOnly();
-    }
 
     /*Si id es 0, se estará creando una nueva oferta, si no es 0
     se estará editando*/
@@ -60,17 +56,14 @@ export const FormularioOferta = ({ id = 0 }) => {
 
 
     return (
-        <>
-            <section className="link-section">
-                <p className='heading-link' onClick={() => { navigate(-1) }}> Volver atrás </p>
+            <>
                 {
-                    isReadOnly ?
-                        <p onClick={turnOffReadOnly}> Editar oferta </p>
-                        :
-                        <p onClick={cancelEvent}> Cancelar </p>
+                    location.pathname.includes('nuevaOferta') ? 
+                    <NuevaOfertaLinks reset={reset}/>
+                    :
+                    <EditarOfertaLinks id={id}/>
                 }
-            </section>
-            <form className='oferta-form' onSubmit={handleSubmit(submitWrapper)} method='post' id={id}>
+                <form className='oferta-form' onSubmit={handleSubmit(submitWrapper)} method='post' id={id}>
                 <section className='nube primera-seccion'>
                     <div>
                         <label>Puesto</label>
@@ -80,8 +73,8 @@ export const FormularioOferta = ({ id = 0 }) => {
                             ...register('puesto', {
                                 required: 'Campo obligatorio',
                                 maxLength: {
-                                    value: 30,
-                                    message: 'Máximo 30 carácteres'
+                                    value: 20,
+                                    message: 'Máximo 20 carácteres'
                                 },
                                 pattern: {
                                     value: /^[a-zA-Z\s]+$/,
@@ -121,10 +114,10 @@ export const FormularioOferta = ({ id = 0 }) => {
                             }>
                             <option value="">Selecciona una opción ...</option>
                             {
-                                modalidades.map((modalidad) => <option key={modalidad} value={modalidad}>{modalidad}</option>)
+                                modalidades.map((modalidad) => <option key={modalidad} value={modalidad}>{getViewString(modalidad)}</option>)
                             }
                         </select>
-                        <p className="mensaje-error">{errors.modalidad?.message}</p>
+                        <p className="mensaje-error">{errors.modalidadTrabajo?.message}</p>
 
                         <label>Salario Anual</label>
                         <input type="text" className={errors.salarioAnual ? 'input-error' : ''}
@@ -153,7 +146,7 @@ export const FormularioOferta = ({ id = 0 }) => {
                             }>
                             <option value="">Selecciona una opción ...</option>
                             {
-                                tiposContrato.map((tipo) => <option key={tipo} value={tipo}>{tipo}</option>)
+                                tiposContrato.map((tipo) => <option key={tipo} value={tipo}>{getViewString(tipo)}</option>)
                             }
                         </select>
                         <p className="mensaje-error">{errors.tipoContrato?.message}</p>
@@ -217,5 +210,6 @@ export const FormularioOferta = ({ id = 0 }) => {
                 </section>
             </form>
         </>
+            
     );
 }
