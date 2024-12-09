@@ -1,6 +1,6 @@
 import { BarraLateralWrapper, CabeceraMiPerfil } from '../../components/general'
 import { obtenerMisExperiencias } from '../../../../global/api/seccionBusca/experiencia'
-import { ExperienciaCard, NuevaExperienciaCard } from '../../components/usuarioBusca/experiencia'
+import { ExperienciaCard, NoRegisteredExperiencias, NuevaExperienciaCard } from '../../components/usuarioBusca/experiencia'
 import { WkHeaderWrapper, WkFooter } from '/src/ui/components'
 import { EntidadGrid } from '../../components/usuarioBusca/EntidadGrid'
 
@@ -16,7 +16,8 @@ export const MisExperienciasPage = () => {
         <BarraLateralWrapper/>
           <CabeceraMiPerfil/>
           <EntidadGrid peticion={obtenerMisExperiencias} NuevaEntidadComponente={NuevaExperienciaCard}
-            titulo={'Experiencias'} key={'grid-experiencias'} Componente={ExperienciaCard}/>
+            titulo={'Experiencias'} key={'grid-experiencias'} Componente={ExperienciaCard}
+            NoResultsFound={NoRegisteredExperiencias}/>
         </main>
         <WkFooter/>
     </>

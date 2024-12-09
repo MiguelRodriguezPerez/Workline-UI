@@ -6,6 +6,7 @@ import { EntidadGrid } from '../../components/usuarioBusca/EntidadGrid'
 
 
 import '../../styles/general/miPerfilPage.css'
+import { NoRegisteredConocimientos } from '../../components/usuarioBusca/conocimiento/NoRegisteredConocimientos'
 
 
 export const MisConocimientosPage = () => {
@@ -16,7 +17,8 @@ export const MisConocimientosPage = () => {
           <BarraLateralWrapper/>
           <CabeceraMiPerfil/>
           <EntidadGrid peticion={obtenerMisConocimientos} NuevaEntidadComponente={NuevoConocimientoCard}
-            titulo={'Conocimientos'} key={'grid-conocimientos'} Componente={ConocimientoCard}/>
+            titulo={'Conocimientos'} key={'grid-conocimientos'} Componente={ConocimientoCard}
+            NoResultsFound={NoRegisteredConocimientos}/>
         </main>
         <WkFooter/>
     </>

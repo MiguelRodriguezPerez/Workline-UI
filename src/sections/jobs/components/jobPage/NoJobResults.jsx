@@ -1,6 +1,7 @@
-import '../../styles/jobPage/noJobResults.css'
+import '../../styles/jobPage/noJobsFound.css'
 
 export const NoJobResults = () => {
+
   return (
     <section className="no-job-results">
         <img src="/images/jobs/noResults.png" alt="no_hay_resultados.png"/>

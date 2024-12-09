@@ -9,7 +9,7 @@ de entidad grid (usando clave como dependencia del efecto).
 
 Si no lo pones al cambiar de EntidadGrid react no distinguirá los cambios, 
 pensará que es el mismo componente y no ejecutará el efecto.*/
-export const EntidadGrid = ( { peticion, Componente, NuevaEntidadComponente ,titulo } ) => {
+export const EntidadGrid = ( { peticion, Componente, NuevaEntidadComponente, titulo, NoResultsFound } ) => {
 
     const [ listaEntidades, setListaEntidades ] = useState([]);
 
@@ -33,9 +33,12 @@ export const EntidadGrid = ( { peticion, Componente, NuevaEntidadComponente ,tit
             
             <ul className="lista-elementos">
                 {
-                     listaEntidades.map((entidad) => (
-                        <Componente key={entidad.id} data={entidad} refreshData={fetchData}/>
-                    ))
+                    listaEntidades.length > 0 ?
+                    listaEntidades.map((entidad) => (
+                        <Componente key={entidad.id} data={entidad} refreshData={fetchData}/>)
+                    )
+                    :
+                    <NoResultsFound/>
                 }
             </ul>
         </div>

@@ -16,7 +16,7 @@ export const WkHeaderPhone = () => {
             <img src='/images/ui/barras3.png' onClick={openMenu} alt='menu' className='boton-heading-desplegable'/>
             <div id='menuDesplegable'>
                 <img src="/images/ui/cerrar.png" alt="close" onClick={ closeMenu } />
-                <Link to={'/miPerfil/'}>Mi Perfil</Link>
+                <Link to={'/miPerfil/misDatos'}>Mi Perfil</Link>
                 <Link to={'/'}>Inicio</Link>
                 <Link to={'/ofertasDeTrabajo/?numberPage=0'}>Ofertas</Link>
                 <Link to={'/misOfertas/'}>Contratar</Link>

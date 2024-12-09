@@ -3,29 +3,23 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
 }
-
 .no-job-results h2 {
     font-weight: normal;
     font-size: 1.6rem;
-
     margin: 0;
     margin-bottom: 2%;
 }
-
 .no-job-results img {
     margin: 0 auto;
 }
-
 .no-job-results p {
     font-size: 1.2rem;
     margin: 0;
 }
-
 @media screen and (max-width : 1600px) {
     .no-job-results {
         grid-template-columns: 100%;
     }
-
     .no-job-results p, .no-job-results h2 {
         text-align: center;
     }

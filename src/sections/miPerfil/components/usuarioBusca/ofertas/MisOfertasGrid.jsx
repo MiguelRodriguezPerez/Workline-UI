@@ -3,6 +3,7 @@ import { obtenerMisInscripciones } from "../../../../../global/api/seccionBusca"
 import { JobCard } from "../../../../jobs/components/jobPage/JobCard";
 
 import '../../../styles/seccionBusca/entidadGrid.css';
+import { NoOfertasInscrito } from "./NoOfertasInscrito";
 
 export const MisOfertasGrid = () => {
 
@@ -21,7 +22,10 @@ export const MisOfertasGrid = () => {
             <h3>Mis ofertas</h3>
             <ul className="lista-elementos">
             {
-                listaOfertas?.map( (oferta) => <JobCard key={ oferta.id } oferta={ oferta } />)
+                listaOfertas?.length > 0 ?
+                listaOfertas.map( (oferta) => <JobCard key={ oferta.id } oferta={ oferta } />)
+                :
+                <NoOfertasInscrito/>
             }
             </ul> 
         </section>     
