@@ -15,7 +15,7 @@ export const BarraLateralPhone = () => {
             <img src="/images/miPerfil/seccionBusca/menu.png" alt="menu.png" id="abrir-menu" onClick={openMenu} />
             <aside id="menu-perfil-desplegable">
                 <img src="/images/ui/cerrar.png" alt="close" onClick={closeMenu} />
-                <MiPerfilSideNav/>
+                <MiPerfilSideNav closeMenu={closeMenu}/>
             </aside>
         </>
     )

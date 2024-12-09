@@ -12,6 +12,7 @@ import '/src/global/styles/elementos.css'
 
 export const ExperienciaCard = ({ data = {}, refreshData }) => {
 
+  console.log(data.id)
   const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
   const { turnOffHideLabel, turnOnHideLabel } = useSwitchHideLabel(true, data.id);
   const { turnOnHideBorder, turnOffHideBorder} = useSwitchHideBottomBorder(true, data.id);
@@ -46,7 +47,7 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
 
   const borrarExperienciaCallback = async (id) => {
     const resultado = await borrarExperiencia(id);
-
+    console.log(resultado)
     if(resultado.status === 204) refreshData();
   }
 

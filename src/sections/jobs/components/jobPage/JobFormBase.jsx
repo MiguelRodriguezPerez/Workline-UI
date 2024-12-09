@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { JobContext } from '../../context/jobPage/JobContext';
 import { useModalidades, useTiposContrato } from '../../../../global/hooks';
 import { obtenerDatosPagina } from '../../api';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useUrlParams } from '../../hooks'
 import { useForm } from 'react-hook-form';
 
@@ -14,11 +14,12 @@ import { getViewString } from '../../../../global/helpers';
 export const JobFormBase = ({ closeMenu }) => {
 
     const location = useLocation();
+    const navigate = useNavigate();
     const { modalidades } = useModalidades();
     const { tiposContrato } = useTiposContrato();
     const { updatePage } = useContext( JobContext );
     const { initialSearch, resetSearch } = useUrlParams();
-    const { register, reset, formState : { errors }, handleSubmit } = useForm();
+    const { register, reset, formState : { errors }, handleSubmit, setValue } = useForm();
 
     useEffect(() => {
         //Desde url
@@ -29,23 +30,26 @@ export const JobFormBase = ({ closeMenu }) => {
             if(resultado.status === 200) updatePage(resultado.data);
         }
         loadResults();
+        reset(initialSearch);
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
     }, [location])
     
 
     //El submit solo cambia la url
-
-    const makeSearch = async(data) =>{
-        console.log(data)
-        const resultado = await obtenerDatosPagina(0 , data);
-        if(resultado.status === 200) updatePage(resultado.data);
+    const makeSearch = (data) =>{
+        const queryString = new URLSearchParams(data).toString(); 
+        const url = `/ofertasDeTrabajo/?${queryString}`
+        navigate(url);
     }
 
     /*El estado del formulario y la información de la página no estan sincronizados,
     tienes que resetear cada cosa por separado*/
     const resetWrapper = async() => {
-        reset();
+        reset({ puesto: '', tipoContrato: '', ciudad: '', salarioAnualMinimo: '', modalidad: '' });
         const resultado = await obtenerDatosPagina(0, resetSearch);
         updatePage(resultado.data);
+        navigate('/ofertasDeTrabajo/?numberPage=0');
     }
 
     return (
@@ -89,8 +93,7 @@ export const JobFormBase = ({ closeMenu }) => {
             <label>Modalidad</label>
             <select className='form-input' {...register('modalidad')}>
                 <option value='' >Selecciona una opción</option>
-                {
-                    
+                {   
                     modalidades.map( (modalidad) => <option key={modalidad}>{getViewString(modalidad)}</option>)
                 }
             </select>

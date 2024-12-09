@@ -5,10 +5,10 @@ import '../../styles/jobPage/jobHeading.css'
 
 export const JobHeading = () => {
 
-  const { jobPageState } = useContext(JobContext);
-  const numOfertas = jobPageState.totalElements
+  const { jobPageState, isLoading } = useContext(JobContext);
+  const numOfertas = jobPageState.totalElements;
 
-    return (
+    if(!isLoading) return (
         <h3 className="job-heading">{numOfertas} ofertas disponibles</h3>
   )
 }

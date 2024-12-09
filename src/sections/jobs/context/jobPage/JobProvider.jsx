@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { JobContext } from "./JobContext";
 import { jobsReducer } from "./jobsReducer";
 
@@ -16,6 +16,7 @@ const init = () => {
 export const JobProvider = ({ children }) => {
 
     const [jobPageState, dispatch] = useReducer(jobsReducer, [], init);
+    const [isLoading, setIsLoading] = useState(true);
 
     const updatePage = (page = {}) => {
         const action = {
@@ -29,13 +30,14 @@ export const JobProvider = ({ children }) => {
             }
         };
         dispatch(action);
-        console.log(action.payload)
+        setIsLoading(false);
     };
 
 
     return (
         <JobContext.Provider value={{
             jobPageState: jobPageState,
+            isLoading : isLoading,
             updatePage,
         }}>
             { children }

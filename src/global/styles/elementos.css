@@ -27,6 +27,20 @@
     margin-bottom: 2%;
 }
 
+.blue-button {
+    cursor: pointer;
+    background-color: rgb(60, 144, 229);
+    color:white;
+    text-align: center;
+    font-size: 1rem;
+
+    border: 0;
+    border-radius: 8px;
+    padding: 1%;
+
+    margin-bottom: 2%;
+}
+
 .nube {
     border-radius: 8px;
     background-color: white;

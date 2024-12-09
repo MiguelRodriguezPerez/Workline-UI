@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router';
 import '../../styles/jobPage/jobCard.css'
+import { getViewString } from '../../../../global/helpers';
 
 export const JobCard = ({oferta}) => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export const JobCard = ({oferta}) => {
         </section>
         <ul className='second-section'>
           <li>{oferta.salarioAnual}</li>
-          <li>{oferta.tipoContrato}</li>
+          <li>{getViewString(oferta.tipoContrato)}</li>
           <li>{oferta.horas + ' horas'}</li>
           <li>{oferta.fechaPublicacion}</li>
         </ul>
