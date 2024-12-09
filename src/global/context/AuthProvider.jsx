@@ -29,10 +29,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const resetUser = () => {
-        /*uploadLogout se llama aquí porque no tiene mucho sentido ensuciar el componente loginHeader
-        con esta función. En cambio uploadUser se llama en el formlogin porque primero tienes que comprobar
-        que el usuario existe antes de llamar a updateUser*/
-        uploadLogout();
+        
         const action = {
             type: 'reset_user',
             payload: {
@@ -46,11 +43,9 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            
             const usuario = await getApiLoggedUser();
             if (usuario) updateUser(usuario);
             setIsLoading(false);
-
         };
         fetchUser();
     }, []);

@@ -13,9 +13,9 @@ export const WkHeaderLogin = () => {
   const navigate = useNavigate();
 
   const logoutEvent = () => {
-    uploadLogout();
-    // Cookies.remove('jwtToken', { path : '/ '});
     resetUser();
+    uploadLogout();
+    Cookies.remove('jwtToken', { path : '/ '});
     navigate('/');
   }
 
