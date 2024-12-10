@@ -11,7 +11,10 @@ export const JobFeed = () => {
     const { jobPageState, isLoading } = useContext( JobContext );
     const listaOfertas = jobPageState.content;
 
-    /*Estoy convencido de que existe una */
+    if(isLoading){
+      return <ul className='job-feed'>Cargando....</ul>
+    }
+
     if(!isLoading) return (
       <ul className='job-feed'>
         {
@@ -20,6 +23,6 @@ export const JobFeed = () => {
           :
           <NoJobResults/>
         }
-      </ul>      
+      </ul>   
   )
 }

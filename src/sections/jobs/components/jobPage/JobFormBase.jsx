@@ -5,11 +5,12 @@ import { obtenerDatosPagina } from '../../api';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useUrlParams } from '../../hooks'
 import { useForm } from 'react-hook-form';
+import { getViewString } from '../../../../global/helpers';
 
 import '../../styles/jobPage/jobFormBase.css'
 import '/src/global/styles/formularios.css'
 import '/src/global/styles/elementos.css'
-import { getViewString } from '../../../../global/helpers';
+
 
 export const JobFormBase = ({ closeMenu }) => {
 
@@ -31,7 +32,6 @@ export const JobFormBase = ({ closeMenu }) => {
         }
         loadResults();
         reset(initialSearch);
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
     }, [location])
     
@@ -41,6 +41,7 @@ export const JobFormBase = ({ closeMenu }) => {
         const queryString = new URLSearchParams(data).toString(); 
         const url = `/ofertasDeTrabajo/?${queryString}`
         navigate(url);
+        closeMenu();
     }
 
     /*El estado del formulario y la información de la página no estan sincronizados,
@@ -53,7 +54,7 @@ export const JobFormBase = ({ closeMenu }) => {
     }
 
     return (
-        <form className='job-search-form nube' onSubmit={ handleSubmit(makeSearch) }>
+        <form className='job-search-form nube' onSubmit={ handleSubmit(makeSearch) } id='formulario-base'>
             <div>
                 <p onClick={ resetWrapper } className='job-search-remove-filters'>Reiniciar formulario</p>
                 {

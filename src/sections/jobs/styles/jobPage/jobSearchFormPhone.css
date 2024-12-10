@@ -1,3 +1,14 @@
+/*Esta clase sirve para evitar que el usuario pueda activar el menú
+desplegable del teléfono, además de pasar una capa gris por la cabecera
+para dar el pego. 
+pointer-events: none evita los eventos de click*/
+
+.disable-header-events{
+    pointer-events: none;
+    z-index: 1;
+    background-color: rgba(51, 51, 51, 0.7);
+}
+
 .job-phone-button{
     display: flex;
     flex-direction: row;
@@ -30,7 +41,7 @@
     left: 0;
     /*Si pones right 0 se abrirá y cerrará desde la derecha,
     si pones left 0 se abrirá y cerrará desde la izquierda*/
-    overflow-x: hidden;
+    overflow: hidden;
     padding: 0px;
 
     display: grid;
