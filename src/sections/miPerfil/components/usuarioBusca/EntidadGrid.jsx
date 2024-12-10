@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
-import '../../styles/seccionBusca/entidadGrid.css';
-import { NuevaEntidadWrapper } from "./NuevaEntidadWrapper";
+import { useEffect, useState } from "react"
+import { useLocation } from "react-router"
+import { NuevaEntidadWrapper } from "./NuevaEntidadWrapper"
+
+import '../../styles/seccionBusca/entidadGrid.css'
 
 export const EntidadGrid = ({ peticion, Componente, NuevaEntidadComponente, titulo, NoResultsFound }) => {
-    const [listaEntidades, setListaEntidades] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [ listaEntidades, setListaEntidades ] = useState([]);
+    const [ isLoading, setIsLoading ] = useState(true);
     const location = useLocation();
 
     const fetchData = async () => {
@@ -29,9 +30,7 @@ export const EntidadGrid = ({ peticion, Componente, NuevaEntidadComponente, titu
 
     return (
         <div className="grid-entidad">
-            {/* En el grid de ofertas no necesitas este componente */}
-            {NuevaEntidadComponente &&
-                <NuevaEntidadWrapper NuevaEntidadComponente={<NuevaEntidadComponente refreshData={fetchData} />} titulo={titulo} />}
+            <NuevaEntidadWrapper NuevaEntidadComponente={<NuevaEntidadComponente refreshData={fetchData} />} titulo={titulo} />
             <h3>{titulo}</h3>
 
             <ul className="lista-elementos">

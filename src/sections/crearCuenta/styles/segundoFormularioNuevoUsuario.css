@@ -28,6 +28,10 @@ para pisar la regla anterior sin usar !important*/
     text-align: center;
 }
 
+.new-busca-forms-container > p.heading-link{
+    text-align: right;
+}
+
 @media screen and (max-width:1600px) {
 
     .new-busca-forms-container {

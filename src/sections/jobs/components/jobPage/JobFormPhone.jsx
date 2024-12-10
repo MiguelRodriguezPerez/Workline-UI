@@ -20,7 +20,6 @@ export const JobFormPhone = () => {
     /*Si el id del elemento en el que el usuario hizo click es form-desplegable (el fondo negro
     semitransparente del formulario) se cerrará el menú pero si hizo clic en otro*/
     const closeMenuChecked = ({ target }) => {
-        console.log(target)
         if(target.id === 'form-desplegable') closeMenu();
     }
 

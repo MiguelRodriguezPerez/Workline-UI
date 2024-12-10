@@ -5,11 +5,13 @@ import { obtenerMisConocimientos } from '/src/global/api/seccionBusca/conocimien
 import { obtenerMisExperiencias } from '/src/global/api/seccionBusca/experiencia'
 import { ConocimientoCard } from '/src/sections/miPerfil/components/usuarioBusca/conocimiento'
 import { ExperienciaCard } from '/src/sections/miPerfil/components/usuarioBusca/experiencia'
+import { GridNuevoUsuarioBuscaEntity } from './GridNuevoUsuarioBuscaEntity';
 import { useNavigate } from 'react-router';
 
 import '../styles/segundoFormularioNuevoUsuario.css'
 import '/src/global/styles/elementos.css'
 import '/src/global/styles/formularios.css'
+
 
 export const SegundoFormularioNuevoUsuario = () => {
 
@@ -17,17 +19,17 @@ export const SegundoFormularioNuevoUsuario = () => {
 
   return (
     <main className='new-busca-forms-container'>
-        <button className='green-button' onClick={() => { navigate('/') } }>Terminar cuenta</button>
+        <p className='heading-link' onClick={() => { navigate('/') } }>Terminar cuenta</p>
         <section className='new-busca-columns'>
             <div>
-              <NuevoConocimientoCard/>
-              <EntidadGrid peticion={obtenerMisConocimientos} Componente={ConocimientoCard}
-                NuevaEntidadComponente={null} titulo={'Conocimientos'}/>
+              <GridNuevoUsuarioBuscaEntity peticion={obtenerMisConocimientos} 
+                NuevaEntidadCard={NuevoConocimientoCard}
+                EntidadCard={ConocimientoCard} titulo={'Conocimientos'}/>
             </div>
             <div>
-              <NuevaExperienciaCard/>
-              <EntidadGrid peticion={obtenerMisExperiencias} Componente={ExperienciaCard}
-                NuevaEntidadComponente={null} titulo={'Experiencias'}/>
+              <GridNuevoUsuarioBuscaEntity peticion={obtenerMisExperiencias} 
+                NuevaEntidadCard={NuevaExperienciaCard}
+                EntidadCard={ExperienciaCard} titulo={'Experiencias'}/>
             </div>
         </section>
     </main>

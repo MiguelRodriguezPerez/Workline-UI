@@ -2,16 +2,15 @@ import { useForm } from 'react-hook-form'
 import { prepararConocimientoDto } from '../../../helpers'
 import { guardarNuevoConocimiento } from '/src/global/api/seccionBusca/conocimiento'
 import { compararFechas } from '../../../../../global/helpers/fechas/compararFechas'
-
-import '../../../styles/seccionBusca/entidadCard.css'
-import '/src/global/styles/elementos.css'
 import { useContext } from 'react'
 import { ComponenteActivoContext } from '../ComponenteActivoProvider'
 
+import '../../../styles/seccionBusca/entidadCard.css'
+import '/src/global/styles/elementos.css'
 
 export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
 
-  const {setButtonNuevaEntidad}  = useContext(ComponenteActivoContext);
+  const { setButtonNuevaEntidad } = useContext(ComponenteActivoContext);
   const { register, formState: { errors }, getValues, handleSubmit } = useForm({
     defaultValues: data
   });
@@ -20,7 +19,12 @@ export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
     const conocimientoDto = prepararConocimientoDto(data);
     const resultado = await guardarNuevoConocimiento(conocimientoDto);
     if(resultado.status === 201){
-      setButtonNuevaEntidad();
+      /*setButtonNuevaEntidad la función que pone el botón verde de Nuevo Conocimiento/Experiencia de miPerfil
+      en el DOM tras crear una entidad
+      
+      La razón por la que estas preguntando si existe es porque este componente se utiliza también
+      en la segunda página de crear un nuevo busca*/
+      setButtonNuevaEntidad && setButtonNuevaEntidad();
       refreshData();
     }
   }
