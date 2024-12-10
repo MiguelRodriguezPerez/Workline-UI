@@ -16,8 +16,8 @@ export const WkFooter = () => {
         <Link to={'/ofertasDeTrabajo/?numberPage=0'}>Encontrar trabajo</Link>
       </div>
       <div>
-        <Link to={'/miPerfil/'}>Mi perfil</Link>
-        <Link to={'nuevaCuenta/primeraParte'}>Crear cuenta</Link>
+        <Link to={'/miPerfil/misDatos'}>Mi perfil</Link>
+        <Link to={'/misOfertas/0'}>Mis ofertas</Link>
       </div>
     </footer>
   )

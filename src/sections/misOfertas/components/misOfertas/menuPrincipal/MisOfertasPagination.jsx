@@ -2,10 +2,12 @@ import { Pagination, Stack } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { MisOfertasContext } from '../../../context';
 import '../../../../jobs/styles/jobPage/jobPagination.css';
+import { useNavigate } from 'react-router';
 
 export const MisOfertasPagination = () => {
 
-    const { servirPagina, pagina: { totalPages } } = useContext(MisOfertasContext);
+    const navigate = useNavigate()
+    const { pagina: { totalPages } } = useContext(MisOfertasContext);
     const [pageCount, setPageCount] = useState(totalPages);
 
     useEffect(() => {
@@ -25,7 +27,7 @@ export const MisOfertasPagination = () => {
             >
                 <Pagination
                     count={pageCount}
-                    onChange={(e, value) => { servirPagina(value - 1); }}
+                    onChange={(e, value) => { navigate(`/misOfertas/${value - 1}`); }}
                     shape="rounded"
                     sx={{
                         '& .MuiPaginationItem-root': {

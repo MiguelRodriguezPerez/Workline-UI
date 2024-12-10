@@ -19,7 +19,7 @@ export const WkHeaderPhone = () => {
                 <Link to={'/miPerfil/misDatos'} onClick={closeMenu}>Mi Perfil</Link>
                 <Link to={'/'} onClick={closeMenu}>Inicio</Link>
                 <Link to={'/ofertasDeTrabajo/?numberPage=0'} onClick={closeMenu}>Ofertas</Link>
-                <Link to={'/misOfertas/'} onClick={closeMenu}>Contratar</Link>
+                <Link to={'/misOfertas/0'} onClick={closeMenu}>Contratar</Link>
             </div>
         </header>
     )

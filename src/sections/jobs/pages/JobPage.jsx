@@ -1,3 +1,4 @@
+import { useContext } from 'react'
 import { WkFooter } from '../../../ui/components/WkFooter'
 import { WkHeaderWrapper } from '../../../ui/components/WkHeaderWrapper'
 import { JobFeed } from '../components/jobPage/JobFeed'

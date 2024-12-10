@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router';
 import { MisOfertasContext, misOfertasReducer } from './'
 import { getPaginaOfertaContrata } from "/src/global/api/seccionContrata"
 import { useEffect, useReducer, useState } from 'react';
@@ -14,8 +15,10 @@ const init = () => {
 
 export const MisOfertasProvider = ({ children }) => {
 
-    const [misOfertas, dispatch] = useReducer(misOfertasReducer, [], init);
-    const [numPag, setNumPag] = useState(0);
+    const [ misOfertas, dispatch ] = useReducer(misOfertasReducer, [], init);
+    const [ numPag, setNumPag ] = useState(0);
+    const location = useLocation();
+    console.log(location)
 
     const updatePage = (page = {}) => {
         const action = {
@@ -36,8 +39,8 @@ export const MisOfertasProvider = ({ children }) => {
     }
 
     const refreshData = async () => {
-        console.log(numPag)
-        const resultado = await getPaginaOfertaContrata(numPag);
+        const numPagUrl = location.pathname.toString().substring(12);
+        const resultado = await getPaginaOfertaContrata(numPagUrl);
         updatePage(resultado.data);
     }
 
@@ -45,7 +48,7 @@ export const MisOfertasProvider = ({ children }) => {
         /*Axios no te devuelve el objeto de la api directamente, sino que devuelve un objeto
         con varios campos sobre la respuesta de la api, entre ellos data que son los datos que solicitaste */
       refreshData();
-    }, [numPag])
+    }, [location.pathname])
 
     /*Cuando borras una oferta, la lista de ofertas cambia y necesitas volver a disparar el efecto
     para actualizar los componentes que utilizan los datos de este provider*/

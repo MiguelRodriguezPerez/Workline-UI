@@ -11,7 +11,7 @@ export const useUrlParams = () => {
         puesto: currentParams.puesto || '',
         tipoContrato: currentParams.tipoContrato || '',
         ciudad: currentParams.ciudad || '',
-        salarioAnualMinimo: currentParams.salarioAnualMinimo || 0,
+        salarioAnualMinimo: currentParams.salarioAnualMinimo || '',
         modalidad: currentParams.modalidad || '',
     }
 
@@ -20,7 +20,7 @@ export const useUrlParams = () => {
         puesto: '',
         tipoContrato:  '',
         ciudad: '',
-        salarioAnualMinimo:  0,
+        salarioAnualMinimo:  '',
         modalidad:  '',
     }
 

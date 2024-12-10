@@ -6,9 +6,10 @@
 }
 
 .home-banner img{
+    display: flex;
     justify-self: end;
-    align-self: center;
-    height: 30vh;
+    align-self: end;
+    margin: auto auto;
 }
 
 .home-banner h2{

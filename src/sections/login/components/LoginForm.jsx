@@ -67,7 +67,7 @@ export const LoginForm = () => {
             <button className='green-button'>Iniciar Sesión</button>
             <button onClick={ goNewAccount }>¿No tiene cuenta? Cree una</button>
 
-            <a onClick={ goBackEvent }>Volver atrás</a>
+            <a onClick={ goBackEvent }>Volver al inicio</a>
         </form>
     )
 }
