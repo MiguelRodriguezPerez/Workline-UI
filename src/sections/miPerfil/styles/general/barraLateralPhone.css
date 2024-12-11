@@ -1,5 +1,8 @@
 #abrir-menu {
     display: block;
+    border: solid 2px gray;
+    border-radius: 5px;
+    padding: 5px;
     /*No me preguntes porque, pero el navegador tenía un margin-top por defecto*/
 }
 

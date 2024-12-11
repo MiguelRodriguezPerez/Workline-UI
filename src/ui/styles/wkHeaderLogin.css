@@ -11,6 +11,8 @@
     text-decoration: none;
     word-break: break-all;
     align-self: center;
+    margin-top: 1vh;
+    margin-right: 1%;
 }
 
 .header-login > img {
