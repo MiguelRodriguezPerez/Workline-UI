@@ -6,6 +6,7 @@
 .login-container > img{
     display: flex;
     justify-self: center;
+    margin: 0% auto;
 }
 
 @media screen and (max-width:1600px) {

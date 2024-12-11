@@ -39,7 +39,14 @@ export const JobFormBase = ({ closeMenu }) => {
     //El submit solo cambia la url
     const makeSearch = (data) =>{
         const queryString = new URLSearchParams(data).toString(); 
-        const url = `/ofertasDeTrabajo/?${queryString}`
+        let url = `/ofertasDeTrabajo/?${queryString}`;
+        /*Originalmente estabas enviando el mismo número de página en el que te encontrabas
+        causando que si estabas en la página 3 y la búsqueda solo tenía una página de resultado
+        provocabas una excepción en el lado servidor y no recibías resultados aunque existieran
+        
+        Esta línea cambia el numberPage actual de la url por 0 para garantizar que si hay resultados
+        aunque sea solo una página, los muestre*/
+        url = url.replace(/(\?numberPage=)\d+/, '?numberPage=0');
         navigate(url);
         closeMenu();
     }

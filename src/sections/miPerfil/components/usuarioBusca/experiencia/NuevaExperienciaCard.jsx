@@ -81,9 +81,9 @@ export const NuevaExperienciaCard = ({ refreshData }) => {
                   message: 'Fecha inválida. El formato válido es dd-mm-yyyy'
                 },
                 validate: (value) => {
-                  if (!compararFechas(getValues('inicioExperiencia'), value))
+                  if (compararFechas(getValues('inicioExperiencia'), value))
                     return true;
-                  else return 'Fechas incorrectas'
+                  else return 'La fecha de fin es anterior a la de inicio';
                 }
               })}
             />

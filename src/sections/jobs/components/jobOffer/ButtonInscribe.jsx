@@ -15,11 +15,12 @@ export const ButtonInscribe = () => {
 
     const effectWrapper = async () => {
         if (oferta && oferta.id) {
-            setIsLoading(true);
             const resultadoPeticion = await comprobarInscripcionOferta(oferta.id);
             setEstaInscrito(resultadoPeticion.data);
             setIsLoading(false);
         }
+        setEstaInscrito(false);
+        setIsLoading(false);
     }
 
     useEffect(() => {

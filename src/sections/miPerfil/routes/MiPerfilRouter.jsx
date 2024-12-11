@@ -3,6 +3,7 @@ import { LogueadoVerificacion } from './LogueadoVerificacion.jsx';
 import { CambiarPasswordFirstPage, CambiarPasswordSecondPage } from '../pages';
 import { MisDatosPage } from '../pages/general/MisDatosPage.jsx';
 import { MisConocimientosPage, MisExperienciasPage, MisInscripcionesPage } from '../pages/seccionBusca';
+import { Page404 } from '../../../errors/pages/Page404.jsx';
 
 
 
@@ -17,6 +18,7 @@ export const MiPerfilRouter = () => {
           <Route path='/misConocimientos' element={<MisConocimientosPage/>}/>
           <Route path='/misExperiencias' element={<MisExperienciasPage/>}/>
           <Route path='/misInscripciones' element={<MisInscripcionesPage/>}/>
+          <Route path="/*" element={ <Page404/> }/>
       </Routes>
     </LogueadoVerificacion>
   )

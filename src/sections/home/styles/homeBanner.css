@@ -46,13 +46,8 @@
     }
 
     .home-banner p{
-        line-height: 4.4vh;
         margin-right: 0;
         font-size: 1.4rem;
-    }
-
-    .home-banner img{
-        height: 17vh;
     }
 
     .home-banner a{
@@ -63,5 +58,11 @@
 @media screen and (max-width:700px) {
     .home-banner a{
         padding: 4% !important;
+    }
+
+    .home-banner img{
+        width: 82vw;
+        margin-right: auto;
+        margin-left: 0;
     }
 }

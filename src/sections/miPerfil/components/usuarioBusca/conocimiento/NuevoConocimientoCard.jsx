@@ -85,9 +85,9 @@ export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
                   message: 'Fecha inválida. El formato válido es yyyy-mm-dd'
                 },
                 validate: (value) => {
-                  if (!compararFechas(getValues('inicioPeriodoConocimiento'), value))
+                  if (compararFechas(getValues('inicioPeriodoConocimiento'), value))
                     return true;
-                  else return 'Fechas incorrectas'
+                  else return 'La fecha de fin es anterior a la de inicio';
                 }
               })}
             />

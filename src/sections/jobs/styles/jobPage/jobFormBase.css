@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@300&family=Roboto&family=Tajawal:wght@500&display=swap');
+
 .job-search-form {
     padding: 4%;
 
@@ -45,6 +47,9 @@ de dichos elementos*/
     margin-top: 2vh;
 }
 
+.job-search-form option{
+    font-family: 'Tajawal';
+}
 
 @media screen and (max-width:1600px) {
     

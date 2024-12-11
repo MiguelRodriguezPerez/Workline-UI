@@ -1,5 +1,7 @@
-import { parsearFecha } from "./parsearFecha";
+export function compararFechas(fechaInicio, fechaFin) {
 
-export function compararFechas(fechaUEInicio, fechaUEFin) {
-    return ( parsearFecha( fechaUEInicio ) < parsearFecha( fechaUEFin ) );
+    fechaInicio = new Date(fechaInicio);
+    fechaFin = new Date(fechaFin);
+    
+    return fechaInicio.getTime() < fechaFin.getTime();
 }

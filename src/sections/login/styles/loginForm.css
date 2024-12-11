@@ -4,8 +4,6 @@
     justify-content: center;
 }
 
-
-
 .login-form > .login-input:first-child{
     margin: 10% 0 5%;
 }
@@ -57,8 +55,7 @@
 
 .login-form a {
     cursor: pointer;
-    width: 40%;
+    width: auto;
     text-align: center;
-    justify-self: right;
     margin-left: auto;
 }
