@@ -1,7 +1,8 @@
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { MisOfertasContext, misOfertasReducer } from './'
 import { getPaginaOfertaContrata } from "/src/global/api/seccionContrata"
 import { useEffect, useReducer, useState } from 'react';
+import { getCurrentMisOfertasPageUrl } from '../helpers';
 
 const init = () => {
     return {
@@ -18,7 +19,8 @@ export const MisOfertasProvider = ({ children }) => {
     const [ misOfertas, dispatch ] = useReducer(misOfertasReducer, [], init);
     const [ numPag, setNumPag ] = useState(0);
     const location = useLocation();
-    console.log(location)
+    const navigate = useNavigate();
+
 
     const updatePage = (page = {}) => {
         const action = {
@@ -42,6 +44,19 @@ export const MisOfertasProvider = ({ children }) => {
         const numPagUrl = location.pathname.toString().substring(12);
         const resultado = await getPaginaOfertaContrata(numPagUrl);
         updatePage(resultado.data);
+        
+
+        /*Si se borra la última oferta de una página y no es la última,
+        redirigirá a la anterior*/
+
+        let pagUrlActual = getCurrentMisOfertasPageUrl();
+        console.log(resultado.data.totalPages - 1)
+
+        if( pagUrlActual !== 0 &&
+        (resultado.data.totalPages - 1) < pagUrlActual){
+            console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAA')
+            navigate(`/misOfertas/${pagUrlActual - 1}`);
+        }
     }
 
     useEffect(() => {

@@ -2,29 +2,39 @@ import { useForm } from 'react-hook-form';
 import { prepararExperienciaDto } from '../../../helpers/prepararExperienciaDto';
 import { guardarNuevaExperiencia } from '/src/global/api/seccionBusca/experiencia'
 import { compararFechas } from '../../../../../global/helpers/fechas/compararFechas';
+import { useContext } from 'react';
+import { ComponenteActivoContext } from '../ComponenteActivoProvider';
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
-import { useContext } from 'react';
-import { ComponenteActivoContext } from '../ComponenteActivoProvider';
 
 export const NuevaExperienciaCard = ({ refreshData }) => {
 
   const { setButtonNuevaEntidad }  = useContext(ComponenteActivoContext);
+  const { register, formState: { errors }, getValues, handleSubmit, reset } = useForm();
 
   const newSubmit = async(data) => {
     const experienciaPreparada = prepararExperienciaDto(data);
     const resultado = await guardarNuevaExperiencia(experienciaPreparada);
     if( resultado.status === 201 ){
+
+      /*setButtonNuevaEntidad la función que pone el botón verde de Nuevo Conocimiento/Experiencia de miPerfil
+      en el DOM tras crear una entidad
+      
+      La razón por la que estas preguntando si existe es porque este componente se utiliza también
+      en la segunda página de crear un nuevo busca*/
+      setButtonNuevaEntidad && setButtonNuevaEntidad();
       refreshData();
-      setButtonNuevaEntidad();
+
+      /*Cuando creas un nuevo usuario busca los formularios quedan expuestos, de manera que los reinicias*/
+      reset();
     }
   }
 
-  const { register, formState: { errors }, getValues, handleSubmit } = useForm();
+  
 
   return (
-    <section className="entidad-card nube">
+    <section className="entidad-card nube nueva-entidad">
       <form method="post" onSubmit={handleSubmit(newSubmit)}>
         <section className='entidad-card-section'>
           <div>
@@ -90,7 +100,7 @@ export const NuevaExperienciaCard = ({ refreshData }) => {
             <p className='mensaje-error'>{errors.finExperiencia?.message}</p>
           </div>
         </section>
-        <section className='entidad-card-section'>
+        <section className='entidad-card-section '>
           <p></p>
           <button className='green-button nueva-entidad'> Subir cambios </button>
         </section>

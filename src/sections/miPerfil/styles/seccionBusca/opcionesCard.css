@@ -7,3 +7,16 @@
 .opciones-card > img {
     cursor: pointer;
 }
+
+@media screen and (max-width:700px) {
+    
+    .opciones-card {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+    }
+
+    .opciones-card > img{
+        margin-left: 5vw;
+    }
+}

@@ -19,8 +19,7 @@ export const ButtonInscribe = () => {
             setEstaInscrito(resultadoPeticion.data);
             setIsLoading(false);
         }
-        setEstaInscrito(false);
-        setIsLoading(false);
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -46,11 +45,8 @@ export const ButtonInscribe = () => {
         setIsLoading(false);
     }
 
-    if (isLoading) {
-        return <button className='blue-button' disabled>Cargando...</button>;
-    }
 
-    return (
+    if (!isLoading) return (
         <button onClick={buttonEvent} className={estaInscrito ? 'red-button' : 'green-button'}>
             {estaInscrito ? 'Desinscribirse' : 'Inscribirse'}
         </button>

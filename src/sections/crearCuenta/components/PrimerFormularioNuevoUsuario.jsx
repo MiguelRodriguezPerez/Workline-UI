@@ -17,6 +17,14 @@ export const PrimerFormularioNuevoUsuario = () => {
     const { gestionarCrearBusca } = useCrearBusca();
     const { gestionarCrearContrata } = useCrearContrata();
     const [ passwordNode, setPasswordNode ] = useState();
+    const defaultParams = {
+        nombre: '',
+        email: '',
+        rol: '',
+        ciudad: '',
+        telefono: '',
+        password: ''
+    }
 
     useEffect(() => {
         document.getElementById("password-ref-new-user")
@@ -46,7 +54,7 @@ export const PrimerFormularioNuevoUsuario = () => {
             <form method="post" onSubmit={handleSubmit(submitFirstStep)} className="new-user-form">
                 <div className="primer-div">
                     <Link to={'/login'} className="heading-link">Volver atrás</Link>
-                    <p onClick={reset}>Borrar datos</p>
+                    <p onClick={() => reset(defaultParams)}>Borrar datos</p>
                 </div>
                 <div>
                     <label className="form-label">Nombre</label>
@@ -91,8 +99,8 @@ export const PrimerFormularioNuevoUsuario = () => {
                         ...register('rol', { required: 'Campo obligatorio' })
                         }>
                         <option value="">Selecciona una opción</option>
-                        <option value="CONTRATA">Contratar</option>
-                        <option value="BUSCA">Busca</option>
+                        <option value="CONTRATA">Contratar personal</option>
+                        <option value="BUSCA">Buscar trabajo</option>
                     </select>
                     <p className="mensaje-error">{errors.rol?.message}</p>
 

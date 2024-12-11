@@ -54,7 +54,7 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
   return (
     <li className='entidad-card nube' id={data.id}>
       <form method="post" onSubmit={handleSubmit(editSubmit)}>
-        <section className='entidad-card-section'>
+        <section className='entidad-card-section primer-section'>
           <div>
             <label>Puesto</label>
             <input type="text" className='form-input'
@@ -83,7 +83,7 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
             />
             <p className='mensaje-error'>{errors.empresa?.message}</p>
           </div>
-          <div>
+          <div className='div-opciones'>
             <OpcionesCard activarEdicion={callbackOpcionesCard} borrarEntidad={() => {borrarExperienciaCallback(data.id)}}/>
           </div>
         </section>
@@ -123,7 +123,7 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
         </section>
         {
           !isReadOnly &&
-          <section className='entidad-card-section'>
+          <section className='entidad-card-section ultimo-section'>
             <p onClick={cancelEvent}>Cancelar</p>
             <button className='green-button'> Subir cambios </button>
           </section>

@@ -6,12 +6,12 @@ import { obtenerOfertaPorId } from '../../../jobs/api';
 import { editarOferta, publicarNuevaOferta } from '../../../../global/api/seccionContrata';
 import { prepararOfertaApi } from '../../helpers';
 import { getViewString } from '../../../../global/helpers';
+import { NuevaOfertaLinks } from './NuevaOfertaLinks';
+import { EditarOfertaLinks } from './EditarOfertaLinks';
 
 import '../../styles/formulariosOferta/ofertaForm.css';
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
-import { NuevaOfertaLinks } from './NuevaOfertaLinks';
-import { EditarOfertaLinks } from './EditarOfertaLinks';
 
 /*Como 0 es el valor que se asignará al id en caso de no existir, servirá
 para comprobar si se esta creando una nueva oferta o se esta editando 
@@ -61,7 +61,7 @@ export const FormularioOferta = ({ id = 0 }) => {
                     location.pathname.includes('nuevaOferta') ? 
                     <NuevaOfertaLinks reset={reset}/>
                     :
-                    <EditarOfertaLinks id={id}/>
+                    <EditarOfertaLinks id={id} reset={reset}/>
                 }
                 <form className='oferta-form' onSubmit={handleSubmit(submitWrapper)} method='post' id={id}>
                 <section className='nube primera-seccion'>

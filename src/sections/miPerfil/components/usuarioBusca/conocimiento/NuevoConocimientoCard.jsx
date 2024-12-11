@@ -5,13 +5,13 @@ import { compararFechas } from '../../../../../global/helpers/fechas/compararFec
 import { useContext } from 'react'
 import { ComponenteActivoContext } from '../ComponenteActivoProvider'
 
-import '../../../styles/seccionBusca/entidadCard.css'
+import '../../../styles/seccionBusca/nuevaEntidadCard.css'
 import '/src/global/styles/elementos.css'
 
 export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
 
   const { setButtonNuevaEntidad } = useContext(ComponenteActivoContext);
-  const { register, formState: { errors }, getValues, handleSubmit } = useForm({
+  const { register, formState: { errors }, getValues, handleSubmit, reset } = useForm({
     defaultValues: data
   });
 
@@ -26,11 +26,14 @@ export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
       en la segunda página de crear un nuevo busca*/
       setButtonNuevaEntidad && setButtonNuevaEntidad();
       refreshData();
+      
+      /*Cuando creas un nuevo usuario busca los formularios quedan expuestos, de manera que los reinicias*/
+      reset();
     }
   }
 
   return (
-    <li className='entidad-card nube' id={data.id}>
+    <section className='entidad-card nube nueva-entidad' id={data.id}>
         <form method="post" onSubmit={handleSubmit(newSubmit)}>
           <section className='entidad-card-section'>
             <div>
@@ -94,12 +97,12 @@ export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
             <p className='mensaje-error'>{errors.finPeriodoConocimiento?.message}</p>
           </div>
         </section>
-        <section className='entidad-card-section'>
+        <section className='entidad-card-section ultimo-section'>
             <p></p>
             <button className='green-button'> Subir cambios </button>
         </section>
         </form>
-    </li>
+    </section>
   )
 }
 

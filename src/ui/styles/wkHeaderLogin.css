@@ -7,12 +7,14 @@
 
 .header-login > a{
     font-size: 1rem;
-    margin: 0% 5%;
     color: white;
     text-decoration: none;
+    word-break: break-all;
+    align-self: center;
 }
 
 .header-login > img {
     cursor: pointer;
+    margin-left: 2%;
 }
 

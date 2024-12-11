@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router";
+import { useSwitchReadOnly } from "../../../../global/hooks";
 
 import '../../styles/formulariosOferta/ofertaEncabezadoLinks.css'
 import '/src/global/styles/formularios.css'
-import { useSwitchReadOnly } from "../../../../global/hooks";
 
-export const EditarOfertaLinks = ({ id }) => {
+export const EditarOfertaLinks = ({ id, reset }) => {
 
     const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true, id);
 

@@ -14,8 +14,9 @@ export const GridNuevoUsuarioBuscaEntity = ({ peticion, NuevaEntidadCard ,Entida
 
     return (
         <div className="grid-entidad">
-            <NuevaEntidadCard refreshData={refreshData}/>
             <h3>{titulo}</h3>
+            <NuevaEntidadCard refreshData={refreshData}/>
+            
             <ul className="lista-elementos">
                 {
                     listaEntidad.length > 0 ? (
