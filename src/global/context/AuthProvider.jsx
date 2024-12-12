@@ -3,6 +3,7 @@ import { AuthContext } from "./AuthContext";
 import { authReducer } from "./authReducer";
 import { uploadLogout } from '../../sections/login/helpers/'
 import { getApiLoggedUser } from '../../sections/login/helpers/getApiLoggedUser'
+import Cookies from "js-cookie";
 
 const init = () => { 
     return {
@@ -47,7 +48,12 @@ export const AuthProvider = ({ children }) => {
             if (usuario) updateUser(usuario);
             setIsLoading(false);
         };
-        fetchUser();
+
+
+        /*Para decidir si debe exigir el usuario logueado, comprueba
+        si el token jwt existe. Ten en cuenta que existe un edge case obvio*/
+        if(Cookies.get('jwtToken')) fetchUser();
+        else setIsLoading(false);
     }, []);
 
     return(

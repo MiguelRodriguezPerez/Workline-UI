@@ -9,7 +9,7 @@ import '../styles/wkHeaderLogin.css';
 
 export const WkHeaderLogin = () => {
 
-  const { user, resetUser } = useContext(AuthContext);
+  const { user, isLoading, resetUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const logoutEvent = () => {
@@ -22,6 +22,7 @@ export const WkHeaderLogin = () => {
   return (
     <div className='header-login'>
         {
+          !isLoading &&
           user.nombre === '' ? 
             <>
               <Link to={'/login'}>Iniciar sesión</Link> 
