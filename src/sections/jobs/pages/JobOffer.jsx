@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { obtenerOfertaPorId } from "../api"
 import { WkFooter } from '../../../ui/components/WkFooter'
-import { JobButtonBack, JobOfferDescription, JobOfferHeading, JobOfferInfo, JobOfferRequirements } from "../components/jobOffer/"
+import { JobButtonBack, JobOfferDescription, JobOfferHeading, JobOfferInfo } from "../components/jobOffer/"
 import { JobOfferProvider } from "../context/jobOffer/JobOfferProvider"
 import { WkHeaderWrapper } from "../../../ui/components/WkHeaderWrapper"
 
@@ -35,7 +35,6 @@ export const JobOffer = () => {
             <JobOfferHeading/>
             <JobOfferInfo/>
             <JobOfferDescription/>
-            <JobOfferRequirements/>
           </section>
         </JobOfferProvider>
       <WkFooter/>

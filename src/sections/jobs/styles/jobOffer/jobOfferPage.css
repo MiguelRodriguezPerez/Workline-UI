@@ -32,3 +32,13 @@
     }
 }
 
+@media screen and (max-width:700px) {
+    .job-offer-page > *{
+        margin: 2% 0%;
+    }
+
+    .job-offer-page button {
+        margin-top: 4%;
+    }
+}
+

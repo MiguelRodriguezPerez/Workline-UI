@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 import '../../styles/general/miPerfilSideNav.css';
 
-export const MiPerfilSideNav = ({ closeMenu }) => {
+export const MiPerfilSideNav = ({ closeMenu = () => {} }) => {
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
