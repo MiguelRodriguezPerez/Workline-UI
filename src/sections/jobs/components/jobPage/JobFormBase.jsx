@@ -12,7 +12,7 @@ import '/src/global/styles/formularios.css'
 import '/src/global/styles/elementos.css'
 
 
-export const JobFormBase = ({ closeMenu = () => {} }) => {
+export const JobFormBase = ({ closeMenu }) => {
 
     const location = useLocation();
     const navigate = useNavigate();
