@@ -23,4 +23,8 @@
     .no-job-results p, .no-job-results h2 {
         text-align: center;
     }
+
+    .no-job-results img {
+        width: 70%;
+    }
 }
