@@ -1,7 +1,5 @@
-export function compararFechas(fechaInicio, fechaFin) {
+import { convertirFechaServer } from "./convertirFechaServer";
 
-    fechaInicio = new Date(fechaInicio);
-    fechaFin = new Date(fechaFin);
-    
-    return fechaInicio.getTime() < fechaFin.getTime();
+export const compararFechas = (fechaAnterior, fechaPosterior) => {
+    return (new Date(convertirFechaServer(fechaAnterior)) < new Date(convertirFechaServer(fechaPosterior)));
 }

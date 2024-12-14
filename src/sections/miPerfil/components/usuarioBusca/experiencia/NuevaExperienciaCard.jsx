@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { prepararExperienciaDto } from '../../../helpers/prepararExperienciaDto';
 import { guardarNuevaExperiencia } from '/src/global/api/seccionBusca/experiencia'
-import { compararFechas } from '../../../../../global/helpers/fechas/compararFechas';
 import { useContext } from 'react';
 import { ComponenteActivoContext } from '../ComponenteActivoProvider';
+import { compararFechas, convertirFechaCliente, convertirFechaServer } from '../../../../../global/helpers/fechas';
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
@@ -11,9 +11,13 @@ import '/src/global/styles/elementos.css'
 export const NuevaExperienciaCard = ({ refreshData }) => {
 
   const { setButtonNuevaEntidad }  = useContext(ComponenteActivoContext);
-  const { register, formState: { errors }, getValues, handleSubmit, reset } = useForm();
+  const { register, formState: { errors }, getValues, handleSubmit, reset, setValue } = useForm();
 
   const newSubmit = async(data) => {
+
+    data.inicioExperiencia = convertirFechaServer(data.inicioExperiencia);
+    data.finExperiencia = convertirFechaServer(data.finExperiencia);
+
     const experienciaPreparada = prepararExperienciaDto(data);
     const resultado = await guardarNuevaExperiencia(experienciaPreparada);
     if( resultado.status === 201 ){
@@ -74,8 +78,8 @@ export const NuevaExperienciaCard = ({ refreshData }) => {
               {...register('inicioExperiencia', {
                 required: 'Fecha obligatoria',
                 pattern: {
-                  value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-                  message: 'Fecha inválida. El formato válido es dd-mm-yyyy'
+                  value: /^([0-2][0-9]|(3)[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/,
+                  message: 'Fecha inválida. El formato válido es dd/mm/yyyy'
                 }
               })}
             />
@@ -87,8 +91,8 @@ export const NuevaExperienciaCard = ({ refreshData }) => {
               {...register('finExperiencia', {
                 required: 'Fecha obligatoria',
                 pattern: {
-                  value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-                  message: 'Fecha inválida. El formato válido es dd-mm-yyyy'
+                  value: /^([0-2][0-9]|(3)[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/,
+                  message: 'Fecha inválida. El formato válido es dd/mm/yyyy'
                 },
                 validate: (value) => {
                   if (compararFechas(getValues('inicioExperiencia'), value))

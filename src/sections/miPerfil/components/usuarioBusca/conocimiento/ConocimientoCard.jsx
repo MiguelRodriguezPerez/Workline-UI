@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form'
 import { prepararConocimientoDto } from '../../../helpers'
 import { editarConocimiento, borrarConocimiento } from '/src/global/api/seccionBusca/conocimiento'
 import { compararFechas } from '../../../../../global/helpers/fechas/compararFechas'
+import { useEffect } from 'react'
+import { convertirFechaCliente, convertirFechaServer } from '../../../../../global/helpers/fechas'
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
@@ -13,9 +15,15 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
   const { turnOnHideLabel, turnOffHideLabel } = useSwitchHideLabel(true, data.id);
   const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
   const { turnOnHideBorder, turnOffHideBorder} = useSwitchHideBottomBorder(true, data.id);
-  const { register, reset, formState: { errors }, getValues, handleSubmit } = useForm({
+  const { register, reset, formState: { errors }, getValues, setValue, handleSubmit } = useForm({
     defaultValues: data
   });
+
+  useEffect(() => {
+    /*Convierte las fechas yyyy/mm/dd a dd/mm/yyyy */
+    setValue('inicioPeriodoConocimiento', convertirFechaCliente(data.inicioPeriodoConocimiento));
+    setValue('finPeriodoConocimiento', convertirFechaCliente(data.finPeriodoConocimiento));
+  }, [data]);
 
   const callbackOpcionesCard = () => {
     turnOffHideLabel();
@@ -31,6 +39,10 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
   }
 
   const editSubmit = async (data) => {
+
+    data.inicioPeriodoConocimiento = convertirFechaServer(data.inicioPeriodoConocimiento);
+    data.finPeriodoConocimiento = convertirFechaServer(data.finPeriodoConocimiento);
+
     const conocimientoDto = prepararConocimientoDto(data);
     const resultado = await editarConocimiento(conocimientoDto, data.id);
 
@@ -91,8 +103,8 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
               {...register('inicioPeriodoConocimiento', {
                 required: 'Fecha obligatoria',
                 pattern: {
-                  value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-                  message: 'Fecha inválida. El formato válido es yyyy-mm-dd'
+                  value: /^([0-2][0-9]|(3)[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/,
+                  message: 'Fecha inválida. El formato válido es dd/mm/yyyy'
                 }
               })}
             />
@@ -104,8 +116,8 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
               {...register('finPeriodoConocimiento', {
                 required: 'Fecha obligatoria',
                 pattern: {
-                  value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-                  message: 'Fecha inválida. El formato válido es yyyy-mm-dd'
+                  value: /^([0-2][0-9]|(3)[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/,
+                  message: 'Fecha inválida. El formato válido es dd/mm/yyyy'
                 },
                 validate: (value) => {
                   if (compararFechas(getValues('inicioPeriodoConocimiento'), value))

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { prepararConocimientoDto } from '../../../helpers'
 import { guardarNuevoConocimiento } from '/src/global/api/seccionBusca/conocimiento'
-import { compararFechas } from '../../../../../global/helpers/fechas/compararFechas'
+import { compararFechas, convertirFechaCliente, convertirFechaServer } from '../../../../../global/helpers/fechas'
 import { useContext } from 'react'
 import { ComponenteActivoContext } from '../ComponenteActivoProvider'
 
@@ -11,11 +11,15 @@ import '/src/global/styles/elementos.css'
 export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
 
   const { setButtonNuevaEntidad } = useContext(ComponenteActivoContext);
-  const { register, formState: { errors }, getValues, handleSubmit, reset } = useForm({
+  const { register, formState: { errors }, getValues, handleSubmit, reset, setValue } = useForm({
     defaultValues: data
   });
 
   const newSubmit = async (data) => {
+
+    data.inicioPeriodoConocimiento = convertirFechaServer(data.inicioPeriodoConocimiento);
+    data.finPeriodoConocimiento = convertirFechaServer(data.finPeriodoConocimiento);
+
     const conocimientoDto = prepararConocimientoDto(data);
     const resultado = await guardarNuevoConocimiento(conocimientoDto);
     if(resultado.status === 201){
@@ -27,7 +31,7 @@ export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
       setButtonNuevaEntidad && setButtonNuevaEntidad();
       refreshData();
       
-      /*Cuando creas un nuevo usuario busca los formularios quedan expuestos, de manera que los reinicias*/
+      /*Cuando creas un nuevo usuario busca los formularios no se borran, de manera que los reinicias*/
       reset();
     }
   }
@@ -68,11 +72,11 @@ export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
           <div>
             <label htmlFor="inicioPeriodoConocimiento">Fecha inicio</label>
             <input type="text" className='form-input'
-              {...register('inicioPeriodoConocimiento', {
+               {...register('inicioPeriodoConocimiento', {
                 required: 'Fecha obligatoria',
                 pattern: {
-                  value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-                  message: 'Fecha inválida. El formato válido es yyyy-mm-dd'
+                  value: /^([0-2][0-9]|(3)[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/,
+                  message: 'Fecha inválida. El formato válido es dd/mm/yyyy'
                 }
               })}
             />
@@ -84,13 +88,13 @@ export const NuevoConocimientoCard = ( { data = {}, refreshData }) => {
               {...register('finPeriodoConocimiento', {
                 required: 'Fecha obligatoria',
                 pattern: {
-                  value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-                  message: 'Fecha inválida. El formato válido es yyyy-mm-dd'
+                  value: /^([0-2][0-9]|(3)[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/,
+                  message: 'Fecha inválida. El formato válido es dd/mm/yyyy'
                 },
                 validate: (value) => {
                   if (compararFechas(getValues('inicioPeriodoConocimiento'), value))
                     return true;
-                  else return 'La fecha de fin es anterior a la de inicio';
+                  else return 'La fecha de fin es anterior a la de inicio'
                 }
               })}
             />

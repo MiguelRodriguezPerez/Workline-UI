@@ -1,14 +1,13 @@
 import { useForm } from 'react-hook-form'
 import { editarExperiencia, borrarExperiencia } from '/src/global/api/seccionBusca/experiencia'
-import { compararFechas } from '/src/global/helpers/fechas'
 import { useSwitchReadOnly, useSwitchHideLabel, useSwitchHideBottomBorder } from '/src/global/hooks'
 import { prepararExperienciaDto } from '../../../helpers'
 import { OpcionesCard } from '../OpcionesCard'
-
+import { convertirFechaServer, compararFechas, convertirFechaCliente } from '/src/global/helpers/fechas'
+import { useEffect } from 'react'
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
-
 
 export const ExperienciaCard = ({ data = {}, refreshData }) => {
 
@@ -16,11 +15,21 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
   const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
   const { turnOffHideLabel, turnOnHideLabel } = useSwitchHideLabel(true, data.id);
   const { turnOnHideBorder, turnOffHideBorder} = useSwitchHideBottomBorder(true, data.id);
-  const { register, reset, formState: { errors }, getValues, handleSubmit } = useForm({
+  const { register, reset, formState: { errors }, getValues, handleSubmit, setValue } = useForm({
     defaultValues: data
   });
 
+  useEffect(() => {
+      /*Convierte las fechas yyyy/mm/dd a dd/mm/yyyy */
+      setValue('inicioExperiencia', convertirFechaCliente(data.inicioExperiencia));
+      setValue('finExperiencia', convertirFechaCliente(data.finExperiencia));
+    }, [data])
+
   const editSubmit = async (data) => {
+
+    data.inicioExperiencia = convertirFechaServer(data.inicioExperiencia);
+    data.finExperiencia = convertirFechaServer(data.finExperiencia);
+
     const experienciaDto = prepararExperienciaDto(data);
     const resultado = await editarExperiencia(experienciaDto, data.id);
 
@@ -95,8 +104,8 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
               {...register('inicioExperiencia', {
                 required: 'Fecha obligatoria',
                 pattern: {
-                  value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-                  message: 'Fecha inválida. El formato válido es yyyy-mm-dd'
+                  value: /^([0-2][0-9]|(3)[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/,
+                  message: 'Fecha inválida. El formato válido es dd/mm/yyyy'
                 }
               })}
             />
@@ -108,8 +117,8 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
               {...register('finExperiencia', {
                 required: 'Fecha obligatoria',
                 pattern: {
-                  value: /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
-                  message: 'Fecha inválida. El formato válido es yyyy-mm-dd'
+                  value: /^([0-2][0-9]|(3)[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/,
+                  message: 'Fecha inválida. El formato válido es dd/mm/yyyy'
                 },
                 validate: (value) => {
                   if (compararFechas(getValues('inicioExperiencia'), value))
@@ -132,10 +141,3 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
     </li>
   )
 }
-
-{/* <li className='entidad-card nube'>
-        <h3>{data.puesto}</h3>
-        <OpcionesCard/>
-        <p>{data.empresa}</p>
-        <p>{data.inicioExperiencia + ' ' + data.finExperiencia}</p>
-    </li> */}

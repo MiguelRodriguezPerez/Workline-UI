@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router';
-import '../../styles/jobPage/jobCard.css'
 import { getViewString } from '../../../../global/helpers';
+
+import '../../styles/jobPage/jobCard.css'
+import { convertirFechaCliente } from '../../../../global/helpers/fechas';
 
 export const JobCard = ({oferta}) => {
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ export const JobCard = ({oferta}) => {
           <li>{oferta.salarioAnual}</li>
           <li>{getViewString(oferta.tipoContrato)}</li>
           <li>{oferta.horas + ' horas'}</li>
-          <li>{oferta.fechaPublicacion}</li>
+          <li>{convertirFechaCliente(oferta.fechaPublicacion)}</li>
         </ul>
     </li>
   )
