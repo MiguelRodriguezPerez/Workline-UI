@@ -1,18 +1,17 @@
 import { useForm } from 'react-hook-form'
-import { editarExperiencia, borrarExperiencia } from '/src/global/api/seccionBusca/experiencia'
 import { useSwitchReadOnly, useSwitchHideLabel, useSwitchHideBottomBorder } from '/src/global/hooks'
-import { prepararExperienciaDto } from '../../../helpers'
 import { OpcionesCard } from '../OpcionesCard'
-import { convertirFechaServer, compararFechas, convertirFechaCliente } from '/src/global/helpers/fechas'
+import { compararFechas, convertirFechaCliente } from '/src/global/helpers/fechas'
 import { useEffect } from 'react'
+import { useCardEditOptions, usePeticionesExperiencia } from '../../../hooks'
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
-import { useCardEditOptions } from '../../../hooks'
 
 export const ExperienciaCard = ({ data = {}, refreshData }) => {
 
   const { isReadOnly, activarEdicionCard, desactivarEdicionCard } = useCardEditOptions( data.id );
+  const { editarExperienciaSubmit, borrarExperienciaSubmit } = usePeticionesExperiencia( data.id, refreshData );
   const { register, reset, formState: { errors }, getValues, handleSubmit, setValue } = useForm({
     defaultValues: data
   });
@@ -23,30 +22,10 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
       setValue('finExperiencia', convertirFechaCliente(data.finExperiencia));
     }, [data])
 
-  const editSubmit = async (data) => {
-    data.inicioExperiencia = convertirFechaServer(data.inicioExperiencia);
-    data.finExperiencia = convertirFechaServer(data.finExperiencia);
-
-    const experienciaDto = prepararExperienciaDto(data);
-    const resultado = await editarExperiencia(experienciaDto, data.id);
-
-    if (resultado.status === 201) {
-      refreshData();
-      turnOnReadOnly();
-      turnOnHideLabel();
-      turnOnHideBorder();
-    }
-  }
-
-  const borrarExperienciaCallback = async (id) => {
-    const resultado = await borrarExperiencia(id);
-    console.log(resultado)
-    if(resultado.status === 204) refreshData();
-  }
 
   return (
     <li className='entidad-card nube' id={data.id}>
-      <form method="post" onSubmit={handleSubmit(editSubmit)}>
+      <form method="post" onSubmit={handleSubmit(editarExperienciaSubmit)}>
         <section className='entidad-card-section primer-section'>
           <div>
             <label>Puesto</label>
@@ -77,7 +56,8 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
             <p className='mensaje-error'>{errors.empresa?.message}</p>
           </div>
           <div className='div-opciones'>
-            <OpcionesCard activarEdicion={activarEdicionCard} borrarEntidad={() => {borrarExperienciaCallback(data.id)}}/>
+            <OpcionesCard activarEdicion={activarEdicionCard} 
+              borrarEntidad={borrarExperienciaSubmit}/>
           </div>
         </section>
 
