@@ -1,7 +1,8 @@
 import { OpcionesCard } from '../OpcionesCard'
 import { useForm } from 'react-hook-form'
+import { prepararConocimientoDto } from '../../../helpers'
 import { useEffect } from 'react'
-import { convertirFechaCliente, compararFechas } from '../../../../../global/helpers/fechas'
+import { convertirFechaCliente,  compararFechas} from '../../../../../global/helpers/fechas'
 import { useCardEditOptions, usePeticionesConocimiento } from '../../../hooks'
 
 import '../../../styles/seccionBusca/entidadCard.css'
@@ -21,6 +22,10 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
     setValue('finPeriodoConocimiento', convertirFechaCliente(data.finPeriodoConocimiento));
   }, [data]);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 63688a083c854a65c888e398ae5df97e09c18e8c
   return (
     <li className='entidad-card nube' id={data.id}>
         <form method="post" onSubmit={handleSubmit( editarConocimientoSubmit )}>

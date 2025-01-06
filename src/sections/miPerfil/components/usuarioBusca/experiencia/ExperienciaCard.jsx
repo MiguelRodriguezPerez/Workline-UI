@@ -8,6 +8,8 @@ import { useCardEditOptions, usePeticionesExperiencia } from '../../../hooks'
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
 
+
+
 export const ExperienciaCard = ({ data = {}, refreshData }) => {
 
   const { isReadOnly, activarEdicionCard, desactivarEdicionCard } = useCardEditOptions( data.id );
