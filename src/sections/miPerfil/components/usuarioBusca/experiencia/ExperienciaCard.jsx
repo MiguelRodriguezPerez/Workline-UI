@@ -8,13 +8,11 @@ import { useEffect } from 'react'
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
+import { useCardEditOptions } from '../../../hooks'
 
 export const ExperienciaCard = ({ data = {}, refreshData }) => {
 
-  console.log(data.id)
-  const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
-  const { turnOffHideLabel, turnOnHideLabel } = useSwitchHideLabel(true, data.id);
-  const { turnOnHideBorder, turnOffHideBorder} = useSwitchHideBottomBorder(true, data.id);
+  const { isReadOnly, activarEdicionCard, desactivarEdicionCard } = useCardEditOptions( data.id );
   const { register, reset, formState: { errors }, getValues, handleSubmit, setValue } = useForm({
     defaultValues: data
   });
@@ -26,7 +24,6 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
     }, [data])
 
   const editSubmit = async (data) => {
-
     data.inicioExperiencia = convertirFechaServer(data.inicioExperiencia);
     data.finExperiencia = convertirFechaServer(data.finExperiencia);
 
@@ -39,19 +36,6 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
       turnOnHideLabel();
       turnOnHideBorder();
     }
-  }
-
-  const callbackOpcionesCard = () => {
-    turnOffHideLabel();
-    turnOffReadOnly();
-    turnOffHideBorder();
-  }
-
-  const cancelEvent = () => {
-    turnOnHideLabel();
-    turnOnReadOnly();
-    turnOnHideBorder();
-    reset();
   }
 
   const borrarExperienciaCallback = async (id) => {
@@ -93,7 +77,7 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
             <p className='mensaje-error'>{errors.empresa?.message}</p>
           </div>
           <div className='div-opciones'>
-            <OpcionesCard activarEdicion={callbackOpcionesCard} borrarEntidad={() => {borrarExperienciaCallback(data.id)}}/>
+            <OpcionesCard activarEdicion={activarEdicionCard} borrarEntidad={() => {borrarExperienciaCallback(data.id)}}/>
           </div>
         </section>
 
@@ -133,7 +117,7 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
         {
           !isReadOnly &&
           <section className='entidad-card-section ultimo-section'>
-            <p onClick={cancelEvent}>Cancelar</p>
+            <p onClick={() => { desactivarEdicionCard(reset) } }>Cancelar</p>
             <button className='green-button'> Subir cambios </button>
           </section>
         }

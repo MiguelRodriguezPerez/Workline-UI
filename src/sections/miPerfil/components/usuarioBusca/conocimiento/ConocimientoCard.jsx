@@ -6,15 +6,14 @@ import { editarConocimiento, borrarConocimiento } from '/src/global/api/seccionB
 import { compararFechas } from '../../../../../global/helpers/fechas/compararFechas'
 import { useEffect } from 'react'
 import { convertirFechaCliente, convertirFechaServer } from '../../../../../global/helpers/fechas'
+import { useCardEditOptions } from '../../../hooks'
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
 
 export const ConocimientoCard = ( { data = {}, refreshData }) => {
 
-  const { turnOnHideLabel, turnOffHideLabel } = useSwitchHideLabel(true, data.id);
-  const { isReadOnly, turnOffReadOnly, turnOnReadOnly } = useSwitchReadOnly(true, data.id);
-  const { turnOnHideBorder, turnOffHideBorder} = useSwitchHideBottomBorder(true, data.id);
+  const { isReadOnly, activarEdicionCard, desactivarEdicionCard } = useCardEditOptions( data.id );
   const { register, reset, formState: { errors }, getValues, setValue, handleSubmit } = useForm({
     defaultValues: data
   });
@@ -25,21 +24,12 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
     setValue('finPeriodoConocimiento', convertirFechaCliente(data.finPeriodoConocimiento));
   }, [data]);
 
-  const callbackOpcionesCard = () => {
-    turnOffHideLabel();
-    turnOffReadOnly();
-    turnOffHideBorder();
+  const borrarConocimientoCallback = async (id) => {
+    const resultado = await borrarConocimiento(id);
+    if(resultado.status === 204) refreshData();
   }
 
-  const cancelEvent = () => {
-    turnOnReadOnly();
-    turnOnHideLabel();
-    turnOnHideBorder();
-    reset();
-  }
-
-  const editSubmit = async (data) => {
-
+  const editarConocimientoCallback = async (data) => {
     data.inicioPeriodoConocimiento = convertirFechaServer(data.inicioPeriodoConocimiento);
     data.finPeriodoConocimiento = convertirFechaServer(data.finPeriodoConocimiento);
 
@@ -48,20 +38,13 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
 
     if (resultado.status === 201) {
       refreshData();
-      turnOnReadOnly();
-      turnOnHideLabel();
-      turnOnHideBorder();
+      desactivarEdicionCard();
     }
-  }
-
-  const borrarOfertaCallback = async (id) => {
-    const resultado = await borrarConocimiento(id);
-    if(resultado.status === 204) refreshData();
   }
 
   return (
     <li className='entidad-card nube' id={data.id}>
-        <form method="post" onSubmit={handleSubmit(editSubmit)}>
+        <form method="post" onSubmit={handleSubmit(editarConocimientoCallback)}>
           <section className='entidad-card-section primer-section'>
             <div>
               <label htmlFor="titulo">Titulo</label>
@@ -90,8 +73,8 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
               <p className='mensaje-error'>{errors.centroEducativo?.message}</p>
             </div>
             <div className='div-opciones'>
-              <OpcionesCard activarEdicion={callbackOpcionesCard} 
-                borrarEntidad={() => { borrarOfertaCallback(data.id) }}
+              <OpcionesCard activarEdicion={ activarEdicionCard } 
+                borrarEntidad={() => { borrarConocimientoCallback(data.id) }}
               />
             </div>
           </section>
@@ -132,7 +115,7 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
         {
           !isReadOnly &&
           <section className='entidad-card-section ultimo-section'>
-            <p onClick={cancelEvent}>Cancelar</p>
+            <p onClick={ () => { desactivarEdicionCard(reset) } }>Cancelar</p>
             <button className='green-button'> Subir cambios </button>
           </section>
         }
