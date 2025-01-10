@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../global/context/AuthContext';
 import { PasswordEye } from '../../../ui/components/forms/PasswordEye';
-import { uploadLogin } from '../helpers/uploadLogin';
+import { uploadLogin } from '../api';
 import { useForm } from 'react-hook-form';
 
 import '../styles/loginForm.css';
@@ -40,8 +40,8 @@ export const LoginForm = () => {
     const submitLogin = async(data) => {
         const loggedUser = await uploadLogin(data);
 
-        if(loggedUser){
-            updateUser(loggedUser);
+        if(loggedUser.data){
+            updateUser(loggedUser.data);
             navigate('/');
         }
         else document.getElementById('mensaje-error').removeAttribute('hidden');

@@ -1,8 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import { AuthContext } from "./AuthContext";
 import { authReducer } from "./authReducer";
-import { uploadLogout } from '../../sections/login/helpers/'
-import { getApiLoggedUser } from '../../sections/login/helpers/getApiLoggedUser'
+import { obtenerContextoUsuarioConectado } from '/src/sections/miPerfil/api'
 import Cookies from "js-cookie";
 
 const init = () => { 
@@ -44,8 +43,8 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const usuario = await getApiLoggedUser();
-            if (usuario) updateUser(usuario);
+            const usuario = await obtenerContextoUsuarioConectado();
+            if (usuario.data) updateUser(usuario.data);
             setIsLoading(false);
         };
 
