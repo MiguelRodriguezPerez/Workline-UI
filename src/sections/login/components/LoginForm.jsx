@@ -12,7 +12,7 @@ import '/src/global/styles/formularios.css';
 
 export const LoginForm = () => {
 
-    const {register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const { updateUser, resetUser } = useContext(AuthContext);
     /*Necesitas esta obra de arte de React para garantizar que siempre le llegará a PasswordEye
@@ -26,18 +26,8 @@ export const LoginForm = () => {
         && setPasswordNode(document.getElementById("password-input-login"));
     }, [])
 
-
-    const goBackEvent = (event) => {
-        event.preventDefault();
-        navigate('/');
-    }
-
-    const goNewAccount = (event) => {
-        event.preventDefault();
-        navigate('/nuevaCuenta/primeraParte');
-    }
-
     const submitLogin = async(data) => {
+        
         const loggedUser = await uploadLogin(data);
 
         if(loggedUser.data){
@@ -65,9 +55,19 @@ export const LoginForm = () => {
             <p hidden className='login-error' id='mensaje-error'>Nombre de usuario o contraseña incorrectos</p>
         
             <button className='green-button'>Iniciar Sesión</button>
-            <button onClick={ goNewAccount }>¿No tiene cuenta? Cree una</button>
+            <button onClick={ 
+                    (event) => {
+                        event.preventDefault();
+                        navigate('/nuevaCuenta/primeraParte');
+                    } 
+                }>¿No tiene cuenta? Cree una</button>
 
-            <a onClick={ goBackEvent }>Volver al inicio</a>
+            <a onClick={ 
+                (event) => {
+                    event.preventDefault();
+                    navigate('/'); 
+                }
+            }>Volver al inicio</a>
         </form>
     )
 }

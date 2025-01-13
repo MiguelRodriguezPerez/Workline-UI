@@ -37,7 +37,8 @@ export const JobFormBase = ({ closeMenu }) => {
     
 
     //El submit solo cambia la url
-    const makeSearch = (data) =>{
+    const makeSearch = (data) => {
+        console.log(data)
         const queryString = new URLSearchParams(data).toString(); 
         let url = `/ofertasDeTrabajo/?${queryString}`;
         /*Originalmente estabas enviando el mismo número de página en el que te encontrabas

@@ -1,0 +1,19 @@
+----------- LADO CLIENTE ------------
+
+Mostrar filtros búsqueda en botones
+Arreglar ojo password
+Rehacer cartas entidad
+No hay resultados ofertas component, ni conocimientos,
+ni experiencias
+Redirigir a misma url si una acción requiere login
+Redux authContext
+Añadir requisitos y experiencias a ofertas en listas
+Extender descripción hasta el pie de página
+Mostrar experiencia/formación no requerida
+Hacer vista contrata desde busca
+Tests
+Cambiar paginación mui por headless ui
+
+---- Pendiente Profesor ----
+Librería componentes
+Dropdown headless ui

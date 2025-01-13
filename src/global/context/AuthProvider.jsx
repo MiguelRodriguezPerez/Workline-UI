@@ -43,16 +43,18 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const usuario = await obtenerContextoUsuarioConectado();
-            if (usuario.data) updateUser(usuario.data);
-            setIsLoading(false);
+            if(Cookies.get('jwtToken')){
+                const usuario = await obtenerContextoUsuarioConectado();
+                if (usuario.data) updateUser(usuario.data);
+                setIsLoading(false);
+            }
+            else setIsLoading(false);
         };
 
 
         /*Para decidir si debe exigir el usuario logueado, comprueba
         si el token jwt existe. Ten en cuenta que existe un edge case obvio*/
-        if(Cookies.get('jwtToken')) fetchUser();
-        else setIsLoading(false);
+        fetchUser();
     }, []);
 
     return(
