@@ -1,0 +1,4 @@
+Hacer logout
+Implementar en componentes
+Persistir contexto
+Gestionar edición datos usuario

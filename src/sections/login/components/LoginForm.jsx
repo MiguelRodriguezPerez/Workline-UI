@@ -8,6 +8,8 @@ import { useForm } from 'react-hook-form';
 import '../styles/loginForm.css';
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
+import { useDispatch } from 'react-redux';
+import { getLoggedUser, updateLoggedUser } from '../../../global/redux/slices/loggedUser';
 
 
 export const LoginForm = () => {
@@ -15,6 +17,7 @@ export const LoginForm = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const { updateUser, resetUser } = useContext(AuthContext);
+    const dispatch = useDispatch();
     /*Necesitas esta obra de arte de React para garantizar que siempre le llegará a PasswordEye
     el nodo de la contraseña para poder cambiarlo de password a text y viceversa.
     
@@ -27,14 +30,14 @@ export const LoginForm = () => {
     }, [])
 
     const submitLogin = async(data) => {
+        dispatch(getLoggedUser(data));
+        // TODO: Controlar posibles errores 
         
-        const loggedUser = await uploadLogin(data);
-
-        if(loggedUser.data){
-            updateUser(loggedUser.data);
-            navigate('/');
-        }
-        else document.getElementById('mensaje-error').removeAttribute('hidden');
+        // if(loggedUser.data){
+        //     updateUser(loggedUser.data);
+        //     navigate('/');
+        // }
+        // else document.getElementById('mensaje-error').removeAttribute('hidden');
     }
 
     return (

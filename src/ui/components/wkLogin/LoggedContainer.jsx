@@ -3,10 +3,11 @@ import { AuthContext } from '../../../global/context';
 import { useNavigate } from 'react-router';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const LoggedContainer = () => {
 
-    const { user, isLoading, resetUser } = useContext(AuthContext);
+    const loggedUser = useSelector( (state) => state.loggedUser);
     const navigate = useNavigate();
 
     const logoutEvent = () => {
@@ -18,7 +19,7 @@ export const LoggedContainer = () => {
 
     return (
         <>
-            <Link to={'/miPerfil/misDatos'}>{user.nombre}</Link>
+            <Link to={'/miPerfil/misDatos'}>{loggedUser.nombre}</Link>
             <img src="/images/ui/logoutPc.png" id="logout" onClick={logoutEvent} />
         </>
     );

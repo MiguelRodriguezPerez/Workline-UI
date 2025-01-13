@@ -6,15 +6,16 @@ import { uploadLogout } from '/src/sections/login/api'
 import { UnloggedContainer, LoggedContainer } from "./";
 
 import '../../styles/wkHeaderLogin.css';
+import { useSelector } from "react-redux";
 
 export const WkHeaderLogin = () => {
 
-  const { user, isLoading, resetUser } = useContext(AuthContext);
+  const loggedUser = useSelector( (state) => state.loggedUser);
 
   return (
     <div className='header-login'>
       {
-        !isLoading && user.nombre === '' ?
+        loggedUser.nombre === '' ?
           <UnloggedContainer/> : <LoggedContainer/>
       }
     </div>
