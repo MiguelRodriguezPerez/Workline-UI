@@ -10,12 +10,15 @@ import '../../styles/general/formularioDatos.css';
 import '../../styles/general/formularioDatosReadOnly.css';
 import '/src/global/styles/formularios.css';
 import { CambiarPassword } from "../cambiarPassword/CambiarPassword";
+import { useDispatch } from "react-redux";
+import { updateLoggedUser } from "../../../../global/redux/slices/loggedUser";
 
 
 
 export const FormularioDatosUsuario = () => {
 
   const { updateUser } = useContext(AuthContext);
+  const dispatch = useDispatch();
   const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true, 'form-user');
   const { turnOnHideLabel, turnOffHideLabel } = useSwitchHideLabel(true, 'form-user');
   const { turnOnHideBorder, turnOffHideBorder } = useSwitchHideBottomBorder(true, 'form-user');
@@ -43,24 +46,8 @@ export const FormularioDatosUsuario = () => {
     turnOnHideLabel();
     turnOnHideBorder();
     const resultado = await editarUsuarioEntidad(data);
-    if (resultado.status === 201) updateUser(resultado.data);
+    if (resultado.status === 201) dispatch(updateLoggedUser(resultado.data));
   }
-
-  useEffect(() => {
-    if(isReadOnly) {
-      for(const nodo of Array.from(document.querySelectorAll('.formulario-datos  input[type=text]'))){
-        console.log('AAAAAAAAAAAAAAAAA')
-        nodo.classList.remove('form-input');
-        nodo.classList.add('read-only-input');
-      }
-    }
-    else {
-      for(const nodo of Array.from(document.querySelectorAll('.formulario-datos  input[type=text]'))){
-        nodo.classList.add('form-input');
-        nodo.classList.remove('read-only-input');
-      }
-    }
-  }, [isReadOnly]);
 
   return (
     <section className="container-formulario" id="form-user">

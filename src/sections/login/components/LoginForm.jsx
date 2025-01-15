@@ -1,16 +1,14 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../global/context/AuthContext';
-import { PasswordEye } from '../../../ui/components/forms/PasswordEye';
 import { uploadLogin } from '../api';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLoggedUser, updateLoggedUser } from '../../../global/redux/slices/loggedUser';
 
 import '../styles/loginForm.css';
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
-import { useDispatch } from 'react-redux';
-import { getLoggedUser, updateLoggedUser } from '../../../global/redux/slices/loggedUser';
-
 
 export const LoginForm = () => {
 
@@ -18,26 +16,11 @@ export const LoginForm = () => {
     const navigate = useNavigate();
     const { updateUser, resetUser } = useContext(AuthContext);
     const dispatch = useDispatch();
-    /*Necesitas esta obra de arte de React para garantizar que siempre le llegará a PasswordEye
-    el nodo de la contraseña para poder cambiarlo de password a text y viceversa.
-    
-    Cuando probaste a hacerlo sin usar esta magnífica maravilla al irte a crear nueva cuenta y
-    volver aquí, PasswordEye recibía null en vez del input*/
-    const [ passwordNode, setPasswordNode ] = useState();
-    useEffect(() => {
-        document.getElementById("password-input-login")
-        && setPasswordNode(document.getElementById("password-input-login"));
-    }, [])
+    const loginSucess = useSelector(state => state.loggedUser.loginSucess);
 
     const submitLogin = async(data) => {
         dispatch(getLoggedUser(data));
-        // TODO: Controlar posibles errores 
-        
-        // if(loggedUser.data){
-        //     updateUser(loggedUser.data);
-        //     navigate('/');
-        // }
-        // else document.getElementById('mensaje-error').removeAttribute('hidden');
+        navigate('/');
     }
 
     return (
@@ -52,7 +35,6 @@ export const LoginForm = () => {
                 <img src="/images/login/candado.png" alt=""/>
                 <input type="password" {...register('password')} id='password-input-login'
                 placeholder="Contraseña" className='form-input' ></input>
-                <PasswordEye input={ passwordNode }/> 
             </section>
 
             <p hidden className='login-error' id='mensaje-error'>Nombre de usuario o contraseña incorrectos</p>

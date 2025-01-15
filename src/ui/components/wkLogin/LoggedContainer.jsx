@@ -1,19 +1,20 @@
-import { useContext } from 'react'
-import { AuthContext } from '../../../global/context';
 import { useNavigate } from 'react-router';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetLoggedUser } from '../../../global/redux/slices/loggedUser';
+import { uploadLogout } from '../../../sections/login/api';
 
 export const LoggedContainer = () => {
 
-    const loggedUser = useSelector( (state) => state.loggedUser);
+    const loggedUser = useSelector(state => state.loggedUser);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const logoutEvent = () => {
         Cookies.remove('jwtToken', { path: '/ ' });
-        resetUser();
         uploadLogout();
+        dispatch(resetLoggedUser());
         navigate('/');
     }
 

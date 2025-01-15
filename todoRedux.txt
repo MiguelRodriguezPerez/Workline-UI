@@ -1,4 +1,6 @@
-Hacer logout
+TODO REDUX
+
+Redirigir login exitoso
 Implementar en componentes
 Persistir contexto
-Gestionar edición datos usuario
+Averiguar restcontrolleradvice
