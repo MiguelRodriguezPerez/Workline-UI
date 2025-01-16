@@ -7,6 +7,7 @@ import { JobOfferContext } from "../../context/jobOffer/jobOfferContext";
 import '/src/global/styles/elementos.css';
 
 export const ButtonInscribe = () => {
+    
     const navigate = useNavigate();
     const oferta  = useContext(JobOfferContext);
     const { user } = useContext(AuthContext);

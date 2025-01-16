@@ -1,7 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../global/context/AuthContext';
-import { uploadLogin } from '../api';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoggedUser, updateLoggedUser } from '../../../global/redux/slices/loggedUser';
@@ -9,18 +7,23 @@ import { getLoggedUser, updateLoggedUser } from '../../../global/redux/slices/lo
 import '../styles/loginForm.css';
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
+import { worklineStore } from '../../../global/redux/store/worklineStore';
 
 export const LoginForm = () => {
 
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
-    const { updateUser, resetUser } = useContext(AuthContext);
     const dispatch = useDispatch();
-    const loginSucess = useSelector(state => state.loggedUser.loginSucess);
 
+    /*Cuando axios recibe una respuesta 400 lanza una excepción. Si da una excepción, es que el login
+    fue mal y el contexto no se pudo actualizar. No se me ocurrió nada mejor*/
     const submitLogin = async(data) => {
-        dispatch(getLoggedUser(data));
-        navigate('/');
+        try { await dispatch(getLoggedUser(data)) } 
+        catch (error) { 
+            document.getElementById('mensaje-error').removeAttribute('hidden')
+            //Cada fallo de login es otro log más de errores
+            console.clear();
+        }
     }
 
     return (

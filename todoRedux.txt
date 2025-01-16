@@ -4,3 +4,5 @@ Redirigir login exitoso
 Implementar en componentes
 Persistir contexto
 Averiguar restcontrolleradvice
+
+const user = worklineStore.getState().loggedUser; acceder estado sin hook

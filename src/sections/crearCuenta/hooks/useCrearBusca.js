@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { crearNuevoBusca } from "../api";
-import { AuthContext } from '/src/global/context';
+import { useSelector } from "react-redux";
+
 
 export const useCrearBusca = () => {
 
-    const { updateUser } = useContext(AuthContext);
+    const user = useSelector(state => state.loggedUser);
     const navigate = useNavigate();
 
     const gestionarCrearBusca = async(dtoPreparado) => {
