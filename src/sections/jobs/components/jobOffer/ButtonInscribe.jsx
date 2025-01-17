@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { comprobarInscripcionOferta, desinscribirBusca, inscribirBusca } from "../../api";
-import { AuthContext } from "/src/global/context";
-import { JobOfferContext } from "../../context/jobOffer/jobOfferContext";
-
-import '/src/global/styles/elementos.css';
 import { useSelector } from "react-redux";
 import { useButtonInscribe } from "../../hooks";
+
+import '/src/global/styles/elementos.css';
+
 
 export const ButtonInscribe = () => {
     
