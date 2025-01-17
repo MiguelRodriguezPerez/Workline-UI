@@ -18,6 +18,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const worklineStore = configureStore({
     reducer:  persistedReducer,
+    /*Estas líneas teóricamente sirven para establecer como middelware el thunks personalizado
+    que te creaste para el usuario*/
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
           thunk: {

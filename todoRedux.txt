@@ -1,6 +1,6 @@
 TODO REDUX
 
-Redirigir login exitoso
-Persistir contexto
+Redirigir login exitoso (Se esta válidando bien)
+Implementar redux en componentes
 
 const user = worklineStore.getState().loggedUser; acceder estado sin hook
