@@ -50,15 +50,6 @@
     margin: 0% 10%;
 }
 
-.password-div {
-    display: grid;
-    grid-template-columns: 94% 6%;
-    align-items: center;
-}
-
-.password-div img{
-    margin-bottom: 0%;
-}
 
 
 .new-user-form > input[type=submit] {

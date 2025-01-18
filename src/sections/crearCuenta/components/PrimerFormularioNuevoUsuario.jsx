@@ -2,10 +2,8 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { esNombreRepetido } from '../api';
 import { prepararUsuarioDto } from "../helpers";
-import { useCrearBusca, useCrearContrata } from "../hooks";
+import { useCrearUsuario } from "../hooks";
 
-import { useEffect, useState } from "react";
-import { PasswordEye } from "../../../ui/components/forms/PasswordEye";
 import '../styles/formularioNuevoUsuario.css';
 import '/src/global/styles/elementos.css';
 import '/src/global/styles/formularios.css';
@@ -14,9 +12,8 @@ import '/src/global/styles/formularios.css';
 export const PrimerFormularioNuevoUsuario = () => {
 
     const { register, reset, formState: { errors }, handleSubmit } = useForm({});
-    const { gestionarCrearBusca } = useCrearBusca();
-    const { gestionarCrearContrata } = useCrearContrata();
-    const [ passwordNode, setPasswordNode ] = useState();
+    const { gestionarCrearUsuario } = useCrearUsuario();
+
     const defaultParams = {
         nombre: '',
         email: '',
@@ -26,32 +23,10 @@ export const PrimerFormularioNuevoUsuario = () => {
         password: ''
     }
 
-    useEffect(() => {
-        document.getElementById("password-ref-new-user")
-        && setPasswordNode(document.getElementById("password-ref-new-user"));
-    }, [])
-
-    const submitFirstStep = async (data) => {
-        const dtoPreparado = prepararUsuarioDto(data);
-
-        switch(dtoPreparado.rol){
-            case 'CONTRATA' :
-                //Sospechoso de fallar
-                await gestionarCrearContrata(dtoPreparado);
-                break;
-            case 'BUSCA' :
-                await gestionarCrearBusca(dtoPreparado);
-                break;
-            default :
-                console.warn('¿Como has llegado aquí?');
-                break;
-        }
-    }
-
     return (
         // Este elemento debería estar en su propio componente
         <main className="form-container">
-            <form method="post" onSubmit={handleSubmit(submitFirstStep)} className="new-user-form">
+            <form method="post" onSubmit={handleSubmit(gestionarCrearUsuario)} className="new-user-form">
                 <div className="primer-div">
                     <Link to={'/login'} className="heading-link">Volver atrás</Link>
                     <p onClick={() => reset(defaultParams)}>Borrar datos</p>
@@ -137,8 +112,7 @@ export const PrimerFormularioNuevoUsuario = () => {
                     <p className="mensaje-error">{errors.telefono?.message}</p>
 
                     <label htmlFor="password" className="form-label">Contraseña</label>
-                    <div className="password-div">
-                        <input type="password" className="form-input" id="password-ref-new-user"
+                    <input type="password" className="form-input" id="password-ref-new-user"
                             {
                             ...register('password', {
                                 required: 'Campo obligatorio',
@@ -147,10 +121,8 @@ export const PrimerFormularioNuevoUsuario = () => {
                                     message: 'Minímo 14 carácteres combinando mayúsculas, minúsculas, números y carácteres especiales'
                                 }
                             })
-                            }
-                        />
-                        <PasswordEye input={passwordNode}/>
-                    </div>
+                            }/>
+
                     <p className="mensaje-error">{errors.password?.message}</p>
 
                 </div>

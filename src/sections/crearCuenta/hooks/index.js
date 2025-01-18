@@ -1,2 +1,1 @@
-export * from './useCrearBusca'
-export * from './useCrearContrata'
+export * from './useCrearUsuario'

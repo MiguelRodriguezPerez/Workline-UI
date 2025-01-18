@@ -15,9 +15,6 @@ export const loggedUserSlice = createSlice({
             state.email = action.payload.email;
             state.rol = action.payload.rol;
         },
-        failedLoginAttempt: (state) => {
-            state.loginSucess = false;
-        },
         resetLoggedUser: (state) => {
             return { ...initialLoggedUserState };
         }
