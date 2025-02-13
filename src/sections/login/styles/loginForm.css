@@ -14,14 +14,10 @@
     align-items: center;
 }
 
-.login-password {
-    grid-template-columns: 17% 73% 10%;
-}
 
 .login-input > img{
     margin-top: 10%;
 }
-
 
 .login-form > button {
     margin-top: 10%;

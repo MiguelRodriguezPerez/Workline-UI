@@ -3,6 +3,7 @@ import { AuthContext } from "./AuthContext";
 import { authReducer } from "./authReducer";
 import { obtenerContextoUsuarioConectado } from '/src/sections/miPerfil/api'
 import Cookies from "js-cookie";
+import { obtenerUsuarioLogueado } from "../../sections/login/helpers";
 
 const init = () => { 
     return {
@@ -17,8 +18,8 @@ export const AuthProvider = ({ children }) => {
     /*isLoading lo tuviste que definir para el HOC que impide que un usuario que no sea de 
     tipo CONTRATA acceda a mis ofertas. Por la razón que sea ese HOC no puede esperar a 
     que se resuelva el efecto*/
-    const [isLoading, setIsLoading] = useState(true);
-    const [userState, dispatch] = useReducer(authReducer, {}, init);
+    const [ isLoading, setIsLoading ] = useState(true);
+    const [ userState, dispatch ] = useReducer(authReducer, {}, init);
 
     const updateUser = (user = {}) => {
         const action = {
@@ -42,19 +43,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-        const fetchUser = async () => {
-            if(Cookies.get('jwtToken')){
-                const usuario = await obtenerContextoUsuarioConectado();
-                if (usuario.data) updateUser(usuario.data);
-                setIsLoading(false);
-            }
-            else setIsLoading(false);
-        };
-
-
-        /*Para decidir si debe exigir el usuario logueado, comprueba
-        si el token jwt existe. Ten en cuenta que existe un edge case obvio*/
-        fetchUser();
+        if(localStorage.getItem('loggedUser')) updateUser(obtenerUsuarioLogueado());
     }, []);
 
     return(

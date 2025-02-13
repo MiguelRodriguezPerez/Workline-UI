@@ -10,6 +10,7 @@ import '../../styles/general/formularioDatos.css';
 import '../../styles/general/formularioDatosReadOnly.css';
 import '/src/global/styles/formularios.css';
 import { CambiarPassword } from "../cambiarPassword/CambiarPassword";
+import { almacenarUsuarioLogueado } from "../../../login/helpers";
 
 
 
@@ -43,7 +44,10 @@ export const FormularioDatosUsuario = () => {
     turnOnHideLabel();
     turnOnHideBorder();
     const resultado = await editarUsuarioEntidad(data);
-    if (resultado.status === 201) updateUser(resultado.data);
+    if (resultado.status === 201) {
+      updateUser(resultado.data);
+      almacenarUsuarioLogueado(resultado.data);
+    }
   }
 
   useEffect(() => {

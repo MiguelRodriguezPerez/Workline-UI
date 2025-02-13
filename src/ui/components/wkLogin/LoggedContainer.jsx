@@ -3,6 +3,8 @@ import { AuthContext } from '../../../global/context';
 import { useNavigate } from 'react-router';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
+import { uploadLogout } from '../../../sections/login/api';
+import { borrarUsuarioLogueado } from '../../../sections/login/helpers';
 
 export const LoggedContainer = () => {
 
@@ -13,6 +15,7 @@ export const LoggedContainer = () => {
         Cookies.remove('jwtToken', { path: '/ ' });
         resetUser();
         uploadLogout();
+        borrarUsuarioLogueado();
         navigate('/');
     }
 

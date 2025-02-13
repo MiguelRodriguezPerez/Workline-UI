@@ -14,7 +14,7 @@ export const WkHeaderLogin = () => {
   return (
     <div className='header-login'>
       {
-        !isLoading && user.nombre === '' ?
+        user.nombre === '' ?
           <UnloggedContainer/> : <LoggedContainer/>
       }
     </div>
