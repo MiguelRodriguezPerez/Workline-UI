@@ -1,50 +1,46 @@
 import { useForm } from "react-hook-form"
 import { CabeceraMiPerfil, BorrarCuentaButton } from "./"
 import { editarUsuarioEntidad, obtenerUsuarioEntidad } from "../../api";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../global/context/AuthContext";
 import { useSwitchHideLabel, useSwitchReadOnly, useSwitchHideBottomBorder } from "../../../../global/hooks";
 import { useNavigate } from "react-router";
+import { CambiarPassword } from "../cambiarPassword/CambiarPassword";
+import { useDispatch } from "react-redux";
+import { updateLoggedUser } from "../../../../global/redux/slices/loggedUser";
+import { activarEdicion, desactivarEdicion } from "../../helpers/formularioDatosUsuario";
 
 import '../../styles/general/formularioDatos.css';
 import '../../styles/general/formularioDatosReadOnly.css';
 import '/src/global/styles/formularios.css';
-import { CambiarPassword } from "../cambiarPassword/CambiarPassword";
-import { useDispatch } from "react-redux";
-import { updateLoggedUser } from "../../../../global/redux/slices/loggedUser";
-
 
 
 export const FormularioDatosUsuario = () => {
 
+  const [ isEditable, setIsEditable ] = useState(false);
   const { updateUser } = useContext(AuthContext);
   const dispatch = useDispatch();
-  const { isReadOnly, turnOnReadOnly, turnOffReadOnly } = useSwitchReadOnly(true, 'form-user');
-  const { turnOnHideLabel, turnOffHideLabel } = useSwitchHideLabel(true, 'form-user');
-  const { turnOnHideBorder, turnOffHideBorder } = useSwitchHideBottomBorder(true, 'form-user');
   const navigate = useNavigate();
-
   const { register, reset, formState: { errors }, handleSubmit } = useForm({
     defaultValues: async () => await obtenerUsuarioEntidad()
   });
 
-  const editClick = () => {
-    turnOffReadOnly();
-    turnOffHideLabel();
-    turnOffHideBorder();
-  }
 
-  const cancelClick = () => {
-    turnOnReadOnly();
-    turnOnHideLabel();
-    turnOnHideBorder();
+  useEffect(() => {
+    if(isEditable) activarEdicion();
+    else desactivarEdicion();
+  }, [isEditable] )
+
+
+  const desactivarEdicionWrapper = () => {
+    setIsEditable(false);
     reset();
   }
 
   const submitEdit = async (data) => {
-    turnOnReadOnly();
-    turnOnHideLabel();
-    turnOnHideBorder();
+    desactivarEdicion();
+    setIsEditable(false); 
+    
     const resultado = await editarUsuarioEntidad(data);
     if (resultado.status === 201) dispatch(updateLoggedUser(resultado.data));
   }
@@ -52,10 +48,10 @@ export const FormularioDatosUsuario = () => {
   return (
     <section className="container-formulario" id="form-user">
       {
-        (isReadOnly) ?
-          <p className="heading-link" onClick={editClick}>Editar datos</p>
-          :
-          <p className="heading-link" onClick={cancelClick}>Cancelar</p>
+        (isEditable) ?
+        <p className="heading-link" onClick={ desactivarEdicionWrapper }>Cancelar</p>
+        :  
+        <p className="heading-link" onClick={ () => { setIsEditable(true) } }>Editar datos</p> 
       }
       <form method="post" onSubmit={handleSubmit(submitEdit)} className="formulario-datos">
         <div>
@@ -117,7 +113,7 @@ export const FormularioDatosUsuario = () => {
             })
             } />
           <p className="mensaje-error">{errors.telefono?.message}</p>
-          {!isReadOnly && <input type="submit" value="Subir cambios" className="green-button" />}
+          {isEditable && <input type="submit" value="Subir cambios" className="green-button" />}
         </div>
       </form>
       <div className="row-botones">
@@ -128,4 +124,3 @@ export const FormularioDatosUsuario = () => {
     </section>
   )
 }
-//1234kasdddddddjfA#
