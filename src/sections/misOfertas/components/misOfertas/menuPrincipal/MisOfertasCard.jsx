@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router';
 import '../../../styles/misOfertasCard.css';
 
 export const MisOfertasCard = ({ oferta }) => {
+  
 
   const navigate = useNavigate();
 

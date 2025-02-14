@@ -6,6 +6,6 @@ export const ContrataRolVerificacion = ({ children }) => {
   
     const { user, isLoading } = useContext( AuthContext );
 
-    return (user?.rol === 'CONTRATA') ? children : <Navigate to='/login'/>
+    if(!isLoading) return (user?.rol === 'CONTRATA') ? children : <Navigate to='/login'/>
 
 }

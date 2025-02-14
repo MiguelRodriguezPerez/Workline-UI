@@ -53,7 +53,6 @@ export const FormularioDatosUsuario = () => {
   useEffect(() => {
     if(isReadOnly) {
       for(const nodo of Array.from(document.querySelectorAll('.formulario-datos  input[type=text]'))){
-        console.log('AAAAAAAAAAAAAAAAA')
         nodo.classList.remove('form-input');
         nodo.classList.add('read-only-input');
       }

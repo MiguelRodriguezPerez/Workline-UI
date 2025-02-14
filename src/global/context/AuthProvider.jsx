@@ -44,6 +44,7 @@ export const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if(localStorage.getItem('loggedUser')) updateUser(obtenerUsuarioLogueado());
+        setIsLoading(false);
     }, []);
 
     return(

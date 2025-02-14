@@ -41,11 +41,13 @@ export const MisOfertasProvider = ({ children }) => {
     }
 
     const refreshData = async () => {
+
+        console.log('aaaaaaaa');
+        
         const numPagUrl = location.pathname.toString().substring(12);
         const resultado = await getPaginaOfertaContrata(numPagUrl);
         updatePage(resultado.data);
         
-
         /*Si se borra la última oferta de una página y no es la última,
         redirigirá a la anterior*/
 
@@ -60,8 +62,6 @@ export const MisOfertasProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        /*Axios no te devuelve el objeto de la api directamente, sino que devuelve un objeto
-        con varios campos sobre la respuesta de la api, entre ellos data que son los datos que solicitaste */
       refreshData();
     }, [location.pathname])
 
