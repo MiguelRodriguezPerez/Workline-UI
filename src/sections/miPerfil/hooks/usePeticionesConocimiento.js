@@ -1,6 +1,5 @@
 import { borrarConocimiento, editarConocimiento } from "../../../global/api/seccionBusca/conocimiento";
 import { convertirFechaServer } from "../../../global/helpers/fechas";
-import { useCardEditOptions } from ".";
 import { prepararConocimientoDto } from "../helpers/prepararConocimientoDto";
 
 /*No recibes los datos del formulario al llamar al hook porque si no tendrías que hacer cosas extrañas
@@ -12,8 +11,6 @@ en todas las funciones*/
 
 export const usePeticionesConocimiento = (id, refreshData = () => {}) => {
 
-  const { desactivarEdicionCard } = useCardEditOptions(id);
-
   const editarConocimientoSubmit = async(newData) => {
     newData.inicioPeriodoConocimiento = convertirFechaServer(newData.inicioPeriodoConocimiento);
     newData.finPeriodoConocimiento = convertirFechaServer(newData.finPeriodoConocimiento);
@@ -21,10 +18,7 @@ export const usePeticionesConocimiento = (id, refreshData = () => {}) => {
     const conocimientoDto = prepararConocimientoDto(newData);
     const resultado = await editarConocimiento(conocimientoDto, newData.id);
 
-    if (resultado.status === 201) {
-      refreshData();
-      desactivarEdicionCard();
-    }
+    if (resultado.status === 201) refreshData();
   }
 
   const borrarConocimientoSubmit = async() => {

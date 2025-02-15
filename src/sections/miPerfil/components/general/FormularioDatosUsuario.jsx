@@ -3,12 +3,11 @@ import { CabeceraMiPerfil, BorrarCuentaButton } from "./"
 import { editarUsuarioEntidad, obtenerUsuarioEntidad } from "../../api";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../../global/context/AuthContext";
-import { useSwitchHideLabel, useSwitchReadOnly, useSwitchHideBottomBorder } from "../../../../global/hooks";
 import { useNavigate } from "react-router";
 import { CambiarPassword } from "../cambiarPassword/CambiarPassword";
 import { useDispatch } from "react-redux";
 import { updateLoggedUser } from "../../../../global/redux/slices/loggedUser";
-import { activarEdicion, desactivarEdicion } from "../../helpers/formularioDatosUsuario";
+import { activarEdicion, desactivarEdicion } from "../../helpers/entidadesCard";
 
 import '../../styles/general/formularioDatos.css';
 import '../../styles/general/formularioDatosReadOnly.css';
@@ -27,8 +26,8 @@ export const FormularioDatosUsuario = () => {
 
 
   useEffect(() => {
-    if(isEditable) activarEdicion();
-    else desactivarEdicion();
+    //Id del formulario
+    isEditable ? activarEdicion('form-user') : desactivarEdicion('form-user');
   }, [isEditable] )
 
 
@@ -38,7 +37,7 @@ export const FormularioDatosUsuario = () => {
   }
 
   const submitEdit = async (data) => {
-    desactivarEdicion();
+    desactivarEdicion('form-user');
     setIsEditable(false); 
     
     const resultado = await editarUsuarioEntidad(data);

@@ -1,7 +1,6 @@
 import { borrarExperiencia, editarExperiencia } from "../../../global/api/seccionBusca/experiencia";
 import { convertirFechaServer } from "../../../global/helpers/fechas";
 import { prepararExperienciaDto } from "../helpers";
-import { useCardEditOptions } from "./useCardEditOptions";
 
 /*No recibes los datos del formulario al llamar al hook porque si no tendrías que hacer cosas extrañas
 para actualizar los datos del formulario. En su lugar, recibes el id de data para que desactivarEdicionCard
@@ -12,8 +11,6 @@ en todas las funciones*/
 
 export const usePeticionesExperiencia = (id, refreshData = () => {}) => {
 
-    const { desactivarEdicionCard } = useCardEditOptions(id);
-
     const editarExperienciaSubmit = async(newData) => {
         newData.inicioExperiencia = convertirFechaServer(newData.inicioExperiencia);
         newData.finExperiencia = convertirFechaServer(newData.finExperiencia);
@@ -21,10 +18,7 @@ export const usePeticionesExperiencia = (id, refreshData = () => {}) => {
         const experienciaDto = prepararExperienciaDto(newData);
         const resultado = await editarExperiencia(experienciaDto, newData.id);
     
-        if (resultado.status === 201) {
-          refreshData();
-          desactivarEdicionCard();
-        }
+        if (resultado.status === 201) refreshData();
     }
 
     const borrarExperienciaSubmit = async() => {

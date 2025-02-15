@@ -2,27 +2,34 @@ import { useForm } from 'react-hook-form'
 import { useSwitchReadOnly, useSwitchHideLabel, useSwitchHideBottomBorder } from '/src/global/hooks'
 import { OpcionesCard } from '../OpcionesCard'
 import { compararFechas, convertirFechaCliente } from '/src/global/helpers/fechas'
-import { useEffect } from 'react'
-import { useCardEditOptions, usePeticionesExperiencia } from '../../../hooks'
+import { useEffect, useState } from 'react'
+import { usePeticionesExperiencia } from '../../../hooks'
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
-
+import { activarEdicion, desactivarEdicion } from '../../../helpers/entidadesCard'
 
 
 export const ExperienciaCard = ({ data = {}, refreshData }) => {
 
-  const { isReadOnly, activarEdicionCard, desactivarEdicionCard } = useCardEditOptions( data.id );
+  const [ isEditable, setIsEditable ] = useState(false);
   const { editarExperienciaSubmit, borrarExperienciaSubmit } = usePeticionesExperiencia( data.id, refreshData );
   const { register, reset, formState: { errors }, getValues, handleSubmit, setValue } = useForm({
     defaultValues: data
   });
+  
+  const resetarCardWrapper = () => {
+    reset();
+    setIsEditable(false);
+  }
 
   useEffect(() => {
-      /*Convierte las fechas yyyy/mm/dd a dd/mm/yyyy */
-      setValue('inicioExperiencia', convertirFechaCliente(data.inicioExperiencia));
-      setValue('finExperiencia', convertirFechaCliente(data.finExperiencia));
-    }, [data])
+    /*Convierte las fechas yyyy/mm/dd a dd/mm/yyyy */
+    setValue('inicioExperiencia', convertirFechaCliente(data.inicioExperiencia));
+    setValue('finExperiencia', convertirFechaCliente(data.finExperiencia));
+
+    isEditable ? activarEdicion(data.id) : desactivarEdicion(data.id)
+  }, [data, isEditable]);
 
 
   return (
@@ -58,7 +65,7 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
             <p className='mensaje-error'>{errors.empresa?.message}</p>
           </div>
           <div className='div-opciones'>
-            <OpcionesCard activarEdicion={activarEdicionCard} 
+            <OpcionesCard activarEdicion={() => { setIsEditable(true) }} 
               borrarEntidad={borrarExperienciaSubmit}/>
           </div>
         </section>
@@ -97,9 +104,9 @@ export const ExperienciaCard = ({ data = {}, refreshData }) => {
           </div>
         </section>
         {
-          !isReadOnly &&
+          isEditable &&
           <section className='entidad-card-section ultimo-section'>
-            <p onClick={() => { desactivarEdicionCard(reset) } }>Cancelar</p>
+            <p onClick={ resetarCardWrapper }>Cancelar</p>
             <button className='green-button'> Subir cambios </button>
           </section>
         }

@@ -1,26 +1,35 @@
 import { OpcionesCard } from '../OpcionesCard'
 import { useForm } from 'react-hook-form'
 import { prepararConocimientoDto } from '../../../helpers'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { convertirFechaCliente,  compararFechas } from '../../../../../global/helpers/fechas'
-import { useCardEditOptions, usePeticionesConocimiento } from '../../../hooks'
+import { usePeticionesConocimiento } from '../../../hooks'
+import { activarEdicion, desactivarEdicion } from '../../../helpers/entidadesCard'
 
 import '../../../styles/seccionBusca/entidadCard.css'
 import '/src/global/styles/elementos.css'
 
+
 export const ConocimientoCard = ( { data = {}, refreshData }) => {
 
-  const { isReadOnly, activarEdicionCard, desactivarEdicionCard } = useCardEditOptions( data.id );
+  const [ isEditable, setIsEditable ] = useState(false);
   const { editarConocimientoSubmit, borrarConocimientoSubmit } = usePeticionesConocimiento(data.id, refreshData);
   const { register, reset, formState: { errors }, getValues, setValue, handleSubmit } = useForm({
     defaultValues: data
   });
 
+  const resetarCardWrapper = () => {
+    reset();
+    setIsEditable(false);
+  }
+
   useEffect(() => {
     /*Convierte las fechas yyyy/mm/dd a dd/mm/yyyy */
     setValue('inicioPeriodoConocimiento', convertirFechaCliente(data.inicioPeriodoConocimiento));
     setValue('finPeriodoConocimiento', convertirFechaCliente(data.finPeriodoConocimiento));
-  }, [data]);
+
+    isEditable ? activarEdicion(data.id) : desactivarEdicion(data.id)
+  }, [data, isEditable]);
 
   return (
     <li className='entidad-card nube' id={data.id}>
@@ -53,7 +62,7 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
               <p className='mensaje-error'>{errors.centroEducativo?.message}</p>
             </div>
             <div className='div-opciones'>
-              <OpcionesCard activarEdicion={ activarEdicionCard } 
+              <OpcionesCard activarEdicion={ () => { setIsEditable(true)} } 
                 borrarEntidad={borrarConocimientoSubmit}
               />
             </div>
@@ -93,9 +102,9 @@ export const ConocimientoCard = ( { data = {}, refreshData }) => {
           </div>
         </section>
         {
-          !isReadOnly &&
+          isEditable &&
           <section className='entidad-card-section ultimo-section'>
-            <p onClick={ () => { desactivarEdicionCard(reset) } }>Cancelar</p>
+            <p onClick={ resetarCardWrapper }>Cancelar</p>
             <button className='green-button'> Subir cambios </button>
           </section>
         }
